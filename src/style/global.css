@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1700px;
+  margin: 0 auto;
+}
+
+/* flex-classes */
+.d-flex {
+  display: flex;
+}
+.align-center {
+  align-items: center;
+}
+.align-start {
+  align-items: flex-start;
+}
+.align-end {
+  align-items: flex-end;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-evenly {
+  justify-content: space-evenly;
+}
+.justify-around {
+  justify-content: space-around;
+}
+
+/* ant-styles */
+.ant-btn {
+  height: 40px;
+  border-radius: 2px;
+}
+.ant-input {
+  height: 40px;
+  border-radius: 2px;
+}
+.ant-select-selector {
+  height: 40px;
+  border-radius: 2px;
+}
+/* gap-classes */
+.gap-1 {
+  gap: 8px;
+}
+.gap-2 {
+  gap: 15px;
+}
+.gap-3 {
+  gap: 24px;
+}
+.gap-x-1 {
+  gap: 0 8px;
+}
+.gap-x-2 {
+  gap: 0 15px;
+}
+.gap-x-3 {
+  gap: 0 24px;
+}
+.gap-y-1 {
+  gap: 8px 0;
+}
+.gap-y-2 {
+  gap: 15px 0;
+}
+.gap-y-3 {
+  gap: 24px 0;
+}

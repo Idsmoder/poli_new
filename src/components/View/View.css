@@ -1,0 +1,32 @@
+.preview {
+    margin: auto;
+    /* height:297mm !important; */
+    height: 100%;
+    width: 210mm !important;
+    /* overflow-x: hidden;
+    overflow-y: hidden; */
+}
+
+.all-wrapper {
+    position: fixed;
+    width: 48%;
+}
+
+.page_wrap {
+    height: 95vh;
+    overflow-y: auto;
+}
+
+.page_wrap::-webkit-scrollbar {
+    width: 10px;
+}
+.d-flex {
+    display: flex;
+}
+.align-items-center {
+    align-items: center;
+}
+.col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
