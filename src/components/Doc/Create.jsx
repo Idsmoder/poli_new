@@ -220,12 +220,12 @@ const Create = () => {
                         <div className="border-light p-3 border-5 ">
                             {/* Ф.И.О: */}
                             <ViewMain patient={patient} />
-                            {/* <View1 patient={patient} info={tab1} setInfo={setTab1} />
+                            <View1 patient={patient} info={tab1} setInfo={setTab1} />
                             <View2 patient={patient} info={tab2} setInfo={setTab2} />
                             <View3 patient={patient} info={tab3} setInfo={setTab3} />
                             <View4 patient={patient} info={tab4} setInfo={setTab4} />
                             <View5 patient={patient} info={tab5} setInfo={setTab5} />
-                            <View6 patient={patient} info={tab6} setInfo={setTab6} /> */}
+                            <View6 patient={patient} info={tab6} setInfo={setTab6} />
                             <View7 patient={patient} info={tab7} setInfo={setTab7} />
                         </div>
                         </div>
