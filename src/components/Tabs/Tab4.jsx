@@ -1,8 +1,10 @@
 import { Button, Col, Form, Radio, Row, Typography } from "antd"
 import { useParams } from "react-router-dom";
 import { api } from "../../utils/api";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
+import Swal from "sweetalert2";
 
+// eslint-disable-next-line react/prop-types
 const Tab4 = ({patient, onChanges,info,setInfo}) => {
     const [form] = Form.useForm();
     const params = useParams();
@@ -50,6 +52,7 @@ const Tab4 = ({patient, onChanges,info,setInfo}) => {
     useEffect (() => {
         form.setFieldsValue(info);
     },[info])
+    
     return (
         <>
             <Typography.Title level={5}>Вредные привычки и наследственность</Typography.Title>

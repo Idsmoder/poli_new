@@ -13,6 +13,7 @@
     "antd": "^5.4.6",
     "antd-mask-input": "^2.0.7",
     "axios": "^1.4.0",
+    "bootstrap": "^5.2.3",
     "cookies": "^0.8.0",
     "js-cookie": "^3.0.5",
     "moment": "^2.29.4",

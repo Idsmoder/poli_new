@@ -1,9 +1,10 @@
-import React, { Suspense, lazy } from "react";
+import  { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import ErrorElement from "./Pages/ErrorPage";
 import Loading from "./components/Loader";
 import PrivateRoutes from "./components/PrivateRoutes";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 
 import {
