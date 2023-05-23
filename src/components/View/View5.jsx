@@ -4,210 +4,210 @@ const View5 = ({ patient,info,setInfo }) => {
   
     const adipPoseTissueMeasure = () => {
         if (
-          info?.gender &&
+          patient?.gender &&
           info?.adiposeTissue &&
-          info?.age === ""
+          patient?.age === ""
         )
           return "";
         // Women
-        if (info?.gender === "0") {
+        if (patient?.gender === "0") {
           if (info?.adiposeTissue === "") return "";
           // Nedostatochno
-          if (info?.age <= 19 && info?.adiposeTissue <= 18)
+          if (patient?.age <= 19 && info?.adiposeTissue <= 18)
             return "Ваш процент жира в организме недостаточен";
           if (
-            info?.age >= 20 &&
-            info?.age <= 39 &&
+            patient?.age >= 20 &&
+            patient?.age <= 39 &&
             info?.adiposeTissue <= 20
           )
             return "Ваш процент жира в организме недостаточен";
           if (
-            info?.age >= 40 &&
-            info?.age <= 59 &&
+            patient?.age >= 40 &&
+            patient?.age <= 59 &&
             info?.adiposeTissue <= 22
           )
             return "Ваш процент жира в организме недостаточен";
-          if (info?.age >= 60 && info?.adiposeTissue <= 23)
+          if (patient?.age >= 60 && info?.adiposeTissue <= 23)
             return "Ваш процент жира в организме недостаточен";
           // Norma
           if (
-            info?.age <= 19 &&
+            patient?.age <= 19 &&
             info?.adiposeTissue >= 19 &&
             info?.adiposeTissue <= 31
           )
-            return "Ваш процент жира в организме в норме";
+            return "Ваш процент жира-  в организме в норме";
           if (
-            info?.age >= 20 &&
-            info?.age <= 39 &&
+            patient?.age >= 20 &&
+            patient?.age <= 39 &&
             info?.adiposeTissue >= 21 &&
             info?.adiposeTissue <= 32
           )
             return "Ваш процент жира в организме в норме";
           if (
-            info?.age >= 40 &&
-            info?.age <= 59 &&
+            patient?.age >= 40 &&
+            patient?.age <= 59 &&
             info?.adiposeTissue >= 23 &&
             info?.adiposeTissue <= 33
           )
             return "Ваш процент жира в организме в норме";
           if (
-            info?.age >= 60 &&
+            patient?.age >= 60 &&
             info?.adiposeTissue >= 24 &&
             info?.adiposeTissue <= 35
           )
             return "Ваш процент жира в организме в норме";
           // Izbitok
           if (
-            info?.age <= 19 &&
+            patient?.age <= 19 &&
             info?.adiposeTissue >= 31 &&
             info?.adiposeTissue <= 36
           )
             return "Ваш процент жира в организме – Избыток";
           if (
-            info?.age >= 20 &&
-            info?.age <= 39 &&
+            patient?.age >= 20 &&
+            patient?.age <= 39 &&
             info?.adiposeTissue >= 33 &&
             info?.adiposeTissue <= 38
           )
             return "Ваш процент жира в организме – Избыток";
           if (
-            info?.age >= 40 &&
-            info?.age <= 59 &&
+            patient?.age >= 40 &&
+            patient?.age <= 59 &&
             info?.adiposeTissue >= 34 &&
             info?.adiposeTissue <= 39
           )
             return "Ваш процент жира в организме – Избыток";
           if (
-            info?.age >= 60 &&
+            patient?.age >= 60 &&
             info?.adiposeTissue >= 36 &&
             info?.adiposeTissue <= 41
           )
             return "Ваш процент жира в организме – Избыток";
           // Ojireniye
           if (
-            info?.age <= 19 &&
+            patient?.age <= 19 &&
             info?.adiposeTissue >= 36 &&
             info?.adiposeTissue <= 50
           )
             return "Ваш процент жира в организме – Ожирение";
           if (
-            info?.age >= 20 &&
-            info?.age <= 39 &&
+            patient?.age >= 20 &&
+            patient?.age <= 39 &&
             info?.adiposeTissue >= 39 &&
             info?.adiposeTissue <= 50
           )
             return "Ваш процент жира в организме – Ожирение";
           if (
-            info?.age >= 40 &&
-            info?.age <= 59 &&
+            patient?.age >= 40 &&
+            patient?.age <= 59 &&
             info?.adiposeTissue >= 40 &&
             info?.adiposeTissue <= 50
           )
             return "Ваш процент жира в организме – Ожирение";
           if (
-            info?.age >= 60 &&
+            patient?.age >= 60 &&
             info?.adiposeTissue >= 42 &&
             info?.adiposeTissue <= 50
           )
             return "Ваш процент жира в организме – Ожирение";
         }
         // Men
-        if (info?.gender === "1") {
+        if (patient?.gender === "1") {
           if (info?.adiposeTissue === "") return "";
           // Nedostatochno
-          if (info?.age <= 19 && info?.adiposeTissue > 9)
+          if (patient?.age <= 19 && info?.adiposeTissue > 9)
             return "Ваш процент жира в организме недостаточен";
           if (
-            info?.age >= 20 &&
-            info?.age <= 39 &&
+            patient?.age >= 20 &&
+            patient?.age <= 39 &&
             info?.adiposeTissue <= 7
           )
             return "Ваш процент жира в организме недостаточен";
           if (
-            info?.age >= 40 &&
-            info?.age <= 59 &&
+            patient?.age >= 40 &&
+            patient?.age <= 59 &&
             info?.adiposeTissue <= 10
           )
             return "Ваш процент жира в организме недостаточен";
-          if (info?.age >= 60 && info?.adiposeTissue <= 12)
+          if (patient?.age >= 60 && info?.adiposeTissue <= 12)
             return "Ваш процент жира в организме недостаточен";
           // Norma
           if (
-            info?.age <= 19 &&
+            patient?.age <= 19 &&
             info?.adiposeTissue >= 9 &&
             info?.adiposeTissue <= 19
           )
             return "Ваш процент жира в организме в норме";
           if (
-            info?.age >= 20 &&
-            info?.age <= 39 &&
+            patient?.age >= 20 &&
+            patient?.age <= 39 &&
             info?.adiposeTissue >= 8 &&
             info?.adiposeTissue <= 19
           )
             return "Ваш процент жира в организме в норме";
           if (
-            info?.age >= 40 &&
-            info?.age <= 59 &&
+            patient?.age >= 40 &&
+            patient?.age <= 59 &&
             info?.adiposeTissue >= 11 &&
             info?.adiposeTissue <= 21
           )
             return "Ваш процент жира в организме в норме";
           if (
-            info?.age >= 60 &&
+            patient?.age >= 60 &&
             info?.adiposeTissue >= 13 &&
             info?.adiposeTissue <= 24
           )
             return "Ваш процент жира в организме в норме";
           // Izbitok
           if (
-            info?.age <= 19 &&
+            patient?.age <= 19 &&
             info?.adiposeTissue >= 20 &&
             info?.adiposeTissue <= 23
           )
             return "Ваш процент жира в организме – Избыток";
           if (
-            info?.age >= 20 &&
-            info?.age <= 39 &&
+            patient?.age >= 20 &&
+            patient?.age <= 39 &&
             info?.adiposeTissue >= 20 &&
             info?.adiposeTissue <= 24
           )
             return "Ваш процент жира в организме – Избыток";
           if (
-            info?.age >= 40 &&
-            info?.age <= 59 &&
+            patient?.age >= 40 &&
+            patient?.age <= 59 &&
             info?.adiposeTissue >= 22 &&
             info?.adiposeTissue <= 27
           )
             return "Ваш процент жира в организме – Избыток";
           if (
-            info?.age >= 60 &&
+            patient?.age >= 60 &&
             info?.adiposeTissue >= 25 &&
             info?.adiposeTissue <= 29
           )
             return "Ваш процент жира в организме – Избыток";
           // Ojireniye
           if (
-            info?.age <= 19 &&
+            patient?.age <= 19 &&
             info?.adiposeTissue >= 24 &&
             info?.adiposeTissue <= 50
           )
             return "Ваш процент жира в организме – Ожирение";
           if (
-            info?.age >= 20 &&
-            info?.age <= 39 &&
+            patient?.age >= 20 &&
+            patient?.age <= 39 &&
             info?.adiposeTissue >= 25 &&
             info?.adiposeTissue <= 50
           )
             return "Ваш процент жира в организме – Ожирение";
           if (
-            info?.age >= 40 &&
-            info?.age <= 59 &&
+            patient?.age >= 40 &&
+            patient?.age <= 59 &&
             info?.adiposeTissue >= 28 &&
             info?.adiposeTissue <= 50
           )
             return "Ваш процент жира в организме – Ожирение";
           if (
-            info?.age >= 60 &&
+            patient?.age >= 60 &&
             info?.adiposeTissue >= 30 &&
             info?.adiposeTissue <= 50
           )
@@ -218,13 +218,13 @@ const View5 = ({ patient,info,setInfo }) => {
       const boneMeasure = () => {
         if (
           info?.bone &&
-          info?.gender &&
+          patient?.gender &&
           info?.bodyMass === ""
             
         )
           return "";
         // Woman
-        if (info?.gender === "1") {
+        if (patient?.gender === "1") {
           if (info?.bone && info?.bodyMass === "") return "";
     
           // till 50
@@ -264,7 +264,7 @@ const View5 = ({ patient,info,setInfo }) => {
             return "Количество костной массы снижена";
         }
         // Men
-        if (info?.gender === "0") {
+        if (patient?.gender === "0") {
           if (info?.bone && info?.bodyMass === "") return "";
     
           // till 65
@@ -336,7 +336,7 @@ const View5 = ({ patient,info,setInfo }) => {
             <td>3</td>
             <td>Окружность талии, см</td>
             <td>
-              {info?.gender === 1
+              {patient?.gender === 1
                 ? info?.waistCircumference === ""
                   ? ""
                   : info?.waistCircumference <= 80
@@ -365,11 +365,11 @@ const View5 = ({ patient,info,setInfo }) => {
                 
               {isNaN(info?.waistHipRatio)
                 ? ""
-                : !info?.gender
+                : !patient?.gender
                 ? ""
-                : info?.gender === "1" && info?.waistHipRatio <= 0.85
+                : patient?.gender === "1" && info?.waistHipRatio <= 0.85
                 ? "норма"
-                : info?.gender === "0" && info?.waistHipRatio <= 1.0
+                : patient?.gender === "0" && info?.waistHipRatio <= 1.0
                 ? "норма"
                 : "абдоминально-висцерального ожирения"}
                     ({info?.waistHipRatio})
@@ -462,19 +462,20 @@ const View5 = ({ patient,info,setInfo }) => {
           <tr>
             <td>14</td>
             <td>Метаболический возраст</td>
-            <td>Метаболический возраст-{info?.metabolicAge} Билогический возраст-{info?.age} </td>
+            <td>Метаболический возраст-{info?.metabolicAge} Билогический возраст-{patient?.age} </td>
           </tr>
           {/* 15 */}
           <tr>
             <td>15</td>
             <td>% воды в организме</td>
             <td>Ваше содержание воды в организме-
-              {info?.gender === "1"
-                ? info?.waterInBody >= 50 &&
+              
+              {patient?.gender === "1"
+                ? info?.waterInBody >= 45 &&
                   info?.waterInBody <= 60 &&
                   "норма"
-                : info?.waterInBody >= 60 &&
-                  info?.waterInBody <= 70 &&
+                : info?.waterInBody >= 50 &&
+                  info?.waterInBody <= 65 &&
                   "норма"}
                   ({info?.waterInBody})
             </td>

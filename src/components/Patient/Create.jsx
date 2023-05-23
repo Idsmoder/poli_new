@@ -7,45 +7,49 @@ import moment from "moment";
 const Create = ()=> {
     const [form] = Form.useForm();
     
-    const dateFormat = 'DD-MM-YYYY';
+    const dateFormat = 'DD.MM.YYYY';
     const [itemAge, setItemAge] = useState(null);
-    const CanculeAge = (date) => {
+    // const CanculeAge = (date) => {
         
-        if (!date) return null;
-        const birthDate = new Date(date);
-        const today = new Date();
-        let age = today.getFullYear() - birthDate.getFullYear();
-        const m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
-        setItemAge(age);
+    //     if (!date) return null;
+    //     const birthDate = new Date(date);
+    //     const today = new Date();
+    //     let age = today.getFullYear() - birthDate.getFullYear();
+    //     const m = today.getMonth() - birthDate.getMonth();
+    //     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
+    //     setItemAge(age);
+    //     form.setFieldValue('age',age);
        
-    }
+    // }
     const  onFinish = (values) => {
+        
         let body = {
-            
                 name: values.name,
                 surname: values.surname,
                 middlename: values.middlename,
-                birthDate: moment(values.birthDate).format("YYYY-MM-DD"),
-                age: itemAge,
+                birthDate: moment(values.birthDate).format(),
+                age: values.age,
                 phone: values.phone,
                 ambul_number: values.ambul_number,
                 gender:values.gender,
                 address: values.address,
-            
-
         }
-        console.log('====================================');
-        console.log(body, "body");
-        console.log('====================================');
         api
             .post("/patient/create", body)
             .then((res) => {
                 console.log(res, "res");
             }
             )
-
         };
+        const onValuChange = (e) => {
+            if (e.birthDate) {
+                const today = new Date();
+                const date = new Date(e.birthDate);
+                const age = today.getFullYear() - date.getFullYear()
+                form.setFieldValue('age',age);
+
+            }
+        }
   return (
     <>
     <Typography>
@@ -61,6 +65,8 @@ const Create = ()=> {
             layout="horizontal" 
             size="large" 
             onFinish={onFinish}
+            form={form}
+            onValuesChange={onValuChange}
             >
                 <Row gutter={24}>
                     <Col span={12}>
@@ -84,9 +90,7 @@ const Create = ()=> {
                     </Col>
                     <Col span={24}>
                         <Form.Item
-                            
                             name="middlename"
-                            rules={[{ required: true, message: 'Пожалуйста введите отчество' }]}
                         >
                             <Input placeholder="Отчество" />
                         </Form.Item>
@@ -97,17 +101,16 @@ const Create = ()=> {
                             name="birthDate"
                             rules={[{ required: true, message: 'Пожалуйста введите дату рождения' }]}
                         >
-                            <DatePicker onChange={(e)=>CanculeAge(e)} format={dateFormat} style={{ width: '100%' }}  placeholder="Дата рождения" />
+                            <DatePicker  format={dateFormat} style={{ width: '100%' }}  placeholder="Дата рождения" />
                         </Form.Item>
                     </Col>
                     <Col span={12}>
                         <Form.Item
-                            disabled
+                            
                             label=""
                             name="age"
-                            rules={[{  message: 'Пожалуйста введите дату рождения' }]}
                         >
-                            <Input disabled initialValues={itemAge} />
+                            <Input disabled />
                         </Form.Item>
                     </Col>
                     <Col span={8}>

@@ -51,17 +51,18 @@ const View7 = ({patient,info,setInfo})=>{
         }
       };
       const totalCholesMeasure = () => {
-        if (patient?.gender && info?.totalCholesterol === "")
-          return "";
-        if (patient?.gender) {
-          if (
-            info?.totalCholesterol >= parseFloat(3.2) &&
-            info?.totalCholesterol <= parseFloat(5.4)
-          )
-            return "в норме";
-          if (info?.totalCholesterol < parseFloat(3.2)) return "ниже нормы";
-          else return "гиперхолостеринемия";
-        }
+        
+        // if (patient?.gender && info?.totalCholesterol === "")
+        //   return "";
+        // if (patient?.gender) {
+        //   if (
+        //     info?.totalCholesterol >= parseFloat(3.2) &&
+        //     info?.totalCholesterol <= parseFloat(5.4)
+        //   )
+        //     return "в норме";
+        //   if (info?.totalCholesterol < parseFloat(3.2)) return "ниже нормы";
+        //   else return "гиперхолостеринемия";
+        // }
       };
       const triglyCeriyMeasure = () => {
         if (patient?.gender && info?.triglycerides === "") return "";
@@ -193,15 +194,16 @@ const View7 = ({patient,info,setInfo})=>{
                 (0.993 * patient?.age) *
                 (info?.creatinine / 88.4)) /
                 0.7) *
-              -0.328).toFixed(2);
+              (-0.328)).toFixed(2);
           }
           if (info?.creatinine >= 62) {
+            console.log(info?.creatinine );
             return (ckdEpi =
               ((144 *
                 (0.993 * patient?.age) *
                 (info?.creatinine / 88.4)) /
-                0.7) *
-              -1.21).toFixed(2);
+                (0.7)) *
+              (-1.210)).toFixed(2);
           }
         }
         // Men
@@ -420,7 +422,7 @@ const View7 = ({patient,info,setInfo})=>{
                 </tr>
                 <tr>
                   <td>18</td>
-                  <td>ХС-ЛПВП</td>
+                  <td>ХС-неЛПВП</td>
                   <td>
                     {(
                       info?.totalCholesterol -

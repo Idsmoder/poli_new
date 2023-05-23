@@ -58,7 +58,7 @@ const View1 = ({patient,info,setInfo}) => {
                         </h6>
                         <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
                             {!info?.heartbeat
-                            ? ""
+                            ? "нет"
                             : info?.heartbeat === 1
                             ? "есть"
                             : "нет"}
