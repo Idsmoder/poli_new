@@ -219,10 +219,10 @@ const Tab2 = ({patient,onChanges,info,setInfo}) => {
     const backClick = () => {
         onChanges('1');
     }
-
-
-
-    return (
+    const onValuChange = (e) => {
+        setInfo({...info,...e})
+    }
+return (
         <>
             <Typography.Title level={5}>Ранее выявленные заболевания</Typography.Title>
             <Form 
@@ -230,6 +230,7 @@ const Tab2 = ({patient,onChanges,info,setInfo}) => {
                 size=""
                 layout="vertical"
                 onFinish={onFinish}
+                onValuesChange={onValuChange}
             >
                 <Row gutter={24}>
                     <Col span={12}>

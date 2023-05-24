@@ -21,6 +21,8 @@ const List = () => {
                             key: item.id,
                             id: item.id,
                             name: item.name,
+                            surname: item.surname,
+                            middlename: item.middlename,
                             birthDate: moment(item.birthDate, "YYYY-MM-DD").format("DD-MM-YYYY"),
                             phone: item.phone,
                             address: item.address,
@@ -38,7 +40,7 @@ const List = () => {
             key: 'name',
             render: (text, record) => (
                 <Space size="middle">
-                    <a>{record.name}</a>
+                    <a>{record.surname}{(" ")}{record.name}{(" ")} {record.middlename}</a>
                 </Space>
             ),
         },

@@ -54,6 +54,9 @@ const Tab1 =({patient,onChanges,info,setInfo})=> {
         form.setFieldsValue(info)
         setHeart(info?.heartbeat ? '1':'0');
     }, [])
+    const onValuChange = (e) => {
+        setInfo({...info,...e})
+    }
     return (
         <>
             <Typography.Title level={5}>Клиническая характеристика больного</Typography.Title>
@@ -62,6 +65,7 @@ const Tab1 =({patient,onChanges,info,setInfo})=> {
                 size=""
                 layout="vertical"
                 onFinish={onFinish}
+                onValuesChange={onValuChange}
             >
                 <Row gutter={24}>
                     <Col span={12}>
