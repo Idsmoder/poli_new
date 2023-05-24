@@ -336,6 +336,7 @@ const View5 = ({ patient,info,setInfo }) => {
             <td>3</td>
             <td>Окружность талии, см</td>
             <td>
+            {info?.waistCircumference}-
               {patient?.gender === 1
                 ? info?.waistCircumference === ""
                   ? ""
@@ -347,7 +348,7 @@ const View5 = ({ patient,info,setInfo }) => {
                 : info?.waistCircumference <= 94
                 ? "в норме"
                 : "больше нормы"}
-                    ({info?.waistCircumference})
+                    
 
             </td>
           </tr>
@@ -362,7 +363,7 @@ const View5 = ({ patient,info,setInfo }) => {
             <td>5</td>
             <td>Соотношение окружность талии/окружность бедер</td>
             <td>
-                
+            {info?.waistHipRatio}-
               {isNaN(info?.waistHipRatio)
                 ? ""
                 : !patient?.gender
@@ -372,7 +373,7 @@ const View5 = ({ patient,info,setInfo }) => {
                 : patient?.gender === "0" && info?.waistHipRatio <= 1.0
                 ? "норма"
                 : "абдоминально-висцерального ожирения"}
-                    ({info?.waistHipRatio})
+                   
             </td>
           </tr>
 
@@ -388,7 +389,7 @@ const View5 = ({ patient,info,setInfo }) => {
             <td>7</td>
             <td>Наличие и степень ожирения по ИМТ</td>
             <td>
-                
+            {info?.imt}- 
               {!info?.imt
                 ? ""
                 : (info?.imt >= 19 && info?.imt < "24.9" && "нормальная масса тела") ||
@@ -397,7 +398,7 @@ const View5 = ({ patient,info,setInfo }) => {
                   (info?.imt >= 35 && info?.imt < "39.9" && "вторая  степень ожирения") ||
                   (info?.imt >= 40 && info?.imt < "44.9" && "третья степень ожирения") ||
                   (info?.imt >= 45 && "четвертая  степень ожирения")}
-                 ({info?.imt})
+                
             </td>
           </tr>
 
@@ -413,13 +414,14 @@ const View5 = ({ patient,info,setInfo }) => {
             <td>9</td>
             <td>Внутренний жир</td>
             <td>
+            {info?.internalFat}-
               {info?.internalFat === ""
                 ? ""
                 : (info?.internalFat <= 12 && "в пределах нормы") ||
                   (info?.internalFat >= 13 &&
                     info?.internalFat <= 59 &&
                     "выше нормы")}
-                    ({info?.internalFat})
+                    
             </td>
           </tr>
 
@@ -450,13 +452,13 @@ const View5 = ({ patient,info,setInfo }) => {
           <tr>
             <td>12</td>
             <td>Костная ткань</td>
-            <td>{boneMeasure()}({info?.bone})</td>
+            <td>{info?.bone}-{boneMeasure()}</td>
           </tr>
           {/* 13 */}
           <tr>
             <td>13</td>
             <td>Скорость обмена</td>
-            <td>{"Уровень скорости обмена веществ"}({info?.exchangeRate})</td>
+            <td>{info?.exchangeRate}-{"Уровень скорости обмена веществ"}</td>
           </tr>
           {/* 14 */}
           <tr>
@@ -469,7 +471,7 @@ const View5 = ({ patient,info,setInfo }) => {
             <td>15</td>
             <td>% воды в организме</td>
             <td>Ваше содержание воды в организме-
-              
+            {info?.waterInBody}-
               {patient?.gender === "1"
                 ? info?.waterInBody >= 45 &&
                   info?.waterInBody <= 60 &&
@@ -477,7 +479,7 @@ const View5 = ({ patient,info,setInfo }) => {
                 : info?.waterInBody >= 50 &&
                   info?.waterInBody <= 65 &&
                   "норма"}
-                  ({info?.waterInBody})
+                  
             </td>
           </tr>
         </tbody>
