@@ -75,7 +75,10 @@ const View2 = ({patient,info,setInfo}) => {
                 <div className="col-6">
                     <p className="m-0 ms-3 my-2" style={{ fontSize: "10px" }}>
                     <b>G. </b>Перенесенные операции на сердце и сосудах : 
-                    {info?.g_ca ? "АКШ, " : ""}{info?.g_pacemaker ? "Стентирование КА, ":""}{info?.g_us? "Установка ЭКС или кардиовертера-дефибрилятора":""}
+                    {info?.g_ca || info?.g_pacemaker || info?.g_us &&
+                    info?.g_ca ? "АКШ, " : ""}{info?.g_pacemaker ? "Стентирование КА, ":""}{info?.g_us? "Установка ЭКС или кардиовертера-дефибрилятора":"" 
+                    }
+                    {/* {info?.g_ca ? "АКШ, " : ""}{info?.g_pacemaker ? "Стентирование КА, ":""}{info?.g_us? "Установка ЭКС или кардиовертера-дефибрилятора":""} */}
                     </p>
                 </div>
                 <div className="col-6">

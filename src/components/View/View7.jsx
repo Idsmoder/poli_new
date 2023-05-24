@@ -249,13 +249,14 @@ const View7 = ({patient,info,setInfo})=>{
                   <td>1</td>
                   <td>Гемоглобин</td>
                   <td>
-                    <p>{hBmeasure()}-({info?.hb})</p>
+                    <p>{info?.hb}-{hBmeasure()}</p>
                   </td>
                 </tr>
                 <tr>
                   <td>2</td>
                   <td>Эритроциты</td>
                   <td>
+                  {info?.redBloodCells}-
                     {patient?.gender && info?.redBloodCells === ""
                       ? ""
                       : !patient?.gender
@@ -268,13 +269,14 @@ const View7 = ({patient,info,setInfo})=>{
                         info?.redBloodCells >= "4.5" &&
                         info?.redBloodCells <= "5.5"
                       ? "в норме"
-                      : "снижение эритроцитов"}-({info?.redBloodCells})
+                      : "снижение эритроцитов"}
                   </td>
                 </tr>
                 <tr>
                   <td>3</td>
                   <td>Лейкоциты </td>
                   <td>
+                  {info?.leukocytes}-
                     {patient?.gender && info?.leukocytes === ""
                       ? ""
                       : !patient?.gender
@@ -285,13 +287,14 @@ const View7 = ({patient,info,setInfo})=>{
                       ? "в норме"
                       : info?.leukocytes > 10
                       ? "повышение лейкоцитов"
-                      : "снижение лейкоцитов"}-({info?.leukocytes})
+                      : "снижение лейкоцитов"}
                   </td>
                 </tr>
                 <tr>
                   <td>4</td>
                   <td>Тромбоциты</td>
                   <td>
+                  {info?.platelets}-
                     {patient?.gender && info?.platelets === ""
                       ? ""
                       : !patient?.gender
@@ -302,13 +305,14 @@ const View7 = ({patient,info,setInfo})=>{
                       ? "в норме"
                       : info?.platelets > 400
                       ? "повышение тромбоциты"
-                      : "снижение тромбоциты"}-({info?.platelets})
+                      : "снижение тромбоциты"}
                   </td>
                 </tr>
                 <tr>
                   <td>5</td>
                   <td>СОЭ</td>
                   <td>
+                  {info?.speedBlood}-
                     {patient?.gender && info?.speedBlood === ""
                       ? ""
                       : !patient?.gender
@@ -325,13 +329,14 @@ const View7 = ({patient,info,setInfo})=>{
                       ? "в норме"
                       : info?.speedBlood > 10
                       ? "повышение "
-                      : "снижение "}-({info?.speedBlood})
+                      : "снижение "}
                   </td>
                 </tr>
                 <tr>
                   <td>6</td>
                   <td>Глюкоза в крови</td>
                   <td>
+                  {info?.glucose}-
                     {patient?.gender && info?.glucose === ""
                       ? ""
                       : !patient?.gender
@@ -342,13 +347,14 @@ const View7 = ({patient,info,setInfo})=>{
                       ? "в норме"
                       : info?.glucose >= "6.2"
                       ? "гиперликемия"
-                      : "снижение глюкозы"}-({info?.glucose})
+                      : "снижение глюкозы"}
                   </td>
                 </tr>
                 <tr>
                   <td>7</td>
                   <td>С-реактивный белок</td>
                   <td>
+                  {info?.cReactive}-
                     {patient?.gender && info?.cReactive === ""
                       ? ""
                       : !patient?.gender
@@ -357,13 +363,14 @@ const View7 = ({patient,info,setInfo})=>{
                       ? "в норме"
                       : info?.cReactive > 5
                       ? "повышения"
-                      : ""}-({info?.cReactive})
+                      : ""}
                   </td>
                 </tr>
                 <tr>
                   <td>8</td>
                   <td>Мочевина</td>
                   <td>
+                  {info?.urea}-
                     {patient?.gender && info?.urea === ""
                       ? ""
                       : !patient?.gender
@@ -372,18 +379,18 @@ const View7 = ({patient,info,setInfo})=>{
                       ? "в норме"
                       : info?.urea > "7.5"
                       ? "повышения"
-                      : ""}-({info?.urea})
+                      : ""}
                   </td>
                 </tr>
                 <tr>
                   <td>9</td>
                   <td>Креатинин</td>
-                  <td>{creataninMeasure()}-({info?.creatinine})</td>
+                  <td>{info?.creatinine}-{creataninMeasure()}</td>
                 </tr>
                 <tr>
                   <td>10</td>
                   <td>СКФ</td>
-                  <td>{rapidGlomFiltMeasure()}-({info?.rapidGlomFilt})</td>
+                  <td>{info?.rapidGlomFilt}-{rapidGlomFiltMeasure()}</td>
                 </tr>
                 <tr>
                   <td>11</td>
@@ -398,27 +405,27 @@ const View7 = ({patient,info,setInfo})=>{
                 <tr>
                   <td>13</td>
                   <td>Уров. мочевой кис. в сыворотке крови</td>
-                  <td>{levelUricAcidMeasure()}-({info?.levelUricAcidSer})</td>
+                  <td>{info?.levelUricAcidSer}-{levelUricAcidMeasure()}</td>
                 </tr>
                 <tr>
                   <td>14</td>
                   <td>Общий холестерин</td>
-                  <td>{totalCholesMeasure()}-({info?.totalCholesterol})</td>
+                  <td>{info?.totalCholesterol}-{totalCholesMeasure()}</td>
                 </tr>
                 <tr>
                   <td>15</td>
                   <td>Триглицериды</td>
-                  <td>{triglyCeriyMeasure()}-({info?.triglycerides})</td>
+                  <td>{info?.triglycerides}-{triglyCeriyMeasure()}</td>
                 </tr>
                 <tr>
                   <td>16</td>
                   <td>ЛПНП</td>
-                  <td>{lowDensityMeasure()}-{info?.lowDensityLipoprotein}</td>
+                  <td>{info?.lowDensityLipoprotein}-{lowDensityMeasure()}</td>
                 </tr>
                 <tr>
                   <td>17</td>
                   <td>ЛПВП</td>
-                  <td>{highDensityMeasure()}-({info?.highDensityLipoprotein})</td>
+                  <td>{info?.highDensityLipoprotein}-{highDensityMeasure()}</td>
                 </tr>
                 <tr>
                   <td>18</td>
@@ -433,17 +440,18 @@ const View7 = ({patient,info,setInfo})=>{
                 <tr>
                   <td>19</td>
                   <td>Коэффицент атерогенности</td>
-                  <td>{coeffAtherogenicityMeasure()}-({info?.coeffAtherogenicity})</td>
+                  <td>{info?.coeffAtherogenicity}-{coeffAtherogenicityMeasure()}</td>
                 </tr>
                 <tr>
                   <td>20</td>
                   <td>Протромбиновое время</td>
-                  <td>{prothrombinTimeMeasure()}-({info?.prothrombinTime})</td>
+                  <td>{info?.prothrombinTime}-{prothrombinTimeMeasure()}</td>
                 </tr>
                 <tr>
                   <td>21</td>
                   <td>ПТИ</td>
                   <td>
+                  {info?.pti}-
                     {patient?.gender && info?.pti === ""
                       ? ""
                       : !patient?.gender
@@ -453,13 +461,14 @@ const View7 = ({patient,info,setInfo})=>{
                           info?.pti <= 127 &&
                           "в норме") ||
                         (info?.pti > 127 && "повышена") ||
-                        (info?.pti < 80 && "снижена")}-({info?.pti})
+                        (info?.pti < 80 && "снижена")}
                   </td>
                 </tr>
                 <tr>
                   <td>22</td>
                   <td>Межд нормализованное отношение</td>
                   <td>
+                  {info?.interNormRel}-
                     {patient?.gender && info?.interNormRel === ""
                       ? ""
                       : !patient?.gender
@@ -469,13 +478,14 @@ const View7 = ({patient,info,setInfo})=>{
                           info?.interNormRel <= "1.15" &&
                           "в норме") ||
                         (info?.interNormRel < "0.85" && "снижен ") ||
-                        (info?.interNormRel > "1.15" && "повыщен")}-({info?.interNormRel})
+                        (info?.interNormRel > "1.15" && "повыщен")}
                   </td>
                 </tr>
                 <tr>
                   <td>23</td>
                   <td>Фибриноген</td>
                   <td>
+                  {info?.fibrinogen}-
                     {patient?.gender && info?.fibrinogen === ""
                       ? ""
                       : !patient?.gender
@@ -485,13 +495,13 @@ const View7 = ({patient,info,setInfo})=>{
                           info?.fibrinogen <= "4.0" &&
                           "в норме") ||
                         (info?.fibrinogen < "2.0" && "ниже нормы ") ||
-                        (info?.fibrinogen > "4.0" && "выще нормы ")}-({info?.fibrinogen})
+                        (info?.fibrinogen > "4.0" && "выще нормы ")}
                   </td>
                 </tr>
                 <tr>
                   <td>24</td>
                   <td>Гомоцистеин</td>
-                  <td>{homocysteineMeasure()}-({info?.homocysteine})</td>
+                  <td>{info?.homocysteine}-{homocysteineMeasure()}</td>
                 </tr>
               </tbody>
             </table>

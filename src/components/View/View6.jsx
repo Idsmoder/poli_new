@@ -68,27 +68,28 @@ const View6 = ({patient,info,setInfo} )=>{
             <tr>
               <td>{count}</td>
               <td>САД мм.рт.ст</td>
-              <td>{measureSadAndDad()}-({info?.sad})</td>
+              <td>{info?.sad}-{measureSadAndDad()}</td>
             </tr>
             <tr>
               <td>{count + 1}</td>
               <td>ДАД мм.рт.ст</td>
-              <td>{measureSadAndDad()}-({info?.dad})</td>
+              <td>{info?.dad}-{measureSadAndDad()}</td>
             </tr>
             <tr>
               <td>{count + 1}</td>
               <td>Пульс (ЧСС) уд.в мин</td>
-              <td>{pulsMerge(info?.chcc)}-({info?.chcc})</td>
+              <td>{info?.chcc}-{pulsMerge(info?.chcc)}</td>
             </tr>
             <tr>
               <td>4</td>
               <td>АД пульсовое (АДП)</td>
-              <td>{adMerge(info?.sad - info?.dad)}-({info?.sad - info?.dad})</td>
+              <td>{info?.sad - info?.dad}-{adMerge(info?.sad - info?.dad)}</td>
             </tr>
             <tr>
               <td>5</td>
               <td>РО2 %</td>
               <td>
+              {info?.po2Saturation}-
                 {info?.po2Saturation?.length > 0 &&
                 info?.po2Saturation > 94
                   ? "Сатурация в норме"
@@ -97,18 +98,19 @@ const View6 = ({patient,info,setInfo} )=>{
                 info?.po2Saturation < 95
                   ? "Снижение сатурации"
                   : ""}
-                  -({info?.po2Saturation})
+                 
               </td>
             </tr>
             <tr>
               <td>7</td>
               <td>ЧДД</td>
               <td>
+              {info?.chdd}-
                 {(info?.chdd === "0" && "везикулярное") ||
                   (info?.chdd === "1" && "ослабленное ") ||
                   (info?.chdd === "2" && "усиленное") ||
                   (info?.chdd === "3" && "жесткое")}
-                  -({info?.chdd})
+                  
               </td>
             </tr>
             <tr>
