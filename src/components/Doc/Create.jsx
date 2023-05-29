@@ -19,6 +19,9 @@ import View5 from "../View/View5";
 import View6 from "../View/View6";
 import Tab7 from "../Tabs/Tab7";
 import View7 from "../View/View7";
+import Tab8 from "../Tabs/Tab8";
+import Tab9 from "../Tabs/Tab9";
+import Tab10 from "../Tabs/Tab10";
 
 
 const Create = () => {
@@ -34,6 +37,9 @@ const Create = () => {
     const [tab5, setTab5] = useState(null);
     const [tab6, setTab6] = useState(null);
     const [tab7, setTab7] = useState(null);
+    const [tab8, setTab8] = useState(null);
+    const [tab9, setTab9] = useState(null);
+    const [tab10, setTab10] = useState(null);
     useEffect (() => {
         getPatient(params.id);
     }, []);
@@ -80,10 +86,15 @@ const Create = () => {
         if(tab7==null){
             getDoc('7');
         }
-
-        
-        
-        
+        if (tab8==null) {
+            getDoc('8')
+        }
+        if (tab9==null) {
+            getDoc('9')
+        }
+        if (tab10==null) {
+            getDoc('10')
+        }
     }, []);
     const getDoc = (tab) => {
         api
@@ -111,6 +122,12 @@ const Create = () => {
                         }
                         if (tab=='7') {
                             setTab7(res.data.data);
+                        }
+                        if (tab==8) {
+                            setTab8(res.data.data)
+                        }
+                        if (tab==9) {
+                            setTab9(res.data.data)
                         }
                 }
             })
@@ -163,6 +180,24 @@ const Create = () => {
             key: '7',
             children:<Tab7 patient={patient} onChanges={onChange} info={tab7} setInfo={setTab7} />
         },
+        {
+            title:'8. Определение толерантности к физической нагрузке:',
+            label:'8',
+            key:'8',
+            children:<Tab8 patient={patient} onChanges={onChange} info={tab8} setInfo={setTab8} />
+        },
+        {
+            title:'9. Инструментальные методы исследования:',
+            label:'9',
+            key:'9',
+            children:<Tab9 patient={patient} onChanges={onChange} info={tab9} setInfo={setTab9} />
+        },
+        {
+            title:'10. Оценка качеств жизни и уровня стресса.:',
+            label:'10',
+            key:'10',
+            children:<Tab10 patient={patient} onChanges={onChange} info={tab10} setInfo={setTab10} />
+        }
         
         
     ]

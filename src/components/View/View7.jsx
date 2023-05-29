@@ -1,5 +1,7 @@
 const View7 = ({patient,info,setInfo})=>{
-    const hBmeasure = () => {
+    console.log(info,"InView");  
+  const hBmeasure = () => {
+
         if (!patient?.gender) return "";
         if (patient?.gender === "1") {
           if (info?.hb === "") return "";

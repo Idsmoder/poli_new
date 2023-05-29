@@ -89,10 +89,20 @@ const Tab7 = ({patient,onChanges ,info,setInfo}) => {
             fibrinogen: info?.fibrinogen,
             homocysteine: info?.homocysteine,
         });
-    },[info])
+    },[])
     const changeValue = (e) => {
         setInfo({...info, ...e});
+        if (e.highDensityLipoprotein) {
+        let item = info.totalCholesterol - e.highDensityLipoprotein;
+        let ee = {
+            cHighDensityLipoprotein:String(item)
+        }
+        setInfo({...info,...ee})
+            form.setFieldsValue({cHighDensityLipoprotein:String(item)})
+        }
+
     }
+
 
 
     return (<>
@@ -122,7 +132,7 @@ const Tab7 = ({patient,onChanges ,info,setInfo}) => {
                 <Col span={12}><Form.Item name="triglycerides" label="Триглицериды, ммоль/л" ><Input suffix="ммоль/л" /></Form.Item></Col>
                 <Col span={12} ><Form.Item name="lowDensityLipoprotein" label="ЛПНП, ммоль/л" ><Input suffix="ммоль/л" /></Form.Item></Col>
                 <Col span={12}><Form.Item name="highDensityLipoprotein" label="ЛПВП, ммоль/л" ><Input suffix="ммоль/л" /></Form.Item></Col>
-                <Col span={12} ><Form.Item name="cHighDensityLipoprotein" label="ХС"><Input disabled /></Form.Item></Col>
+                <Col span={12} ><Form.Item name="cHighDensityLipoprotein" label="ХС-неЛПВП"><Input disabled /></Form.Item></Col>
                 <Col span={12}><Form.Item name="coeffAtherogenicity" label="Коэффицент атерогенности"  ><Input/></Form.Item></Col>
                 <Col span={12}><Form.Item name="prothrombinTime" label="Протромбиновое время, сек"><Input suffix="сек" /></Form.Item></Col>
                 <Col span={12}><Form.Item name="pti" label="ПТИ, %"><Input suffix="%" /></Form.Item></Col>
