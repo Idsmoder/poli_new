@@ -3,6 +3,7 @@ import Typography from "antd/es/typography/Typography"
 import { useState } from "react";
 import { api } from "../../utils/api";
 import moment from "moment";
+import { toast } from "react-toastify";
 
 const Create = ()=> {
     const [form] = Form.useForm();
@@ -37,6 +38,17 @@ const Create = ()=> {
         api
             .post("/patient/create", body)
             .then((res) => {
+                if (res.status=='success') {
+                    console.log("suc");
+                    toast.success("Успешно", {
+                        position: toast.POSITION.BOTTOM_RIGHT,
+                      });
+                }else{
+                    console.log("error");
+                    toast.error("Error",{
+                        position: toast.POSITION.BOTTOM_RIGHT,
+                    })
+                }
                 console.log(res, "res");
             }
             )
