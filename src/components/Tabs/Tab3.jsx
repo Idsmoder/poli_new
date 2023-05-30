@@ -191,7 +191,7 @@ const Tab3 = ({patient,onChanges,info,setInfo}) => {
                     <Col span={8}>
                         <Form.Item
                             >
-                            <Button type="primary" onClick={backClick} htmlType="submit">Предыдущий</Button>
+                            <Button type="primary" onClick={backClick} >Предыдущий</Button>
                         </Form.Item>
                     </Col>
                     <Col span={8}>
@@ -203,9 +203,9 @@ const Tab3 = ({patient,onChanges,info,setInfo}) => {
                     <Col span={8}>
                         <Form.Item
                             >
-                            <Button type="primary" onClick={nextClick}  htmlType="submit">Следующий</Button>
+                            <Button type="primary" onClick={nextClick}  >Следующий</Button>
                         </Form.Item>
-                    </Col>  
+                    </Col>
 
                 </Row>
             </Form>

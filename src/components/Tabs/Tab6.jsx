@@ -9,7 +9,6 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
     const [form] = Form.useForm();
     const [chdd_1, setChdd_1] = useState('');
     const [chdd_2, setChdd_2] = useState('');
-    const [chdd_3, setChdd_3] = useState('');
     const [chdd_4, setChdd_4] = useState('');
     const [chdd_5, setChdd_5] = useState('');
     const [chdd_6, setChdd_6] = useState('');
@@ -86,7 +85,6 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
             chdd: values.chdd,
             chdd_1: chdd_1,
             chdd_2: chdd_2,
-            chdd_3: chdd_3,
             chdd_4: chdd_4,
             chdd_5: chdd_5,
             chdd_6: chdd_6,
@@ -136,7 +134,6 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
     useEffect(()=>{
         setChdd_1(info?.chdd_1);
         setChdd_2(info?.chdd_2);
-        setChdd_3(info?.chdd_3);
         setChdd_4(info?.chdd_4);
         setChdd_5(info?.chdd_5);
         setChdd_6(info?.chdd_6);
@@ -162,7 +159,15 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
             psv: info?.psv,
             corTones: info?.corTones,
         })
-    },[info])
+    },[])
+    const onValuChange = (e)=>{
+        setInfo({...info,...e})
+        if (e.dad) {
+            
+            let item = form.getFieldValue('sad') - form.getFieldValue('dad');
+            form.setFieldValue('adp',item)
+        }
+    }
     return (
         <>
             <Typography.Title level={5}>Гемодинамические показатели и показатели объективного статуса</Typography.Title>
@@ -172,26 +177,22 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                 onFinish={onFinish}
                 size="normal"
                 form={form}
+                onValuesChange={onValuChange}
             >
                 <Row gutter={24} >
-                    <Col span={12}>
-                        <Form.Item name="sad" label="САД мм.рт.ст">
-                            <Input />
-                        </Form.Item>
-                    </Col>
+                    <Col span={12}><Form.Item name="sad" label="САД мм.рт.ст"><Input /></Form.Item></Col>
                     <Col span={12}><Form.Item name="dad" label="ДАД мм.рт.ст"><Input/></Form.Item></Col>
                     <Col span={12}><Form.Item name="chcc" label="Пульс (ЧСС) уд.в мин"><Input/></Form.Item></Col>
-                    <Col span={12}><Form.Item name="adp" label="АД пульсовое (АДП) мм.рт.ст"><Input suffix="мм.рт.ст" /></Form.Item></Col>
+                    <Col span={12}><Form.Item name="adp" label="АД пульсовое (АДП) мм.рт.ст"><Input disabled suffix="мм.рт.ст" /></Form.Item></Col>
                     <Col span={12}><Form.Item name="po2Saturation" label="РО2  %"><Input suffix="%" /></Form.Item></Col>
                     <Col span={12}><Form.Item name="chdd" label="Легкие ЧДД"><Input/></Form.Item></Col>
                     <Col span={24}><Typography.Title level={5}>Аускультация: дыхание</Typography.Title></Col>
 
                     <Col span={8}><Form.Item name="chdd_1" ><Checkbox onChange={onChange} checked={chdd_1==1 ? true:false} >везикулярное</Checkbox></Form.Item></Col>
                     <Col span={8}><Form.Item name="chdd_2" ><Checkbox onChange={onChange}  checked={chdd_2==1 ? true:false} >ослабленное</Checkbox></Form.Item></Col>
-                    <Col span={8}><Form.Item name="chdd_3" ><Checkbox onChange={onChange}  checked={chdd_3==1 ? true:false} >усиленное</Checkbox></Form.Item></Col>
                     <Col span={8}><Form.Item name="chdd_4" ><Checkbox onChange={onChange} checked={chdd_4==1 ? true:false} >жесткое</Checkbox></Form.Item></Col>
                     <Col span={8}><Form.Item name="chdd_5" ><Checkbox onChange={onChange} checked={chdd_5==1 ? true:false} >бронхиальное дыхание</Checkbox></Form.Item></Col>
-                    <Col span={8}><Form.Item name="chdd_6" ><Checkbox onChange={onChange} checked={chdd_6==1 ? true:false} >отсутствие дыхательного шума</Checkbox></Form.Item></Col>
+                    <Col span={8}><Form.Item name="chdd_6" ><Checkbox onChange={onChange} checked={chdd_6==1 ? true:false} >Затрудненный и удлиненный выдох</Checkbox></Form.Item></Col>
 
                     <Col span={24}><Form.Item><Typography.Title level={5}>Наличие хрипов</Typography.Title></Form.Item></Col>
                     <Col span={8}><Form.Item><Form.Item name="wheezing_1" ><Checkbox onChange={onChange} checked={wheezing_1==1 ? true:false} >нет</Checkbox></Form.Item></Form.Item></Col>
@@ -256,7 +257,7 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     <Col span={8}>
                         <Form.Item
                             >
-                            <Button type="primary" onClick={backClick} htmlType="submit">Предыдущий</Button>
+                            <Button type="primary" onClick={backClick} >Предыдущий</Button>
                         </Form.Item>
                     </Col>
                     <Col span={8}>
@@ -268,7 +269,7 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     <Col span={8}>
                         <Form.Item
                             >
-                            <Button type="primary" onClick={nextClick}  htmlType="submit">Следующий</Button>
+                            <Button type="primary" onClick={nextClick}  >Следующий</Button>
                         </Form.Item>
                     </Col>
                 </Row>    

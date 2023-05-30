@@ -5,10 +5,10 @@ const Tab10 = ({patient,onChanges,info,setInfo}) => {
         setInfo({...info, ...e});
     }
     const nextClick = () => {
-        onChanges('10');
+        onChanges('11');
     }
     const backClick = () => {
-        onChanges('8');
+        onChanges('9');
     }
     return (
         <>
@@ -17,7 +17,6 @@ const Tab10 = ({patient,onChanges,info,setInfo}) => {
                 name="tab10"
                 layout="vertical"
                 size={'default'}
-                fontSizeLG={true}
             >
                 <Typography.Title level={5}>Уровень стресса</Typography.Title>
                 <Row >
@@ -164,23 +163,23 @@ const Tab10 = ({patient,onChanges,info,setInfo}) => {
                         </Form.Item>
                     </Col>
                     <Col span={8}>
-                    <Form.Item
-                        >
-                        <Button type="primary" onClick={backClick} htmlType="submit">Предыдущий</Button>
-                    </Form.Item>
-                </Col>
-                <Col span={8}>
-                    <Form.Item
-                        >
-                        <Button type="primary" htmlType="submit">Сохранить</Button>
-                    </Form.Item>
-                </Col>
-                <Col span={8}>
-                    <Form.Item
-                        >
-                        <Button type="primary" onClick={nextClick}  htmlType="submit">Следующий</Button>
-                    </Form.Item>
-                </Col>
+                        <Form.Item
+                            >
+                            <Button type="primary" onClick={backClick} >Предыдущий</Button>
+                        </Form.Item>
+                    </Col>
+                    <Col span={8}>
+                        <Form.Item
+                            >
+                            <Button type="primary" htmlType="submit">Сохранить</Button>
+                        </Form.Item>
+                    </Col>
+                    <Col span={8}>
+                        <Form.Item
+                            >
+                            <Button type="primary" onClick={nextClick}  >Следующий</Button>
+                        </Form.Item>
+                    </Col>
 
                     
 
