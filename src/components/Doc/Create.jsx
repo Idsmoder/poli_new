@@ -19,9 +19,14 @@ import View5 from "../View/View5";
 import View6 from "../View/View6";
 import Tab7 from "../Tabs/Tab7";
 import View7 from "../View/View7";
+import View8 from "../View/View8";
+import View9 from "../View/View9";
+import View10 from "../View/View10";
+import View11 from "../View/View11";
 import Tab8 from "../Tabs/Tab8";
 import Tab9 from "../Tabs/Tab9";
 import Tab10 from "../Tabs/Tab10";
+import Tab11 from "../Tabs/Tab11";
 
 
 const Create = () => {
@@ -40,6 +45,8 @@ const Create = () => {
     const [tab8, setTab8] = useState(null);
     const [tab9, setTab9] = useState(null);
     const [tab10, setTab10] = useState(null);
+    const [tab11, setTab11] = useState(null);
+    const [chss, setChss] = useState(null);
     useEffect (() => {
         getPatient(params.id);
     }, []);
@@ -95,6 +102,9 @@ const Create = () => {
         if (tab10==null) {
             getDoc('10')
         }
+        if (tab11==null) {
+            getDoc('11')
+        }
     }, []);
     const getDoc = (tab) => {
         api
@@ -128,6 +138,12 @@ const Create = () => {
                         }
                         if (tab==9) {
                             setTab9(res.data.data)
+                        }
+                        if (tab==10) {
+                            setTab10(res.data.data)
+                        }
+                        if (tab==11) {
+                            setTab11(res.data.data)
                         }
                 }
             })
@@ -197,6 +213,12 @@ const Create = () => {
             label:'10',
             key:'10',
             children:<Tab10 patient={patient} onChanges={onChange} info={tab10} setInfo={setTab10} />
+        },
+        {
+            title:'11. Расчетные показатели',
+            label:'11',
+            key:'11',
+            children:<Tab11 patient={patient} onChanges={onChange} info={tab11} setInfo={setTab11} />
         }
         
         
@@ -262,6 +284,10 @@ const Create = () => {
                             <View5 patient={patient} info={tab5} setInfo={setTab5} />
                             <View6 patient={patient} info={tab6} setInfo={setTab6} />
                             <View7 patient={patient} info={tab7} setInfo={setTab7} />
+                            <View8 patient={patient} info={tab8} setInfo={setTab8} info6={tab6} info5={tab5} />
+                            <View9 patient={patient} info={tab9} setInfo={setTab9} />
+                            <View10 patient={patient} info={tab10} setInfo={setTab10} />
+                            <View11 patient={patient} info={tab11} setInfo={setTab11} />
                         </div>
                         </div>
                     </div>
