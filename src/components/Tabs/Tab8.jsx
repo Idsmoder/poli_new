@@ -8,10 +8,13 @@ const Tab8  = ({patient,onChanges,info,setInfo}) =>{
     const backClick = () => {
         onChanges('7');
     }
+    const onValueChanges = (e) => {
+        setInfo({ ...info, ...e });
+    };
     return (<>
         <Typography.Title level={5}>8. Определение толерантности к физической нагрузке</Typography.Title>
         <Form
-            onValuesChange={onChanges}
+            onValuesChange={onValueChanges}
             name="tab8"
             layout="vertical"
             form={form}
@@ -26,29 +29,48 @@ const Tab8  = ({patient,onChanges,info,setInfo}) =>{
                 <Col span={12} ><Form.Item name="bem_sample" label="Для тренированных больных – ВЭМ проба" ><Input/></Form.Item></Col>
                 <Col span={12}><Form.Item name="levelPhysicalFitness" label="Ступень физической подготовленности расчетная'" ><Input/></Form.Item></Col>
                 <Col span={24} ><Typography.Title level={5} >Массовый тест определения физического состояния</Typography.Title></Col>
-                <Col span={12} ><Form.Item   label="Характер трудовой деятельности" name="natureWork" ><Select><Option>test</Option></Select>  </Form.Item></Col>
-                <Col span={12} ><Form.Item   label="Массовый тест определения физического состояния " name="massTest" ><Input/></Form.Item></Col>
-                <Col span={8} ><Form.Item label="Занятие физическими упражнениями" name="physicalExercise" ><Select><Option>Test</Option></Select></Form.Item></Col>
+                <Col span={12} >
+                    <Form.Item   label="Характер трудовой деятельности" name="natureWork" >
+                        <Select>
+                            <Option value="1" >Умственный труд</Option>
+                            <Option value="3" >Физический труд</Option>
+                        </Select>  
+                    </Form.Item></Col>
+                <Col span={12} >
+                    <Form.Item   label="Занятие физическими упражнениями" name="physicalExercise" >
+                        <Select>
+                            <Option value="10" >≥3 раз в неделю в течение ≥30 мин</Option>
+                            <Option value="5" > 3 раз  в неделю в течение ≥30 мин</Option>
+                            <Option value="0" >Не занимается</Option>
+                        </Select>
+                    </Form.Item></Col>
+                
                 <Col span={8} ><Form.Item label="Частота пульса, уд/мин"  name="pulseRate" ><Input/></Form.Item></Col>
-                <Col span={8} ><Form.Item label="Жалобы" name="complaints"  ><Select><Option>TYest</Option></Select></Form.Item></Col>
+                <Col span={8} >
+                    <Form.Item label="Жалобы" name="complaints"  >
+                        <Select>
+                            <Option value="0" >При наличии</Option>
+                            <Option value="5" >При отсутствии</Option>
+                        </Select>
+                    </Form.Item></Col>
                 <Col span={8}>
-                    <Form.Item
-                        >
-                        <Button type="primary" onClick={backClick} htmlType="submit">Предыдущий</Button>
-                    </Form.Item>
-                </Col>
-                <Col span={8}>
-                    <Form.Item
-                        >
-                        <Button type="primary" htmlType="submit">Сохранить</Button>
-                    </Form.Item>
-                </Col>
-                <Col span={8}>
-                    <Form.Item
-                        >
-                        <Button type="primary" onClick={nextClick}  htmlType="submit">Следующий</Button>
-                    </Form.Item>
-                </Col>
+                        <Form.Item
+                            >
+                            <Button type="primary" onClick={backClick} >Предыдущий</Button>
+                        </Form.Item>
+                    </Col>
+                    <Col span={8}>
+                        <Form.Item
+                            >
+                            <Button type="primary" htmlType="submit">Сохранить</Button>
+                        </Form.Item>
+                    </Col>
+                    <Col span={8}>
+                        <Form.Item
+                            >
+                            <Button type="primary" onClick={nextClick}  >Следующий</Button>
+                        </Form.Item>
+                    </Col>
             </Row>
             
         </Form>

@@ -1,8 +1,8 @@
 const View7 = ({patient,info,setInfo})=>{
-    console.log(info,"InView");  
   const hBmeasure = () => {
 
-        if (!patient?.gender) return "";
+        if (info?.hb) {
+          if (!patient?.gender) return "";
         if (patient?.gender === "1") {
           if (info?.hb === "") return "";
           if (info?.hb >= 120 && info?.hb <= 140) return "в норме";
@@ -12,16 +12,20 @@ const View7 = ({patient,info,setInfo})=>{
           if (info?.hb >= 130 && info?.hb <= 160) return "в норме";
           else return "снижение гемоглобина";
         }
+          
+        }else{
+          return "";
+        }
       };
       const creataninMeasure = () => {
         if (patient?.gender && info?.creatinine === "") return "";
-        if (patient?.gender === "1") {
-          if (info?.creatinine >= 53 && info?.creatinine <= 97)
-            return "в норме";
-          if (info?.creatinine < 53) return "ниже нормы";
-          if (info?.creatinine > 97) return "повышение креатинина";
-        }
         if (patient?.gender === "0") {
+          if (info?.creatinine >= Number.parseFloat(53) && info?.creatinine <= Number.parseFloat(97))
+            return "в норме";
+          if (info?.creatinine < Number.parseFloat(53)) return "ниже нормы";
+          if (info?.creatinine > Number.parseFloat(97)) return "повышение креатинина";
+        }
+        if (patient?.gender === "1") {
           if (info?.creatinine >= 44 && info?.creatinine <= 80)
             return "в норме";
           if (info?.creatinine < 44) return "ниже нормы";
@@ -29,9 +33,10 @@ const View7 = ({patient,info,setInfo})=>{
         }
       };
       const levelUricAcidMeasure = () => {
-        if (patient?.gender && info?.levelUricAcidSer === "")
+        if (info?.levelUricAcidSer) {
+          if (patient?.gender && info?.levelUricAcidSer === "")
           return "";
-        if (patient?.gender === "1") {
+        if (patient?.gender === "0") {
           if (
             patient?.age > 14 &&
             info?.levelUricAcidSer >= 150 &&
@@ -41,7 +46,7 @@ const View7 = ({patient,info,setInfo})=>{
           if (info?.levelUricAcidSer > 405) return "гиперурекимия";
           else return "ниже нормы";
         }
-        if (patient?.gender === "0") {
+        if (patient?.gender === "1") {
           if (
             patient?.age > 14 &&
             info?.levelUricAcidSer >= 210 &&
@@ -51,23 +56,32 @@ const View7 = ({patient,info,setInfo})=>{
           if (info?.levelUricAcidSer > 458) return "гиперурекимия";
           else return "ниже нормы";
         }
+        }else{
+          return "";
+        }
+        
       };
       const totalCholesMeasure = () => {
         
-        // if (patient?.gender && info?.totalCholesterol === "")
-        //   return "";
-        // if (patient?.gender) {
-        //   if (
-        //     info?.totalCholesterol >= parseFloat(3.2) &&
-        //     info?.totalCholesterol <= parseFloat(5.4)
-        //   )
-        //     return "в норме";
-        //   if (info?.totalCholesterol < parseFloat(3.2)) return "ниже нормы";
-        //   else return "гиперхолостеринемия";
-        // }
+        if (info?.totalCholesterol) {
+          if (patient?.gender && info?.totalCholesterol === "")
+          return "";
+        if (patient?.gender) {
+          if (
+            info?.totalCholesterol >= parseFloat(3.2) &&
+            info?.totalCholesterol <= parseFloat(5.4)
+          )
+            return "в норме";
+          if (info?.totalCholesterol < parseFloat(3.2)) return "ниже нормы";
+          else return "гиперхолостеринемия";
+        }
+        }else{
+          return "";
+        }
       };
       const triglyCeriyMeasure = () => {
-        if (patient?.gender && info?.triglycerides === "") return "";
+        if (info?.triglycerides) {
+          if (patient?.gender && info?.triglycerides === "") return "";
         if (patient?.gender) {
           if (
             info?.triglycerides >= Number(0.4) &&
@@ -77,11 +91,15 @@ const View7 = ({patient,info,setInfo})=>{
           if (info?.triglycerides < Number(0.4)) return "ниже нормы";
           else return "гипертриглицеридэмия";
         }
+        }else{
+          return "";
+        }
       };
       const lowDensityMeasure = () => {
-        if (patient?.gender && info?.lowDensityLipoprotein === "")
+        if (info?.lowDensityLipoprotein) {
+          if (patient?.gender && info?.lowDensityLipoprotein === "")
           return "";
-        if (patient?.gender === "1") {
+        if (patient?.gender === "0") {
           if (
             info?.lowDensityLipoprotein >= Number(1.9) &&
             info?.lowDensityLipoprotein <= Number(3.5)
@@ -91,7 +109,7 @@ const View7 = ({patient,info,setInfo})=>{
             return "гиперлипидемия";
           else return "ниже нормы";
         }
-        if (patient?.gender === "0") {
+        if (patient?.gender === "1") {
           if (
             info?.lowDensityLipoprotein >= Number(2.2) &&
             info?.lowDensityLipoprotein <= Number(3.38)
@@ -101,11 +119,15 @@ const View7 = ({patient,info,setInfo})=>{
             return "гиперлипидемия";
           else return "ниже нормы";
         }
+        }else{
+          return "";
+        }
       };
       const highDensityMeasure = () => {
-        if (patient?.gender && info?.highDensityLipoprotein === "")
+        if (info?.highDensityLipoprotein) {
+          if (patient?.gender && info?.highDensityLipoprotein === "")
           return "";
-        if (patient?.gender === "1") {
+        if (patient?.gender === "0") {
           if (
             info?.highDensityLipoprotein >= Number(1.15) &&
             info?.highDensityLipoprotein <= Number(2.3)
@@ -115,7 +137,7 @@ const View7 = ({patient,info,setInfo})=>{
             return "дислипидемия ";
           else return "выще нормы";
         }
-        if (patient?.gender === "0") {
+        if (patient?.gender === "1") {
           if (
             info?.highDensityLipoprotein >= Number(0.9) &&
             info?.highDensityLipoprotein <= Number(1.7)
@@ -125,47 +147,54 @@ const View7 = ({patient,info,setInfo})=>{
             return "дислипидемия";
           else return "выще нормы";
         }
+        }else{
+          return "";
+        }
       };
       const coeffAtherogenicityMeasure = () => {
         if (patient?.gender && info?.coeffAtherogenicity === "")
           return "";
-        if (patient?.gender === "1") {
-          if (
-            info?.coeffAtherogenicity >= parseFloat(2.2) &&
-            info?.coeffAtherogenicity <= parseFloat(3.3)
-          )
-            return "в норме";
-          if (info?.coeffAtherogenicity < parseFloat(2.2))
-            return "ниже нормы";
-          else return "гиперлипидемия";
-        }
         if (patient?.gender === "0") {
-          if (
-            info?.coeffAtherogenicity >= parseFloat(2.2) &&
-            info?.coeffAtherogenicity <= parseFloat(3.5)
-          )
-            return "в норме";
-          if (info?.coeffAtherogenicity < parseFloat(2.2))
+          if (info?.coeffAtherogenicity < Number.parseFloat(2.2)) {
             return "ниже нормы";
-          else return "гиперлипидемия";
+          }else if(info?.coeffAtherogenicity > Number.parseFloat(3.3)){
+            return "гиперлипидемия"
+          }else if(info?.coeffAtherogenicity >= Number.parseFloat(2.2) && info?.coeffAtherogenicity <= Number.parseFloat(3.3)){
+            return "в норме"
+          }
+        }
+        if (patient?.gender === "1") {
+          if (info?.coeffAtherogenicity < Number.parseFloat(2.2)) {
+            return "ниже нормы";
+          }else if(info?.coeffAtherogenicity > Number.parseFloat(3.5)){
+            return "гиперлипидемия"
+          }else if(info?.coeffAtherogenicity >= Number.parseFloat(2.2) && info?.coeffAtherogenicity <= Number.parseFloat(3.5)){
+            return "в норме"
+          }
         }
       };
       const prothrombinTimeMeasure = () => {
+       if (info?.prothrombinTime) {
         if (patient?.gender && info?.prothrombinTime === "")
+        return "";
+      if (patient?.gender) {
+        if (
+          info?.prothrombinTime >= parseFloat(12.0) &&
+          info?.prothrombinTime <= parseFloat(18.0)
+        )
+          return "норма";
+        if (info?.prothrombinTime < parseFloat(12.0)) return "ниже нормы";
+        else return "выще нормы";
+      }
+        
+       }else{
           return "";
-        if (patient?.gender) {
-          if (
-            info?.prothrombinTime >= parseFloat(12.0) &&
-            info?.prothrombinTime <= parseFloat(18.0)
-          )
-            return "норма";
-          if (info?.prothrombinTime < parseFloat(12.0)) return "ниже нормы";
-          else return "выще нормы";
-        }
+       }
       };
       const homocysteineMeasure = () => {
-        if (patient?.gender && info?.homocysteine === "") return "";
-        if (patient?.gender === "1") {
+        if (info?.homocysteine) {
+          if (patient?.gender && info?.homocysteine === "") return "";
+        if (patient?.gender === "0") {
           if (
             info?.homocysteine >= parseFloat(4.6) &&
             info?.homocysteine <= parseFloat(12.4)
@@ -174,7 +203,7 @@ const View7 = ({patient,info,setInfo})=>{
           if (info?.homocysteine < parseFloat(4.6)) return "ниже нормы";
           else return "вище нормы";
         }
-        if (patient?.gender === "0") {
+        if (patient?.gender === "1") {
           if (
             info?.homocysteine >= parseFloat(6.2) &&
             info?.homocysteine <= parseFloat(15)
@@ -182,6 +211,10 @@ const View7 = ({patient,info,setInfo})=>{
             return "норма";
           if (info?.homocysteine < parseFloat(6.2)) return "ниже нормы";
           else return "вище нормы";
+        }
+          
+        }else{
+          return "";
         }
       };
       const rapidGlomFiltMeasure = () => {
@@ -199,7 +232,6 @@ const View7 = ({patient,info,setInfo})=>{
               (-0.328)).toFixed(2);
           }
           if (info?.creatinine >= 62) {
-            console.log(info?.creatinine );
             return (ckdEpi =
               ((144 *
                 (0.993 * patient?.age) *
@@ -229,6 +261,93 @@ const View7 = ({patient,info,setInfo})=>{
           }
         }
       };
+      const redBloodCellsMeasure = () => {
+        if (info?.redBloodCells) {
+          if (patient?.gender && info?.redBloodCells) {
+            if (info?.gender=="1") {
+              if (info?.redBloodCells >= Number.parseFloat(4.0) && info?.redBloodCells <= Number.parseFloat(5.0)) {
+                return "в норме";
+              }else if(info?.redBloodCells < Number.parseFloat(4.0)){
+                return "снижение эритроцитов";
+              }
+            }else{
+              if (info?.redBloodCells >= Number.parseFloat(4.5) && info?.redBloodCells <= Number.parseFloat(5.5)) {
+                return "в норме";
+              }else if(info?.redBloodCells < Number.parseFloat(4.5)){
+                return "снижение эритроцитов";
+              }
+            }
+          }
+        }else{
+          return "";
+        }
+      } 
+      const leukocytesMeasure = () => {
+        if (String(info?.leukocytes)) {
+          if (String(info?.leukocytes)< Number.parseFloat(5.0)) {
+            return "снижение ниже";
+          }else if(String(info?.leukocytes) >=Number.parseFloat(5.0) && String(info?.leukocytes) <=Number.parseFloat(10.0)){
+            return "в норме";
+          }else if(String(info?.leukocytes) > Number.parseFloat(10.0)){
+            return "повышение выше";
+          }
+        }else{
+          return "";
+        }
+      }
+      const plateletsMeasure = () => {
+        if (info?.platelets) {
+          if (info?.platelets < Number.parseFloat(150)) {
+            return "снижение ниже";
+          }else if (info?.platelets>Number.parseFloat(400)) {
+            return "повышение выше";
+          }else if (info?.platelets<=Number.parseFloat(150) || info?.platelets <= Number.parseFloat(400)) {
+            return "в норме";
+          }
+          }else{
+            return "";
+          }
+        }
+        const speedBloodMeasure = () => {
+
+          if (info?.speedBlood) {
+            if (patient?.gender && info?.speedBlood){
+              if (patient?.gender=="1") {
+               if (info?.speedBlood>Number.parseFloat(10)) {
+                  return "повышение выше";
+                }else if (info?.speedBlood<Number.parseFloat(2)) {
+                  return "снижение ниже";
+                }else if (info?.speedBlood>=Number.parseFloat(2) && info?.speedBlood<=Number.parseFloat(10)) {
+                  return "в норме";
+                }
+                }else{
+                  if (info?.speedBlood>=Number.parseFloat(2) && info?.speedBlood<=Number.parseFloat(15)) {
+                    return "в норме";
+                  }else if (info?.speedBlood>Number.parseFloat(15)) {
+                    return "повышение выше";
+                  }else if (info?.speedBlood<Number.parseFloat(2)) {
+                    return "снижение ниже";
+                  }
+                }
+              }
+            }else{
+              return "";
+            }
+          }
+          const glucoseMeasure = () => {
+            if (info?.glucose) {
+              if (info?.glucose>=Number.parseFloat(4.1) && info?.glucose<=Number.parseFloat(6.1)) {
+                return "в норме";
+              }else if (info?.glucose>Number.parseFloat(6.1)) {
+                return "повышение выше";
+              }else if (info?.glucose<Number.parseFloat(4.1)) {
+                return "снижение ниже";
+              }
+            }else{
+              return "";
+            }
+          }
+      
       return (
         <div>
           <div>
@@ -258,98 +377,40 @@ const View7 = ({patient,info,setInfo})=>{
                   <td>2</td>
                   <td>Эритроциты</td>
                   <td>
-                  {info?.redBloodCells}-
-                    {patient?.gender && info?.redBloodCells === ""
-                      ? ""
-                      : !patient?.gender
-                      ? ""
-                      : patient?.gender === "1" &&
-                        info?.redBloodCells >= "4.0" &&
-                        info?.redBloodCells <= "5.0"
-                      ? "в норме"
-                      : "снижение эритроцитов" &&
-                        info?.redBloodCells >= "4.5" &&
-                        info?.redBloodCells <= "5.5"
-                      ? "в норме"
-                      : "снижение эритроцитов"}
+                  {info?.redBloodCells}-{redBloodCellsMeasure()}
+                    
                   </td>
                 </tr>
                 <tr>
                   <td>3</td>
                   <td>Лейкоциты </td>
                   <td>
-                  {info?.leukocytes}-
-                    {patient?.gender && info?.leukocytes === ""
-                      ? ""
-                      : !patient?.gender
-                      ? ""
-                      : patient?.gender &&
-                        info?.leukocytes >= 5 &&
-                        info?.leukocytes <= 10
-                      ? "в норме"
-                      : info?.leukocytes > 10
-                      ? "повышение лейкоцитов"
-                      : "снижение лейкоцитов"}
+                  {info?.leukocytes}-{leukocytesMeasure()}
+                    
                   </td>
                 </tr>
                 <tr>
                   <td>4</td>
                   <td>Тромбоциты</td>
                   <td>
-                  {info?.platelets}-
-                    {patient?.gender && info?.platelets === ""
-                      ? ""
-                      : !patient?.gender
-                      ? ""
-                      : patient?.gender &&
-                        info?.platelets >= 150 &&
-                        info?.platelets <= 400
-                      ? "в норме"
-                      : info?.platelets > 400
-                      ? "повышение тромбоциты"
-                      : "снижение тромбоциты"}
+                  {info?.platelets}-{plateletsMeasure()}
+                   
                   </td>
                 </tr>
                 <tr>
                   <td>5</td>
                   <td>СОЭ</td>
                   <td>
-                  {info?.speedBlood}-
-                    {patient?.gender && info?.speedBlood === ""
-                      ? ""
-                      : !patient?.gender
-                      ? ""
-                      : patient?.gender === "1"
-                      ? info?.speedBlood >= 2 &&
-                        info?.speedBlood <= 15
-                        ? "в норме"
-                        : info?.speedBlood > 15
-                        ? "повышение "
-                        : "снижение "
-                      : info?.speedBlood >= 2 &&
-                        info?.speedBlood <= 10
-                      ? "в норме"
-                      : info?.speedBlood > 10
-                      ? "повышение "
-                      : "снижение "}
+                  {info?.speedBlood}-{speedBloodMeasure()}
+                    
                   </td>
                 </tr>
                 <tr>
                   <td>6</td>
                   <td>Глюкоза в крови</td>
                   <td>
-                  {info?.glucose}-
-                    {patient?.gender && info?.glucose === ""
-                      ? ""
-                      : !patient?.gender
-                      ? ""
-                      : patient?.gender &&
-                        info?.glucose >= "4.1" &&
-                        info?.glucose <= "6.1"
-                      ? "в норме"
-                      : info?.glucose >= "6.2"
-                      ? "гиперликемия"
-                      : "снижение глюкозы"}
+                  {info?.glucose}-{glucoseMeasure()}
+                    
                   </td>
                 </tr>
                 <tr>
@@ -361,7 +422,7 @@ const View7 = ({patient,info,setInfo})=>{
                       ? ""
                       : !patient?.gender
                       ? ""
-                      : info?.cReactive > 0 && info?.cReactive <= 5
+                      : info?.cReactive >= 0 && info?.cReactive <= 5
                       ? "в норме"
                       : info?.cReactive > 5
                       ? "повышения"
@@ -433,10 +494,7 @@ const View7 = ({patient,info,setInfo})=>{
                   <td>18</td>
                   <td>ХС-неЛПВП</td>
                   <td>
-                    {(
-                      info?.totalCholesterol -
-                      info?.highDensityLipoprotein
-                    ).toFixed(2)}
+                    {info?.cHighDensityLipoprotein}
                   </td>
                 </tr>
                 <tr>
@@ -476,11 +534,11 @@ const View7 = ({patient,info,setInfo})=>{
                       : !patient?.gender
                       ? ""
                       : (patient?.gender &&
-                          info?.interNormRel >= "0.85" &&
-                          info?.interNormRel <= "1.15" &&
+                          info?.interNormRel >= parseFloat(0.85) &&
+                          info?.interNormRel <= parseFloat(1.15) &&
                           "в норме") ||
-                        (info?.interNormRel < "0.85" && "снижен ") ||
-                        (info?.interNormRel > "1.15" && "повыщен")}
+                        (info?.interNormRel < parseFloat(0.85) && "снижен ") ||
+                        (info?.interNormRel > parseFloat(1.15) && "повыщен")}
                   </td>
                 </tr>
                 <tr>
@@ -493,11 +551,11 @@ const View7 = ({patient,info,setInfo})=>{
                       : !patient?.gender
                       ? ""
                       : (patient?.gender &&
-                          info?.fibrinogen >= "2.0" &&
-                          info?.fibrinogen <= "4.0" &&
+                          info?.fibrinogen >= parseFloat(2.0) &&
+                          info?.fibrinogen <= parseFloat(4.0) &&
                           "в норме") ||
-                        (info?.fibrinogen < "2.0" && "ниже нормы ") ||
-                        (info?.fibrinogen > "4.0" && "выще нормы ")}
+                        (info?.fibrinogen < parseFloat(2.0) && "ниже нормы ") ||
+                        (info?.fibrinogen > parseFloat(4.0) && "выще нормы ")}
                   </td>
                 </tr>
                 <tr>

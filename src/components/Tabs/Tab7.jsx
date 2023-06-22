@@ -91,17 +91,78 @@ const Tab7 = ({patient,onChanges ,info,setInfo}) => {
         });
     },[])
     const changeValue = (e) => {
-        setInfo({...info, ...e});
-        if (e.highDensityLipoprotein) {
-        let item = info.totalCholesterol - e.highDensityLipoprotein;
-        let ee = {
-            cHighDensityLipoprotein:String(item)
+        if(e.highDensityLipoprotein){
+            let item = info?.totalCholesterol - e.highDensityLipoprotein;
+            let item2 = (info?.totalCholesterol - e.highDensityLipoprotein)/e.highDensityLipoprotein;
+            form.setFieldValue('cHighDensityLipoprotein',String((item).toFixed(2)))
+            form.setFieldValue('coeffAtherogenicity',String((item2).toFixed(2)))
+            let ee = {
+                cHighDensityLipoprotein:String((item).toFixed(2)),
+                highDensityLipoprotein:e.highDensityLipoprotein,
+                coeffAtherogenicity:String((item2).toFixed(2)),
+            }
+            setInfo({...info,...ee})
+        }else{
+            setInfo({...info,...e})
         }
-        setInfo({...info,...ee})
-            form.setFieldsValue({cHighDensityLipoprotein:String(item)})
+        
+        if(e.creatinine){
+            let item = rapidGlomFiltMeasure();
+            let ee = {
+                rapidGlomFilt:String(item),
+                creatinine:e.creatinine
+            }
+            setInfo({...info,...ee})
+            form.setFieldsValue({rapidGlomFilt:String(item)})
         }
+        
 
     }
+    const rapidGlomFiltMeasure = () => {
+        let ckdEpi;
+        if (patient?.gender && form.getFieldValue('creatinine') === "") return "";
+        // Women
+        if (patient?.gender === "1") {
+          if (form.getFieldValue('creatinine') === "") return "";
+          if (form.getFieldValue('creatinine') <= 62) {
+            return (ckdEpi =
+              ((144 *
+                (0.993 * patient?.age) *
+                (form.getFieldValue('creatinine') / 88.4)) /
+                0.7) *
+              (-0.328)).toFixed(2);
+          }
+          if (form.getFieldValue('creatinine') >= 62) {
+            
+            return (ckdEpi =
+              ((144 *
+                (0.993 * patient?.age) *
+                (form.getFieldValue('creatinine') / 88.4)) /
+                (0.7)) *
+              (-1.210)).toFixed(2);
+          }
+        }
+        // Men
+        if (patient?.gender === "0") {
+          if (form.getFieldValue('creatinine') === "") return "";
+          if (form.getFieldValue('creatinine') <= 80) {
+            return (ckdEpi =
+              ((141 *
+                (0.993 * patient?.age) *
+                (form.getFieldValue('creatinine') / 88.4)) /
+                0.9) *
+              -0.412).toFixed(2);
+          }
+          if (form.getFieldValue('creatinine') >= 80) {
+            return (ckdEpi =
+              ((141 *
+                (0.993 * patient?.age) *
+                (form.getFieldValue('creatinine') / 88.4)) /
+                0.9) *
+              -1.21).toFixed(2);
+          }
+        }
+      };
 
 
 
@@ -133,7 +194,7 @@ const Tab7 = ({patient,onChanges ,info,setInfo}) => {
                 <Col span={12} ><Form.Item name="lowDensityLipoprotein" label="ЛПНП, ммоль/л" ><Input suffix="ммоль/л" /></Form.Item></Col>
                 <Col span={12}><Form.Item name="highDensityLipoprotein" label="ЛПВП, ммоль/л" ><Input suffix="ммоль/л" /></Form.Item></Col>
                 <Col span={12} ><Form.Item name="cHighDensityLipoprotein" label="ХС-неЛПВП"><Input disabled /></Form.Item></Col>
-                <Col span={12}><Form.Item name="coeffAtherogenicity" label="Коэффицент атерогенности"  ><Input/></Form.Item></Col>
+                <Col span={12}><Form.Item name="coeffAtherogenicity" label="Коэффицент атерогенности"  ><Input disabled /></Form.Item></Col>
                 <Col span={12}><Form.Item name="prothrombinTime" label="Протромбиновое время, сек"><Input suffix="сек" /></Form.Item></Col>
                 <Col span={12}><Form.Item name="pti" label="ПТИ, %"><Input suffix="%" /></Form.Item></Col>
                 <Col span={12}><Form.Item name="interNormRel" label="МНО" ><Input/></Form.Item> </Col>
@@ -142,7 +203,7 @@ const Tab7 = ({patient,onChanges ,info,setInfo}) => {
                 <Col span={8}>
                         <Form.Item
                             >
-                            <Button type="primary" onClick={backClick} htmlType="submit">Предыдущий</Button>
+                            <Button type="primary" onClick={backClick} >Предыдущий</Button>
                         </Form.Item>
                     </Col>
                     <Col span={8}>
@@ -154,7 +215,7 @@ const Tab7 = ({patient,onChanges ,info,setInfo}) => {
                     <Col span={8}>
                         <Form.Item
                             >
-                            <Button type="primary" onClick={nextClick}  htmlType="submit">Следующий</Button>
+                            <Button type="primary" onClick={nextClick}  >Следующий</Button>
                         </Form.Item>
                     </Col>
 
