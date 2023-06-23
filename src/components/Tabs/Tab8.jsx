@@ -1,7 +1,12 @@
 import { Button, Col, Form, Input, Row, Select, Typography } from "antd"
+import { useEffect } from "react"
 
-const Tab8  = ({patient,onChanges,info,setInfo}) =>{
+const Tab8  = ({patient,onChanges,info,setInfo ,info6}) =>{
     const [form] = Form.useForm()
+    useEffect(() => {
+        console.log(info6,"info6");
+        form.setFieldValue('pulseRate',info6?.chcc);
+    }, [info6])
     const nextClick = () => {
         onChanges('9');
     }
@@ -45,7 +50,11 @@ const Tab8  = ({patient,onChanges,info,setInfo}) =>{
                         </Select>
                     </Form.Item></Col>
                 
-                <Col span={8} ><Form.Item label="Частота пульса, уд/мин"  name="pulseRate" ><Input/></Form.Item></Col>
+                <Col span={8} >
+                    <Form.Item label="Частота пульса, уд/мин"  name="pulseRate"  >
+                        <Input  disabled />
+                    </Form.Item>
+                </Col>
                 <Col span={8} >
                     <Form.Item label="Жалобы" name="complaints"  >
                         <Select>

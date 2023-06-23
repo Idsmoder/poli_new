@@ -27,6 +27,7 @@ import Tab8 from "../Tabs/Tab8";
 import Tab9 from "../Tabs/Tab9";
 import Tab10 from "../Tabs/Tab10";
 import Tab11 from "../Tabs/Tab11";
+import CanculateScore2 from "../../utils/CanculateAp";
 
 
 const Create = () => {
@@ -47,6 +48,8 @@ const Create = () => {
     const [tab10, setTab10] = useState(null);
     const [tab11, setTab11] = useState(null);
     const [chss, setChss] = useState(null);
+    const [score, setScore] = useState(0);
+    const [ap, setAp] = useState(null);
     useEffect (() => {
         getPatient(params.id);
     }, []);
@@ -200,7 +203,7 @@ const Create = () => {
             title:'8. Определение толерантности к физической нагрузке:',
             label:'8',
             key:'8',
-            children:<Tab8 patient={patient} onChanges={onChange} info={tab8} setInfo={setTab8} />
+            children:<Tab8 patient={patient} onChanges={onChange} info={tab8} setInfo={setTab8} info6={tab6} />
         },
         {
             title:'9. Инструментальные методы исследования:',
@@ -220,10 +223,11 @@ const Create = () => {
             key:'11',
             children:<Tab11 patient={patient} onChanges={onChange} info={tab11} setInfo={setTab11} />
         }
-        
-        
     ]
+
+     
     
+
     return (
         <>
             <Row gutter={24}>
@@ -287,7 +291,7 @@ const Create = () => {
                             <View8 patient={patient} info={tab8} setInfo={setTab8} info6={tab6} info5={tab5} />
                             <View9 patient={patient} info={tab9} setInfo={setTab9} />
                             <View10 patient={patient} info={tab10} setInfo={setTab10} />
-                            <View11 patient={patient} info={tab11} setInfo={setTab11} />
+                            <View11 patient={patient} info={tab11} setInfo={setTab11} info5={tab5} info6={tab6} info2={tab2} info4={tab4} info7={tab7} />
                         </div>
                         </div>
                     </div>

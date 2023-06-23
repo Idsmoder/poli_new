@@ -1,6 +1,34 @@
 import React from "react";
 
-const View10 = ({ info }) => {
+const View10 = ({ info,patient }) => {
+
+
+  const stressLevelMeasure = () => {
+    if (info?.stressLevel) {
+      if (patient?.gender=="0") {
+        if (info?.stressLevel >=parseFloat(0.00) && info?.stressLevel <= parseFloat(1.17)) {
+          return "Низкий";
+        }
+        if (info?.stressLevel >= parseFloat(1.18) && info?.stressLevel <= parseFloat(2.17)) {
+          return "Средний";
+        }
+        if (info?.stressLevel >= parseFloat(2.18) && info?.stressLevel >= parseFloat(3.00)) {
+          return "Высокий ";
+        }
+      }else{
+        if (info?.stressLevel >=parseFloat(0.00) && info?.stressLevel <= parseFloat(0.99)) {
+          return "Низкий";
+        }
+        if (info?.stressLevel >= parseFloat(1.00) && info?.stressLevel <= parseFloat(1.99)) {
+          return "Средний";
+        }
+        if (info?.stressLevel >= parseFloat(2.00) && info?.stressLevel >= parseFloat(3.00)) {
+          return "Высокий ";
+        }
+          
+      }
+    }
+  }
   return (
     <div>
       <div>
@@ -24,24 +52,15 @@ const View10 = ({ info }) => {
               <td>1</td>
               <td>Уровень стресса (Reeder L.)</td>
               <td>
-                <p>
-                  {parseFloat(
-                    (Number(info?.stress1) +
-                      Number(info?.stress2) +
-                      Number(info?.stress3) +
-                      Number(info?.stress4) +
-                      Number(info?.stress5) +
-                      Number(info?.stress6) +
-                      Number(info?.stress7)) /
-                      7
-                  ).toFixed(4)}
+                <p>{info?.stressLevel}-{stressLevelMeasure()}
+                  
                 </p>
               </td>
             </tr>
             <tr>
               <td>2</td>
               <td>Анкета оценки здоровья и качества жизни EQ–-5D</td>
-              <td>{}</td>
+              <td></td>
             </tr>
             <tr>
               <td></td>
@@ -72,14 +91,7 @@ const View10 = ({ info }) => {
               <td></td>
               <td>Общий балл</td>
               <td>
-                {parseFloat(
-                  (Number(info?.mobility) +
-                    Number(info?.personalCare) +
-                    Number(info?.dailyActivities) +
-                    Number(info?.painDiscomfort) +
-                    Number(info?.anxietyDepression)) /
-                    5
-                ).toFixed(4)}
+                {info?.totalGrade}
               </td>
             </tr>
             <tr>
