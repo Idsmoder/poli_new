@@ -150,7 +150,6 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
       }
   }
   
-console.log(info,"info");
   const testMass =  useCallback(() => {
     if (info?.natureWork && info?.physicalExercise && info?.complaints ) {
       let natureWork = parseFloat(info?.natureWork);
@@ -173,7 +172,6 @@ console.log(info,"info");
         ((info5?.height *100) - 110) * 1.15
         :((info5?.height *100) - 100) * 1.15; 
       let itemBody =  info5?.bodyMass - itemBodyMass;
-      console.log(info5?.bodyMass,"itemBodyMass",itemBodyMass);
 
       let itemBodyfull  = itemBody >= 6 && itemBody <= 14 ? 6 //Масса тела, кг
         : itemBody >= 15 ? 0
@@ -189,7 +187,6 @@ console.log(info,"info");
       : sad>130 && dad>80 ? ((sad - 130) + (dad - 80)) * 0.5
       : 0;
       let final = natureWork + physicalExercise + complaints + age + itemBodyfull + itemChcc + itemDad;
-      console.log(natureWork , physicalExercise , complaints , age , itemBodyfull , itemChcc , itemDad);
       
       return final;
     }
@@ -270,7 +267,7 @@ console.log(info,"info");
             <tr>
               <td>6</td>
               <td>Массовый тест определения физического состояния</td>
-              <td>{testMas}-{testMas <=45 ? "Низкое": testMas>=46 && testMas<=74 ? "Среднее": testMas>=75 ? "Высокое":""} </td>
+              <td>{testMass()}-{testMass() <=45 ? "Низкое": testMass() >=46 && testMass() <=74 ? "Среднее" : testMass() >=75? "Высокое":"" }</td>
             </tr>
           </tbody>
         </table>

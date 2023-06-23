@@ -1,6 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import {CanculateAp} from "../../utils/CanculateAp";
+import {CanculateScore2} from "../../utils/CanculateScore2";
 
-export const View11 = ({ info }) => {
+export const View11 = ({ info,patient,info5,info6,info7,info2,info4 }) => {
+  const [canAp,setCanAp]=useState(0);
+  useEffect(() => {
+  if (patient && info5 && info6) {
+    let view = {
+      patient: patient,
+      info5: info5,
+      info6: info6,
+    }
+    
+     let item =  CanculateAp(view);
+     setCanAp(item);
+  }
+}, [patient,info5,info6]);
+useEffect(() => {
+  if (patient && info5 && info7 && info2 && info4) {
+      let viewScore = {
+        main: patient,
+        info5: info5,
+        tab7: info7,
+        tab2: info2,
+        tab4: info4,
+      }
+      let item =  CanculateScore2(viewScore);
+      console.log(item,"itemScore");
+    }
+  }, [patient,info5,info7,info2,info4]);
+   const [score, setScore] = useState(0);
+  
+
   return (
     <div>
       <div>
@@ -24,7 +55,11 @@ export const View11 = ({ info }) => {
               <td>1</td>
               <td>АП</td>
               <td>
-                <p>{info?.stressLevel}</p>
+                <p>{canAp}-
+                {canAp < parseFloat(2.6) ? "удовлетворительная адаптация" 
+                : canAp >=parseFloat(2.6) && canAp <=parseFloat(3.9) ? "напряжение механизмов адаптации"
+                : canAp <=parseFloat(3.10) && canAp <=parseFloat(3.49) ? "неудовлетворительная адаптация" 
+                : canAp >= parseFloat(3.5) ? "срыв адаптации" : "" }</p>
               </td>
             </tr>
             <tr>
