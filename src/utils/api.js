@@ -6,7 +6,7 @@ const api = axios.create({
   baseURL:
     window.location.hostname === "https://map.gx.uz/"
       ? "https://map.gx.uz/api"
-      : "https://map.gx.uz/api",
+      : "http://map.loc/api",
 });
 
 // Request interceptor for API calls

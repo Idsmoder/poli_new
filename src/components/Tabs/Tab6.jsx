@@ -18,6 +18,7 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
     const [wheezing_4, setWheezing_4] = useState('');
     const [wheezing_5, setWheezing_5] = useState('');
     const [wheezing_6, setWheezing_6] = useState('');
+    const [wheezing, setWheezing] = useState(false);
 
     const onChange = (e)=>{
         let names = e.target.id;
@@ -131,6 +132,28 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
     const chekNois = (e)=>{
         setShownoiseHas(e.target.value);
     }
+    const changeWhee = (e)=>{
+
+        if(e.target.value == 1){
+            setWheezing_1(1);
+            setWheezing_2("");
+            setWheezing_3("");
+            setWheezing(false);
+        }else{
+            if (e.target.value == 2) {
+                setWheezing_2(1);
+                setWheezing_3("");
+                setWheezing_1("");
+
+            }
+            if (e.target.value == 3) {
+                setWheezing_3(1);
+                setWheezing_2("");
+                setWheezing_1("");
+            }
+            setWheezing(true);
+        }
+    }
     useEffect(()=>{
         setChdd_1(info?.chdd_1);
         setChdd_2(info?.chdd_2);
@@ -163,11 +186,13 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
     const onValuChange = (e)=>{
         setInfo({...info,...e})
         if (e.dad) {
-            
             let item = form.getFieldValue('sad') - form.getFieldValue('dad');
             form.setFieldValue('adp',item)
         }
+        
     }
+    
+
     return (
         <>
             <Typography.Title level={5}>Гемодинамические показатели и показатели объективного статуса</Typography.Title>
@@ -195,16 +220,25 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     <Col span={8}><Form.Item name="chdd_6" ><Checkbox onChange={onChange} checked={chdd_6==1 ? true:false} >Затрудненный и удлиненный выдох</Checkbox></Form.Item></Col>
 
                     <Col span={24}><Form.Item><Typography.Title level={5}>Наличие хрипов</Typography.Title></Form.Item></Col>
-                    <Col span={8}><Form.Item><Form.Item name="wheezing_1" ><Checkbox onChange={onChange} checked={wheezing_1==1 ? true:false} >нет</Checkbox></Form.Item></Form.Item></Col>
-                    <Col span={8}><Form.Item name="wheezing_2" ><Checkbox onChange={onChange} checked={wheezing_2==1 ? true:false} >Хрипы сухие</Checkbox></Form.Item></Col>
-                    <Col span={8}><Form.Item name="wheezing_3" ><Checkbox onChange={onChange} checked={wheezing_3==1 ? true:false} >Хрипы влажные</Checkbox></Form.Item></Col>
-                    <Col span={8}><Form.Item name="wheezing_4" ><Checkbox onChange={onChange} checked={wheezing_4==1 ? true:false} >крепитация</Checkbox></Form.Item></Col>
+
+                    <Col span={24}><Form.Item>
+                        <Form.Item name="wheezing"  >
+                            <Radio.Group onChange={changeWhee} >
+                                <Radio value="1">нет</Radio>
+                                <Radio value="2">Хрипы сухие </Radio>
+                                <Radio value="3">Хрипы влажные</Radio>
+                            </Radio.Group>
+                        </Form.Item></Form.Item></Col>
+                    {wheezing ?
+                    <><Col span={8}><Form.Item name="wheezing_4" ><Checkbox onChange={onChange} checked={wheezing_4==1 ? true:false} >крепитация</Checkbox></Form.Item></Col>
                     <Col span={8}><Form.Item name="wheezing_5" ><Checkbox onChange={onChange} checked={wheezing_5==1 ? true:false} >шум трения плевры</Checkbox></Form.Item></Col>
                     <Col span={24}>
                         <Form.Item name="wheezing_6">
                             <Checkbox onChange={onChange} checked={wheezing_6==1 ? true:false} >плевроперикардиальный шум с точной локализацией найденных шумов по межреберьям и топографическим линиям</Checkbox>
                         </Form.Item>
                     </Col>
+                    </>:''
+                    }
 
                     <Col span={24}>
                         <Typography.Title level={5}>Сердце</Typography.Title>

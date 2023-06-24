@@ -26,6 +26,7 @@ const List = () => {
                             birthDate: moment(item.birthDate, "YYYY-MM-DD").format("DD-MM-YYYY"),
                             phone: item.phone,
                             address: item.address,
+                            gender: item?.gender
                         }))
     
                     );
@@ -63,7 +64,7 @@ const List = () => {
             title: 'Пол',
             key:'action',
             render: (text, record) => (
-                text.gender==1 ? Мужской : <>Женский</>
+                text.gender=="1" ? "Мужской" : "Женский"
             )    
         },
         {
