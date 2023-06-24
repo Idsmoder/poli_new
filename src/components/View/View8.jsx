@@ -187,7 +187,7 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
       : sad>130 && dad>80 ? ((sad - 130) + (dad - 80)) * 0.5
       : 0;
       let final = natureWork + physicalExercise + complaints + age + itemBodyfull + itemChcc + itemDad;
-      
+      setInfo(final);
       return final;
     }
   }, [])

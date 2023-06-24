@@ -291,7 +291,7 @@ const Create = () => {
                             <View8 patient={patient} info={tab8} setInfo={setTab8} info6={tab6} info5={tab5} />
                             <View9 patient={patient} info={tab9} setInfo={setTab9} />
                             <View10 patient={patient} info={tab10} setInfo={setTab10} />
-                            <View11 patient={patient} info={tab11} setInfo={setTab11} info5={tab5} info6={tab6} info2={tab2} info4={tab4} info7={tab7} />
+                            <View11 info10={tab10} info8={tab8} patient={patient} info={tab11} setInfo={setTab11} info5={tab5} info6={tab6} info2={tab2} info4={tab4} info7={tab7} />
                         </div>
                         </div>
                     </div>
