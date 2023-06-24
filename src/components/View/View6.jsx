@@ -1,4 +1,5 @@
 const View6 = ({patient,info,setInfo} )=>{
+
     const count = 1;
   const measureSadAndDad = () => {
     if (info?.sad === "") return "";
@@ -143,15 +144,12 @@ const View6 = ({patient,info,setInfo} )=>{
               <td>7</td>
               <td>Наличие хрипов</td>
               <td>
-                {!info?.presenceWheezing
-                  ? ""
-                  : (info?.presenceWheezing === "1" && "нет") ||
-                    (info?.presenceWheezing === "2" &&
-                      "Хрипы сухие или влажные") ||
-                    (info?.presenceWheezing === "3" && "крепитация") ||
-                    (info?.presenceWheezing === "4" &&
-                      "шум трения плевры") ||
-                    "плевроперикардиальный шум с точной локализацией найденных шумов по межреберьям и топографическим линиям"}
+                {info?.wheezing== "1" ? "нет":""}
+                {info?.wheezing== "2" ? "Хрипы сухие":""}
+                {info?.wheezing== "3" ? "Хрипы влажные":""}-
+                {!info?.wheezing=="1" ? info?.wheezing_4 =="1" ? "крепитация, " : "" : ""}
+                {!info?.wheezing=="1" ? info?.wheezing_5=="1" ? "шум трения плевры, ": "" : "" }
+                {!info?.wheezing=="1" ? info?.wheezing_6=="1" ? "плевроперикардиальный шум с точной локализацией найденных шумов по межреберьям и топографическим линиям": "" : "" }
               </td>
             </tr>
             <tr>
@@ -167,9 +165,8 @@ const View6 = ({patient,info,setInfo} )=>{
               <td>9</td>
               <td>Наличие отеков</td>
               <td>
-                {!info?.noise
-                  ? ""
-                  : info?.presenceEdema === "1"
+                {
+                  info?.presenceEdema === "1"
                   ? "да"
                   : "нет"}
               </td>
@@ -178,13 +175,13 @@ const View6 = ({patient,info,setInfo} )=>{
               <td>10</td>
               <td>Шум</td>
               <td>
-                {(info?.noiseHas === "1" && "систолический") ||
+                {info?.noise=="2" ? (info?.noiseHas === "1" && "систолический") ||
                   (info?.noiseHas === "2" && "диастолический ") ||
                   (info?.noiseHas === "3" && "на верхушке ") ||
                   (info?.noiseHas === "4" && "на аорте") ||
                   (info?.noiseHas === "5" && "на легочной артерии") ||
                   (info?.noiseHas === "6" &&
-                    "в проекции трикуспидального клапана")}
+                    "в проекции трикуспидального клапана") : "нет"}
               </td>
             </tr>
             <tr>

@@ -1,8 +1,9 @@
 
 
 const View5 = ({ patient,info,setInfo }) => {
-  
+    console.log(info,"info");
     const adipPoseTissueMeasure = () => {
+      console.log(patient,"patient");
         if (
           patient?.gender &&
           info?.adiposeTissue &&
@@ -337,17 +338,20 @@ const View5 = ({ patient,info,setInfo }) => {
             <td>Окружность талии, см</td>
             <td>
             {info?.waistCircumference}-
-              {patient?.gender === 1
-                ? info?.waistCircumference === ""
-                  ? ""
-                  : info?.waistCircumference <= 80
-                  ? "в норме"
-                  : "больше нормы"
-                : info?.waistCircumference === ""
-                ? ""
-                : info?.waistCircumference <= 94
+              {patient?.gender =="0" 
+                ? info?.waistCircumference > parseFloat(0) 
+                && info?.waistCircumference <= parseFloat(80)
                 ? "в норме"
-                : "больше нормы"}
+                : info?.waistCircumference > parseFloat(88)
+                ? "Повышенный риск"
+                : ""
+
+                : info?.waistCircumference > parseFloat(0)
+                && info?.waistCircumference <= parseFloat(94)
+                ? "в норме"
+                : info?.waistCircumference > parseFloat(102)
+                ? "Повышенный риск"
+                : ""}
                     
 
             </td>
@@ -458,7 +462,7 @@ const View5 = ({ patient,info,setInfo }) => {
           <tr>
             <td>13</td>
             <td>Скорость обмена</td>
-            <td>{info?.exchangeRate}-{"Уровень скорости обмена веществ"}</td>
+            <td>{info?.exchangeRate}-{info?.exchangeRate ? "Уровень скорости обмена веществ" :""}</td>
           </tr>
           {/* 14 */}
           <tr>
@@ -472,12 +476,12 @@ const View5 = ({ patient,info,setInfo }) => {
             <td>% воды в организме</td>
             <td>Ваше содержание воды в организме-
             {info?.waterInBody}-
-              {patient?.gender === "1"
-                ? info?.waterInBody >= 45 &&
+              {patient?.gender === "0"
+                ? info?.waterInBody >= 50 &&
                   info?.waterInBody <= 60 &&
                   "норма"
-                : info?.waterInBody >= 50 &&
-                  info?.waterInBody <= 65 &&
+                : info?.waterInBody >= 60 &&
+                  info?.waterInBody <= 70 &&
                   "норма"}
                   
             </td>

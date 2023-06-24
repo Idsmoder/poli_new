@@ -27,7 +27,7 @@ const Create = ()=> {
                 name: values.name,
                 surname: values.surname,
                 middlename: values.middlename,
-                birthDate: moment(values.birthDate).format(),
+                birthDate: values.birthDate,
                 age: values.age,
                 phone: values.phone,
                 ambul_number: values.ambul_number,
@@ -148,8 +148,8 @@ const Create = ()=> {
                             name="gender"
                             >
                                 <Radio.Group>
-                                    <Radio value="1"> Женщина </Radio>
-                                    <Radio value="0"> Мужской </Radio>
+                                    <Radio value="0"> Женщина </Radio>
+                                    <Radio value="1"> Мужской </Radio>
                                 </Radio.Group>
                         </Form.Item>    
                     </Col>

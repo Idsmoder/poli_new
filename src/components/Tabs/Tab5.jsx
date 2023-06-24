@@ -5,6 +5,7 @@ import { api } from "../../utils/api";
 import Swal from "sweetalert2";
 
 const Tab5 = ({ patient, onChanges, info, setInfo }) => {
+  console.log("info5", info);
   const [form] = Form.useForm();
   const params = useParams();
   const onFinish = (values) => {
@@ -79,7 +80,6 @@ const Tab5 = ({ patient, onChanges, info, setInfo }) => {
     });
   }, [info]);
     const onValuChange = (e) => {
-        
         setInfo({ ...info, ...e });
         let height = form.getFieldValue('height');
         let bodyMass = form.getFieldValue('bodyMass');
@@ -107,6 +107,9 @@ const Tab5 = ({ patient, onChanges, info, setInfo }) => {
         let hipCircumference = form.getFieldValue('hipCircumference');
         let calc = (waistCircumference / hipCircumference).toFixed(2);
         form.setFieldValue('waistHipRatio', calc);
+        
+        
+
 
    
     };

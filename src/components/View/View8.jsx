@@ -78,7 +78,9 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
     if (bemSemple >= 125) return "Очень высокая";
   };
   const stepenMeasure = ()=> {
+
       if(vem){
+        console.log(vem,"vem");
         if(patient?.gender=="0"){
           if (vem == 25) {
             return "Низкая"; 
