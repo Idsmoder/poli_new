@@ -19,6 +19,16 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
     const [wheezing_5, setWheezing_5] = useState('');
     const [wheezing_6, setWheezing_6] = useState('');
     const [wheezing, setWheezing] = useState(false);
+    const [noise_systolic, setNoise_systolic] = useState('');
+    const [noise_diastolic, setNoise_diastolic] = useState('');
+    const [noise_systolic_top, setNoise_systolic_top] = useState('');
+    const [noise_systolic_aorta, setNoise_systolic_aorta] = useState('');
+    const [noise_systolic_pulmonary, setNoise_systolic_pulmonary] = useState('');
+    const [noise_systolic_tricuspid, setNoise_systolic_tricuspid] = useState('');
+    const [noise_diastolic_top, setNoise_diastolic_top] = useState('');
+    const [noise_diastolic_aorta, setNoise_diastolic_aorta] = useState('');
+    const [noise_diastolic_pulmonary, setNoise_diastolic_pulmonary] = useState('');
+    const [noise_diastolic_tricuspid, setNoise_diastolic_tricuspid] = useState('');
 
     const onChange = (e)=>{
         let names = e.target.id;
@@ -132,28 +142,7 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
     const chekNois = (e)=>{
         setShownoiseHas(e.target.value);
     }
-    const changeWhee = (e)=>{
-
-        if(e.target.value == 1){
-            setWheezing_1(1);
-            setWheezing_2("");
-            setWheezing_3("");
-            setWheezing(false);
-        }else{
-            if (e.target.value == 2) {
-                setWheezing_2(1);
-                setWheezing_3("");
-                setWheezing_1("");
-
-            }
-            if (e.target.value == 3) {
-                setWheezing_3(1);
-                setWheezing_2("");
-                setWheezing_1("");
-            }
-            setWheezing(true);
-        }
-    }
+    
     useEffect(()=>{
         setChdd_1(info?.chdd_1);
         setChdd_2(info?.chdd_2);
@@ -166,7 +155,17 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
         setWheezing_4(info?.wheezing_4);
         setWheezing_5(info?.wheezing_5);
         setWheezing_6(info?.wheezing_6);
-        setShownoiseHas(info?.noiseHas);
+        setShownoiseHas(info?.noise);
+        setNoise_systolic(info?.noise_systolic);
+        setNoise_diastolic(info?.noise_diastolic);
+        setNoise_systolic_top(info?.noise_systolic_top);
+        setNoise_systolic_aorta(info?.noise_systolic_aorta);
+        setNoise_systolic_pulmonary(info?.noise_systolic_pulmonary);
+        setNoise_systolic_tricuspid(info?.noise_systolic_tricuspid);
+        setNoise_diastolic_top(info?.noise_diastolic_top);
+        setNoise_diastolic_aorta(info?.noise_diastolic_aorta);
+        setNoise_diastolic_pulmonary(info?.noise_diastolic_pulmonary);
+        setNoise_diastolic_tricuspid(info?.noise_diastolic_tricuspid);
         form.setFieldsValue({
             sad: info?.sad,
             dad: info?.dad,
@@ -181,6 +180,17 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
             presenceEdema: info?.presenceEdema,
             psv: info?.psv,
             corTones: info?.corTones,
+            noise_systolic: info?.noise_systolic,
+            noise_diastolic: info?.noise_diastolic,
+            noise_systolic_top: info?.noise_systolic_top,
+            noise_systolic_aorta: info?.noise_systolic_aorta,
+            noise_systolic_pulmonary: info?.noise_systolic_pulmonary,
+            noise_systolic_tricuspid: info?.noise_systolic_tricuspid,
+            noise_diastolic_top: info?.noise_diastolic_top,
+            noise_diastolic_aorta: info?.noise_diastolic_aorta,
+            noise_diastolic_pulmonary: info?.noise_diastolic_pulmonary,
+            noise_diastolic_tricuspid: info?.noise_diastolic_tricuspid,
+
         })
     },[])
     const onValuChange = (e)=>{
@@ -191,7 +201,15 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
         }
         
     }
-    
+    const changeWhee = (e)=>{
+        setWheezing_1(e.target.checked);
+    }
+    const nouseSystolicCheck = (e)=>{
+        setNoise_systolic(e.target.checked);
+    }
+    const noiseDiastolicCheck = (e)=>{
+        setNoise_diastolic(e.target.checked);
+    }
 
     return (
         <>
@@ -220,17 +238,16 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     <Col span={8}><Form.Item name="chdd_6" ><Checkbox onChange={onChange} checked={chdd_6==1 ? true:false} >Затрудненный и удлиненный выдох</Checkbox></Form.Item></Col>
 
                     <Col span={24}><Form.Item><Typography.Title level={5}>Наличие хрипов</Typography.Title></Form.Item></Col>
+                    <Col span={24}>
+                        <Form.Item name="wheezing_1"  >
+                            <Checkbox onChange={changeWhee} >нет</Checkbox>
+                        </Form.Item></Col>
+                    {!wheezing_1 ?
 
-                    <Col span={24}><Form.Item>
-                        <Form.Item name="wheezing"  >
-                            <Radio.Group onChange={changeWhee} >
-                                <Radio value="1">нет</Radio>
-                                <Radio value="2">Хрипы сухие </Radio>
-                                <Radio value="3">Хрипы влажные</Radio>
-                            </Radio.Group>
-                        </Form.Item></Form.Item></Col>
-                    {wheezing ?
-                    <><Col span={8}><Form.Item name="wheezing_4" ><Checkbox onChange={onChange} checked={wheezing_4==1 ? true:false} >крепитация</Checkbox></Form.Item></Col>
+                    <>
+                    <Col span={8} ><Form.Item name="wheezing_2" ><Checkbox  onChange={onChange} checked={wheezing_2==1 ? true:false}>Хрипы сухие </Checkbox></Form.Item></Col>
+                    <Col span={8} ><Form.Item name="wheezing_3" ><Checkbox onChange={onChange} checked={wheezing_3==1 ? true:false}>Хрипы влажные </Checkbox></Form.Item></Col>
+                    <Col span={8}><Form.Item name="wheezing_4" ><Checkbox onChange={onChange} checked={wheezing_4==1 ? true:false} >крепитация</Checkbox></Form.Item></Col>
                     <Col span={8}><Form.Item name="wheezing_5" ><Checkbox onChange={onChange} checked={wheezing_5==1 ? true:false} >шум трения плевры</Checkbox></Form.Item></Col>
                     <Col span={24}>
                         <Form.Item name="wheezing_6">
@@ -269,18 +286,68 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                         </Form.Item>
                     </Col>
                     {shownoiseHas==2 && 
-                    <Col span={24}>
-                        <Form.Item name="noiseHas" label="">
-                            <Radio.Group   >
-                                <Radio value="1">систолический </Radio>
-                                <Radio value="2">диастолический</Radio>
-                                <Radio value="3">на верхушке</Radio>
-                                <Radio value="4">на аорте</Radio>
-                                <Radio value="5">на легочной артерии</Radio>
-                                <Radio value="6">в проекции трикуспидального клапана проводится</Radio>
-                            </Radio.Group>
+                    <>
+                    <Col span={24} >
+                        <Form.Item name="noise_systolic">
+                            <Checkbox onChange={nouseSystolicCheck}  checked={noise_systolic==1 ? true:false} >Шум систолический</Checkbox>
                         </Form.Item>
-                        </Col>
+                    </Col>
+                    {noise_systolic==1 &&
+                    <>
+                    <Col span={4}>
+                        <Form.Item name="noise_systolic_top" label="">
+                            <Checkbox>на верхушке</Checkbox>
+                        </Form.Item>
+                    </Col>
+                    <Col span={4}>
+                        <Form.Item name="noise_systolic_aorta" label="">
+                            <Checkbox>на аорте</Checkbox>
+                        </Form.Item>
+                    </Col>
+                    <Col span={4}>
+                        <Form.Item name="noise_systolic_pulmonary" label="">
+                            <Checkbox>на легочной артерии</Checkbox>
+                        </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                        <Form.Item name="noise_systolic_tricuspid" label="">
+                            <Checkbox>в проекции трикуспидального клапана</Checkbox>
+                        </Form.Item>
+                    </Col>
+                    </>
+                    }
+                            
+                    <Col span={24} >
+                        <Form.Item name="noise_diastolic">
+                            <Checkbox onChange={noiseDiastolicCheck}  checked={noise_diastolic==1 ? true:false} >Шум диастолический</Checkbox>
+                        </Form.Item>
+                    </Col>
+                    {noise_diastolic==1 &&
+                    <>
+                    <Col span={4}>
+                        <Form.Item name="noise_diastolic_top" label="">
+                            <Checkbox>на верхушке</Checkbox>
+                        </Form.Item>
+                    </Col>
+                    <Col span={4}>
+                        <Form.Item name="noise_diastolic_aorta" label="">
+                            <Checkbox>на аорте</Checkbox>
+                        </Form.Item>
+                    </Col>
+                    <Col span={4}>
+                        <Form.Item name="noise_diastolic_pulmonary" label="">
+                            <Checkbox>на легочной артерии</Checkbox>
+                        </Form.Item>
+                    </Col>
+                    <Col span={12}>
+                        <Form.Item name="noise_diastolic_tricuspid" label="">
+                            <Checkbox>в проекции трикуспидального клапана</Checkbox>
+                        </Form.Item>
+                    </Col>
+                    </>
+                    }
+                   </>
+                    
                         }
                     
                     <Col span={24}>

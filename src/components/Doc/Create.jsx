@@ -1,5 +1,5 @@
 import { Card, Col, Row, Tabs, Typography } from "antd";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../utils/api";
 import Tab1 from "../Tabs/Tab1";
@@ -74,88 +74,33 @@ const Create = () => {
         window.localStorage.setItem('tab', key);
         setActiveTab(key);
     };
-    useEffect(() => {
-        if (tab1==null) {
-            getDoc('1');
-        }
-        if (tab2==null) {
-            getDoc('2');
-        }
-        if (tab3==null) {
-            getDoc('3');
-        }
-        if (tab4==null) {
-            getDoc('4');
-        }
-        if (tab5==null) {
-            getDoc('5');
-        }
-        if(tab6==null){
-            getDoc('6');
-        }
-        if(tab7==null){
-            getDoc('7');
-        }
-        if (tab8==null) {
-            getDoc('8')
-        }
-        if (tab9==null) {
-            getDoc('9')
-        }
-        if (tab10==null) {
-            getDoc('10')
-        }
-        if (tab11==null) {
-            getDoc('11')
-        }
+    useLayoutEffect(() => {
+        getAllDoc();
     }, []);
-    const getDoc = (tab) => {
+    const getAllDoc = () => {
         api
-            .get(`/doc/tab/${params.id}/${tab}`)
+            .get(`/doc/allTab/${params.id}`)
             .then((res) => {
                 if (res.status == 200) {
-                    
-                        if (tab == '1') {
-                            setTab1(res.data.data);
-                        }
-                        if (tab == '2') {
-                            setTab2(res.data.data);
-                        }
-                        if (tab == '3') {
-                            setTab3(res.data.data);
-                        }
-                        if (tab == '4') {
-                            setTab4(res.data.data);
-                        }
-                        if (tab == '5') {
-                            setTab5(res.data.data);
-                        }
-                        if (tab=='6') {
-                            setTab6(res.data.data);
-                        }
-                        if (tab=='7') {
-                            setTab7(res.data.data);
-                        }
-                        if (tab==8) {
-                            setTab8(res.data.data)
-                        }
-                        if (tab==9) {
-                            setTab9(res.data.data)
-                        }
-                        if (tab==10) {
-                            setTab10(res.data.data)
-                        }
-                        if (tab==11) {
-                            setTab11(res.data.data)
-                        }
+                    console.log(res.data.data,"data");
+                    setTab1(res.data.data?.tab1);
+                    setTab2(res.data.data?.tab2);
+                    setTab3(res.data.data?.tab3);
+                    setTab4(res.data.data?.tab4);
+                    setTab5(res.data.data?.tab5);
+                    setTab6(res.data.data?.tab6);
+                    setTab7(res.data.data?.tab7);
+                    setTab8(res.data.data?.tab8);
+                    setTab9(res.data.data?.tab9);
+                    setTab10(res.data.data?.tab10);
+                    setTab11(res.data.data?.tab11);
                 }
             })
             .catch((err) => {
                 console.log(err);
             });
     };
-
-
+    console.log(tab6,"tab6");
     const items = [
         {
             title: 'Клиническая характеристика больного',
