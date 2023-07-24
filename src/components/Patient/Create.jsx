@@ -38,7 +38,6 @@ const Create = ()=> {
             .post("/patient/create", body)
             .then((res) => {
                 if (res.status=='success') {
-                    console.log("suc");
                     toast.success("Успешно", {
                         position: toast.POSITION.BOTTOM_RIGHT,
                       });
@@ -48,7 +47,6 @@ const Create = ()=> {
                         position: toast.POSITION.BOTTOM_RIGHT,
                     })
                 }
-                console.log(res, "res");
             }
             )
         };

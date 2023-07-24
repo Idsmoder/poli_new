@@ -72,7 +72,7 @@ const View6 = ({patient,info,setInfo} )=>{
               <td>{info?.sad}-{measureSadAndDad()}</td>
             </tr>
             <tr>
-              <td>{count + 1}</td>
+              <td>{count +1}</td>
               <td>ДАД мм.рт.ст</td>
               <td>{info?.dad}-{measureSadAndDad()}</td>
             </tr>
@@ -82,12 +82,12 @@ const View6 = ({patient,info,setInfo} )=>{
               <td>{info?.chcc}-{pulsMerge(info?.chcc)}</td>
             </tr>
             <tr>
-              <td>4</td>
+              <td>{count + 1}</td>
               <td>АД пульсовое (АДП)</td>
               <td>{info?.sad - info?.dad}-{adMerge(info?.sad - info?.dad)}</td>
             </tr>
             <tr>
-              <td>5</td>
+              <td>{count + 1 }</td>
               <td>РО2 %</td>
               <td>
               {info?.po2Saturation}-
@@ -103,7 +103,7 @@ const View6 = ({patient,info,setInfo} )=>{
               </td>
             </tr>
             <tr>
-              <td>7</td>
+              <td>{count + 1 }</td>
               <td>ЧДД</td>
               <td>
               {info?.chdd}-
@@ -141,20 +141,20 @@ const View6 = ({patient,info,setInfo} )=>{
               </td>
             </tr>
             <tr>
-              <td>7</td>
+              <td>{count + 1 }</td>
               <td>Наличие хрипов</td>
               <td>
-                {info?.wheezing_1== "1" ? "нет" :
-                info?.wheezing_2== "1" ? "Хрипы сухие" :
-                info?.wheezing_3== "1" ? "Хрипы влажные" : 
-                info?.wheezing_4== "1" ? "крепитация, " :
-                info?.wheezing_5== "1" ? "шум трения плевры, " :
-                info?.wheezing_6== "1" ? "плевроперикардиальный шум с точной локализацией найденных шумов по межреберьям и топографическим линиям" : ""
+                {info?.wheezing_1== "1" ? "нет" : ""}
+                {info?.wheezing_2== 1 ? "Хрипы сухие, " :""}
+                {info?.wheezing_3== 1 ? "Хрипы влажные, " :"" }
+                {info?.wheezing_4== "1" ? "крепитация, " :""}
+                {info?.wheezing_5== "1" ? "шум трения плевры, " :""}
+                {info?.wheezing_6== "1" ? "плевроперикардиальный шум с точной локализацией найденных шумов по межреберьям и топографическим линиям" : ""
                 }
               </td>
             </tr>
             <tr>
-              <td>8</td>
+              <td>{count + 1}</td>
               <td>Аускультация сердце</td>
               <td>
                 {(info?.corTones === "1" && "ясные") ||
@@ -163,7 +163,7 @@ const View6 = ({patient,info,setInfo} )=>{
               </td>
             </tr>
             <tr>
-              <td>9</td>
+              <td>{count + 1}</td>
               <td>Наличие отеков</td>
               <td>
                 {
@@ -173,25 +173,44 @@ const View6 = ({patient,info,setInfo} )=>{
               </td>
             </tr>
             <tr>
-              <td>10</td>
+              <td>{count + 1}</td>
               <td>Шум</td>
               <td>
-                {info?.noise=="2" ? (info?.noiseHas === "1" && "систолический") ||
-                  (info?.noiseHas === "2" && "диастолический ") ||
-                  (info?.noiseHas === "3" && "на верхушке ") ||
-                  (info?.noiseHas === "4" && "на аорте") ||
-                  (info?.noiseHas === "5" && "на легочной артерии") ||
-                  (info?.noiseHas === "6" &&
-                    "в проекции трикуспидального клапана") : "нет"}
+                {info?.noise=="1" ? "нет" : "Есть"}
               </td>
             </tr>
+            {info?.noise_systolic ? 
+              <tr>
+                <td>{count + 1}</td>
+                <td>Шум систолический</td>
+                <td>{info?.noise_systolic_top ? "на верхушке, " :""}
+                {info?.noise_systolic_aorta ? "на аорте, " :""}
+                {info?.noise_systolic_pulmonary ? "на легочной артерии, " :""}
+                {info?.noise_systolic_tricuspid ? "на трикуспидальном клапане"
+                :""}
+              </td>
+              </tr>
+            :""}
+            {info?.noise_diastolic ?
+              <tr>
+                <td>{count + 1 }</td>
+                <td>Шум диастолический</td>
+                <td>{info?.noise_diastolic_top ? "на верхушке, " :""}
+                {info?.noise_diastolic_aorta ? "на аорте, " :""}
+                {info?.noise_diastolic_pulmonary ? "на легочной артерии, " :""}
+                {info?.noise_diastolic_tricuspid ? "на трикуспидальном клапане"
+                :""}
+              </td>
+              </tr>
+            :""}  
+          
             <tr>
-              <td>11</td>
+              <td>{count + 1 }</td>
               <td>Дополнения</td>
               <td>{info?.noiseComment}</td>
             </tr>
             <tr>
-              <td>12</td>
+              <td>{count + 1 }</td>
               <td>ПСВ мл/мин</td>
               <td>{info?.psv}</td>
             </tr>

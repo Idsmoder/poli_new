@@ -19,6 +19,7 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
     const [wheezing_5, setWheezing_5] = useState('');
     const [wheezing_6, setWheezing_6] = useState('');
     const [wheezing, setWheezing] = useState(false);
+    const [noise, setNoise] = useState('');
     const [noise_systolic, setNoise_systolic] = useState('');
     const [noise_diastolic, setNoise_diastolic] = useState('');
     const [noise_systolic_top, setNoise_systolic_top] = useState('');
@@ -80,6 +81,47 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                 setInfo({...info,wheezing_6:e.target.checked ? 1 : 0})
                 setWheezing_6(e.target.checked);
             }
+            if (names == 'tab6_noise_systolic') {
+                setInfo({...info,noise_systolic:e.target.checked ? 1 : 0})
+                setNoise_systolic(e.target.checked);
+            }
+            if (names == 'tab6_noise_diastolic') {
+                setInfo({...info,noise_diastolic:e.target.checked ? 1 : 0})
+                setNoise_diastolic(e.target.checked);
+            }
+            if (names == 'tab6_noise_systolic_top') {
+                setInfo({...info,noise_systolic_top:e.target.checked ? 1 : 0})
+                setNoise_systolic_top(e.target.checked);
+            }
+            if (names == 'tab6_noise_systolic_aorta') {
+                setInfo({...info,noise_systolic_aorta:e.target.checked ? 1 : 0})
+                setNoise_systolic_aorta(e.target.checked);
+            }
+            if (names == 'tab6_noise_systolic_pulmonary') {
+                setInfo({...info,noise_systolic_pulmonary:e.target.checked ? 1 : 0})
+                setNoise_systolic_pulmonary(e.target.checked);
+            }
+            if (names == 'tab6_noise_systolic_tricuspid') {
+                setInfo({...info,noise_systolic_tricuspid:e.target.checked ? 1 : 0})
+                setNoise_systolic_tricuspid(e.target.checked);
+            }
+            if (names == 'tab6_noise_diastolic_top') {
+                setInfo({...info,noise_diastolic_top:e.target.checked ? 1 : 0})
+                setNoise_diastolic_top(e.target.checked);
+            }
+            if (names == 'tab6_noise_diastolic_aorta') {
+                setInfo({...info,noise_diastolic_aorta:e.target.checked ? 1 : 0})
+                setNoise_diastolic_aorta(e.target.checked);
+            }
+            if (names == 'tab6_noise_diastolic_pulmonary') {
+                setInfo({...info,noise_diastolic_pulmonary:e.target.checked ? 1 : 0})
+                setNoise_diastolic_pulmonary(e.target.checked);
+            }
+            if (names == 'tab6_noise_diastolic_tricuspid') {
+                setInfo({...info,noise_diastolic_tricuspid:e.target.checked ? 1 : 0})
+                setNoise_diastolic_tricuspid(e.target.checked);
+            }
+
     }
     
     const [shownoiseHas, setShownoiseHas] = useState(false);
@@ -111,8 +153,19 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
             noiseComment: values.noiseComment,
             presenceEdema: values.presenceEdema,
             psv: values.psv,
+            noise_systolic: noise_systolic,
+            noise_diastolic: noise_diastolic,
+            noise_systolic_top: noise_systolic_top,
+            noise_systolic_aorta: noise_systolic_aorta,
+            noise_systolic_pulmonary: noise_systolic_pulmonary,
+            noise_systolic_tricuspid: noise_systolic_tricuspid,
+            noise_diastolic_top: noise_diastolic_top,
+            noise_diastolic_aorta: noise_diastolic_aorta,
+            noise_diastolic_pulmonary: noise_diastolic_pulmonary,
+            noise_diastolic_tricuspid: noise_diastolic_tricuspid,
+
         }
-        
+        console.log(body,"body");
         api
             .post('/doc/create',body)
             .then(res=>{
@@ -156,6 +209,7 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
         setWheezing_5(info?.wheezing_5);
         setWheezing_6(info?.wheezing_6);
         setShownoiseHas(info?.noise);
+        setNoise(info?.noise);
         setNoise_systolic(info?.noise_systolic);
         setNoise_diastolic(info?.noise_diastolic);
         setNoise_systolic_top(info?.noise_systolic_top);
@@ -279,7 +333,7 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     </Col>
                     <Col span={8}>
                         <Form.Item label="Шум" name="noise" >
-                            <Radio.Group  onChange={chekNois} >
+                            <Radio.Group value={noise}   onChange={chekNois} >
                                 <Radio value="1">нет</Radio>
                                 <Radio value="2">Есть</Radio>
                             </Radio.Group>
@@ -296,22 +350,22 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     <>
                     <Col span={4}>
                         <Form.Item name="noise_systolic_top" label="">
-                            <Checkbox>на верхушке</Checkbox>
+                            <Checkbox onChange={onChange} >на верхушке</Checkbox>
                         </Form.Item>
                     </Col>
                     <Col span={4}>
                         <Form.Item name="noise_systolic_aorta" label="">
-                            <Checkbox>на аорте</Checkbox>
+                            <Checkbox onChange={onChange} >на аорте</Checkbox>
                         </Form.Item>
                     </Col>
                     <Col span={4}>
                         <Form.Item name="noise_systolic_pulmonary" label="">
-                            <Checkbox>на легочной артерии</Checkbox>
+                            <Checkbox onChange={onChange} >на легочной артерии</Checkbox>
                         </Form.Item>
                     </Col>
                     <Col span={12}>
                         <Form.Item name="noise_systolic_tricuspid" label="">
-                            <Checkbox>в проекции трикуспидального клапана</Checkbox>
+                            <Checkbox onChange={onChange} >в проекции трикуспидального клапана</Checkbox>
                         </Form.Item>
                     </Col>
                     </>
@@ -326,22 +380,22 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     <>
                     <Col span={4}>
                         <Form.Item name="noise_diastolic_top" label="">
-                            <Checkbox>на верхушке</Checkbox>
+                            <Checkbox onChange={onChange} >на верхушке</Checkbox>
                         </Form.Item>
                     </Col>
                     <Col span={4}>
                         <Form.Item name="noise_diastolic_aorta" label="">
-                            <Checkbox>на аорте</Checkbox>
+                            <Checkbox onChange={onChange} >на аорте</Checkbox>
                         </Form.Item>
                     </Col>
                     <Col span={4}>
                         <Form.Item name="noise_diastolic_pulmonary" label="">
-                            <Checkbox>на легочной артерии</Checkbox>
+                            <Checkbox onChange={onChange} >на легочной артерии</Checkbox>
                         </Form.Item>
                     </Col>
                     <Col span={12}>
                         <Form.Item name="noise_diastolic_tricuspid" label="">
-                            <Checkbox>в проекции трикуспидального клапана</Checkbox>
+                            <Checkbox onChange={onChange} >в проекции трикуспидального клапана</Checkbox>
                         </Form.Item>
                     </Col>
                     </>

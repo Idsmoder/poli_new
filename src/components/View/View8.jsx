@@ -9,7 +9,6 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
     }, [])
     useEffect(() => {
       let item = testMass();
-      console.log(item,"item");
       setTestMas(item);
     }, [info])
     if (info?.tshx) {
@@ -80,7 +79,6 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
   const stepenMeasure = ()=> {
 
       if(vem){
-        console.log(vem,"vem");
         if(patient?.gender=="0"){
           if (vem == 25) {
             return "Низкая"; 

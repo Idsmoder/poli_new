@@ -1,9 +1,7 @@
 
 
 const View5 = ({ patient,info,setInfo }) => {
-    console.log(info,"info");
     const adipPoseTissueMeasure = () => {
-      console.log(patient,"patient");
         if (
           patient?.gender &&
           info?.adiposeTissue &&
