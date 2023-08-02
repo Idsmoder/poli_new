@@ -80,7 +80,6 @@ const Tab5 = ({ patient, onChanges, info, setInfo }) => {
     });
   }, [info]);
     const onValuChange = (e) => {
-        setInfo({ ...info, ...e });
         let height = form.getFieldValue('height');
         let bodyMass = form.getFieldValue('bodyMass');
         form.setFieldValue('imt', (bodyMass / (height * height)).toFixed(2));
@@ -106,13 +105,12 @@ const Tab5 = ({ patient, onChanges, info, setInfo }) => {
         let waistCircumference = form.getFieldValue('waistCircumference');
         let hipCircumference = form.getFieldValue('hipCircumference');
         let calc = (waistCircumference / hipCircumference).toFixed(2);
+        e.waistHipRatio = calc;
         form.setFieldValue('waistHipRatio', calc);
-        
-        
+        setInfo({ ...info, ...e });
 
-
-   
-    };
+        
+      };
   return (
     <>
       <Typography.Title level={5}>
@@ -198,6 +196,11 @@ const Tab5 = ({ patient, onChanges, info, setInfo }) => {
               <Input placeholder="Костная ткань" />
             </Form.Item>
           </Col>
+          <Col  span={12}>
+            <Form.Item name="active_factor" label="коэффициент активности">
+              <Input placeholder="коэффициент активности" />
+            </Form.Item>
+          </Col>
           <Col span={12}>
             <Form.Item name="exchangeRate" label="Скорость обмена">
               <Input placeholder="Скорость обмена" />
@@ -208,7 +211,7 @@ const Tab5 = ({ patient, onChanges, info, setInfo }) => {
               <Input placeholder="Метаболический возраст" />
             </Form.Item>
           </Col>
-          <Col span={24}>
+          <Col span={12}>
             <Form.Item name="waterInBody" label="% воды в организме">
               <Input placeholder="% воды в организме" />
             </Form.Item>

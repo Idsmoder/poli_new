@@ -165,7 +165,6 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
             noise_diastolic_tricuspid: noise_diastolic_tricuspid,
 
         }
-        console.log(body,"body");
         api
             .post('/doc/create',body)
             .then(res=>{
@@ -333,13 +332,13 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     </Col>
                     <Col span={8}>
                         <Form.Item label="Шум" name="noise" >
-                            <Radio.Group value={noise}   onChange={chekNois} >
-                                <Radio value="1">нет</Radio>
-                                <Radio value="2">Есть</Radio>
+                            <Radio.Group value={shownoiseHas}   onChange={chekNois} >
+                                <Radio value="0">нет</Radio>
+                                <Radio value="1">Есть</Radio>
                             </Radio.Group>
                         </Form.Item>
                     </Col>
-                    {shownoiseHas==2 && 
+                    {shownoiseHas==1 && 
                     <>
                     <Col span={24} >
                         <Form.Item name="noise_systolic">
@@ -350,22 +349,22 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     <>
                     <Col span={4}>
                         <Form.Item name="noise_systolic_top" label="">
-                            <Checkbox onChange={onChange} >на верхушке</Checkbox>
+                            <Checkbox onChange={onChange} checked={noise_systolic_top?true:false} >на верхушке</Checkbox>
                         </Form.Item>
                     </Col>
                     <Col span={4}>
                         <Form.Item name="noise_systolic_aorta" label="">
-                            <Checkbox onChange={onChange} >на аорте</Checkbox>
+                            <Checkbox onChange={onChange} checked={noise_systolic_aorta?true:false} >на аорте</Checkbox>
                         </Form.Item>
                     </Col>
                     <Col span={4}>
                         <Form.Item name="noise_systolic_pulmonary" label="">
-                            <Checkbox onChange={onChange} >на легочной артерии</Checkbox>
+                            <Checkbox onChange={onChange} checked={noise_systolic_pulmonary?true:false} >на легочной артерии</Checkbox>
                         </Form.Item>
                     </Col>
                     <Col span={12}>
                         <Form.Item name="noise_systolic_tricuspid" label="">
-                            <Checkbox onChange={onChange} >в проекции трикуспидального клапана</Checkbox>
+                            <Checkbox onChange={onChange} checked={noise_systolic_tricuspid?true:false} >в проекции трикуспидального клапана</Checkbox>
                         </Form.Item>
                     </Col>
                     </>
@@ -380,22 +379,22 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     <>
                     <Col span={4}>
                         <Form.Item name="noise_diastolic_top" label="">
-                            <Checkbox onChange={onChange} >на верхушке</Checkbox>
+                            <Checkbox onChange={onChange} checked={noise_diastolic_top?true:false} >на верхушке</Checkbox>
                         </Form.Item>
                     </Col>
                     <Col span={4}>
                         <Form.Item name="noise_diastolic_aorta" label="">
-                            <Checkbox onChange={onChange} >на аорте</Checkbox>
+                            <Checkbox onChange={onChange} checked={noise_diastolic_aorta?true:false} >на аорте</Checkbox>
                         </Form.Item>
                     </Col>
                     <Col span={4}>
                         <Form.Item name="noise_diastolic_pulmonary" label="">
-                            <Checkbox onChange={onChange} >на легочной артерии</Checkbox>
+                            <Checkbox onChange={onChange} checked={noise_diastolic_pulmonary?true:false} >на легочной артерии</Checkbox>
                         </Form.Item>
                     </Col>
                     <Col span={12}>
                         <Form.Item name="noise_diastolic_tricuspid" label="">
-                            <Checkbox onChange={onChange} >в проекции трикуспидального клапана</Checkbox>
+                            <Checkbox onChange={onChange} checked={noise_diastolic_tricuspid?true:false} >в проекции трикуспидального клапана</Checkbox>
                         </Form.Item>
                     </Col>
                     </>
