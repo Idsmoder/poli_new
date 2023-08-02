@@ -228,7 +228,7 @@ const View7 = ({patient,info,setInfo})=>{
               ((144 *
                 (0.993 * patient?.age) *
                 (info?.creatinine / 88.4)) /
-                0.7) *
+                0.7) **
               (-0.328)).toFixed(2);
           }
           if (info?.creatinine >= 62) {
@@ -236,7 +236,7 @@ const View7 = ({patient,info,setInfo})=>{
               ((144 *
                 (0.993 * patient?.age) *
                 (info?.creatinine / 88.4)) /
-                (0.7)) *
+                (0.7)) **
               (-1.210)).toFixed(2);
           }
         }
@@ -248,7 +248,7 @@ const View7 = ({patient,info,setInfo})=>{
               ((141 *
                 (0.993 * patient?.age) *
                 (info?.creatinine / 88.4)) /
-                0.9) *
+                0.9) **
               -0.412).toFixed(2);
           }
           if (info?.creatinine >= 80) {
@@ -256,7 +256,7 @@ const View7 = ({patient,info,setInfo})=>{
               ((144 *
                 (0.993 * patient?.age) *
                 (info?.creatinine / 88.4)) /
-                0.7) *
+                0.7) **
               -1.21).toFixed(2);
           }
         }

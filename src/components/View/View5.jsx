@@ -1,6 +1,7 @@
 
 
 const View5 = ({ patient,info,setInfo }) => {
+  console.log(info?.waistHipRatio,"test");
     const adipPoseTissueMeasure = () => {
         if (
           patient?.gender &&
@@ -437,12 +438,11 @@ const View5 = ({ patient,info,setInfo }) => {
           <tr>
             <td>11</td>
             <td>Тип телосложения</td>
-            <td>
+            <td>{info?.bodyType}-
               {(info?.bodyType === "1" && "скрытое ожирение") ||
                 (info?.bodyType === "2" && "Тучный") ||
                 (info?.bodyType === "3" && "Крепко-сложенный") ||
-                (info?.bodyType === "4" &&
-                  "Недостаточно натренированный") ||
+                (info?.bodyType === "4" && "Недостаточно натренированный") ||
                 (info?.bodyType === "5" && "Стандарт") ||
                 (info?.bodyType === "6" && "Стандарт мускулистый") ||
                 (info?.bodyType === "7" && "Тонкий") ||
@@ -475,13 +475,10 @@ const View5 = ({ patient,info,setInfo }) => {
             <td>Ваше содержание воды в организме-
             {info?.waterInBody}-
               {patient?.gender === "0"
-                ? info?.waterInBody >= 50 &&
-                  info?.waterInBody <= 60 &&
-                  "норма"
-                : info?.waterInBody >= 60 &&
-                  info?.waterInBody <= 70 &&
-                  "норма"}
-                  
+                ? info?.waterInBody <= 50 ?
+                  "сниженное" :"нормальное"
+                : info?.waterInBody <= 60 ?
+                  "сниженное" :"нормальное"}
             </td>
           </tr>
         </tbody>

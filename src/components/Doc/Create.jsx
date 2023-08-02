@@ -230,8 +230,8 @@ const Create = () => {
                             <View2 patient={patient} info={tab2} setInfo={setTab2} />
                             <View3 patient={patient} info={tab3} setInfo={setTab3} />
                             <View4 patient={patient} info={tab4} setInfo={setTab4} />
-                            <View5 patient={patient} info={tab5} setInfo={setTab5} />
-                            <View6 patient={patient} info={tab6} setInfo={setTab6} />
+                            <View5 patient={patient} info={tab5} setInfo={setTab5}  />
+                            <View6 patient={patient} info={tab6} setInfo={setTab6} height1={tab5?.height} />
                             <View7 patient={patient} info={tab7} setInfo={setTab7} />
                             <View8 patient={patient} info={tab8} setInfo={setTab8} info6={tab6} info5={tab5} />
                             <View9 patient={patient} info={tab9} setInfo={setTab9} />
