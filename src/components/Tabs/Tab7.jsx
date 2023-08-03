@@ -91,7 +91,7 @@ const Tab7 = ({patient,onChanges ,info,setInfo}) => {
         });
     },[])
     const changeValue = (e) => {
-        if(e.highDensityLipoprotein){
+        if(e.highDensityLipoprotein>0){
             let item = info?.totalCholesterol - e.highDensityLipoprotein;
             let item2 = (info?.totalCholesterol - e.highDensityLipoprotein)/e.highDensityLipoprotein;
             form.setFieldValue('cHighDensityLipoprotein',String((item).toFixed(2)))
@@ -121,47 +121,45 @@ const Tab7 = ({patient,onChanges ,info,setInfo}) => {
     const rapidGlomFiltMeasure = () => {
         let ckdEpi;
         if (patient?.gender && form.getFieldValue('creatinine') === "") return "";
+            
+        let creatine = form.getFieldValue('creatinine'); 
+
         // Men
         if (patient?.gender === "1") {
-            
-          if (form.getFieldValue('creatinine') === "") return "";
-          if (form.getFieldValue('creatinine') <= 80) {
-           let creatine = form.getFieldValue('creatinine'); 
+          if (creatine === "") return "";
+          if (creatine <= 80) {
            let a1 = (0.993**patient?.age);
            let a2 = ((creatine/88.4)/0.9);
-           console.log(a2**(-0.412),"a22");
-            return (ckdEpi =
-              (141 * 
-                    (0.993** patient?.age) * 
-                        ((creatine/88.4)/0.9)** (-0.412)
-              ).toFixed(2)
-                )
+           let a3  = (a1 * (a2**(-0.412)))
+           let a4 = Number(141 * a3).toFixed(0);
+
+            return (ckdEpi = a4)
           }
-          if (form.getFieldValue('creatinine') > 80) {
+          if (creatine > 80) {
             return (ckdEpi =
               ((141 *
                 (0.993 ** patient?.age) *
-                (form.getFieldValue('creatinine') / 88.4)) /
+                (creatine / 88.4)) /
                 (0.9)) **
               (-1.210)).toFixed(2);
           }
         }
         // Women
         if (patient?.gender === "0") {
-          if (form.getFieldValue('creatinine') === "") return "";
-          if (form.getFieldValue('creatinine') <= 80) {
+          if (creatine === "") return "";
+          if (creatine <= 80) {
             return (ckdEpi =
               ((141 *
                 (0.993 ** patient?.age) *
-                (form.getFieldValue('creatinine') / 88.4)) /
+                (creatine / 88.4)) /
                 0.9) **
               -0.412).toFixed(2);
           }
-          if (form.getFieldValue('creatinine') >= 80) {
+          if (creatine >= 80) {
             return (ckdEpi =
               ((141 *
                 (0.993 ** patient?.age) *
-                (form.getFieldValue('creatinine') / 88.4)) /
+                (creatine / 88.4)) /
                 0.9) **
               -1.21).toFixed(2);
           }

@@ -152,24 +152,29 @@ const View7 = ({patient,info,setInfo})=>{
         }
       };
       const coeffAtherogenicityMeasure = () => {
-        if (patient?.gender && info?.coeffAtherogenicity === "")
-          return "";
-        if (patient?.gender === "0") {
-          if (info?.coeffAtherogenicity < Number.parseFloat(2.2)) {
-            return "ниже нормы";
-          }else if(info?.coeffAtherogenicity > Number.parseFloat(3.3)){
-            return "гиперлипидемия"
-          }else if(info?.coeffAtherogenicity >= Number.parseFloat(2.2) && info?.coeffAtherogenicity <= Number.parseFloat(3.3)){
-            return "в норме"
+        if (info?.highDensityLipoprotein>0) {
+          let coef = info?.coeffAtherogenicity
+          if (patient?.gender==1) {
+            if (coef<2.2) {
+              return "";
+            }
+            if (coef > 2.2 && coef< 3.5) {
+              return "в норме"
+            }
+            if (coef>3.5) {
+              return "гиперлипидемия"
+            }
           }
-        }
-        if (patient?.gender === "1") {
-          if (info?.coeffAtherogenicity < Number.parseFloat(2.2)) {
-            return "ниже нормы";
-          }else if(info?.coeffAtherogenicity > Number.parseFloat(3.5)){
-            return "гиперлипидемия"
-          }else if(info?.coeffAtherogenicity >= Number.parseFloat(2.2) && info?.coeffAtherogenicity <= Number.parseFloat(3.5)){
-            return "в норме"
+          if (patient?.gender==0) {
+            if (coef<2.2) {
+              return ""
+            }
+            if (coef>2.2 && coef<3.3) {
+              return " в норме"
+            }
+            if (coef>3.3) {
+              return "гиперлипидемия"
+            }
           }
         }
       };
@@ -347,7 +352,6 @@ const View7 = ({patient,info,setInfo})=>{
               return "";
             }
           }
-      
       return (
         <div>
           <div>
@@ -453,7 +457,16 @@ const View7 = ({patient,info,setInfo})=>{
                 <tr>
                   <td>10</td>
                   <td>СКФ</td>
-                  <td>{info?.rapidGlomFilt}-{rapidGlomFiltMeasure()}</td>
+                  <td>{info?.rapidGlomFilt}
+                  -{
+                    info?.rapidGlomFilt> 90 ? "Нормальная СКФ"
+                    : info?.rapidGlomFilt < 90 && info?.rapidGlomFilt > 60 ? "Признаки нефропатии, легкое снижение СКФ"
+                    : info?.rapidGlomFilt < 60 && info?.rapidGlomFilt >45 ? "Умеренное снижение СКФ"
+                    : info?.rapidGlomFilt < 45 && info?.rapidGlomFilt > 30 ? "Выраженное снижение СКФ"
+                    : info?.rapidGlomFilt < 31 && info?.rapidGlomFilt > 15 ? "Тяжелое снижение СКФ"
+                    : info?.rapidGlomFilt < 16 ? "Терминальная хроническая почечная недостаточность"
+                    :""
+                  }</td>
                 </tr>
                 <tr>
                   <td>11</td>
