@@ -82,7 +82,6 @@ const Create = () => {
             .get(`/doc/allTab/${params.id}`)
             .then((res) => {
                 if (res.status == 200) {
-                    console.log(res.data.data,"data");
                     setTab1(res.data.data?.tab1);
                     setTab2(res.data.data?.tab2);
                     setTab3(res.data.data?.tab3);
@@ -100,7 +99,6 @@ const Create = () => {
                 console.log(err);
             });
     };
-    console.log(tab6,"tab6");
     const items = [
         {
             title: 'Клиническая характеристика больного',
