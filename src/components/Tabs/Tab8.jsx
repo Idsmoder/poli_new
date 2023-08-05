@@ -4,7 +4,6 @@ import { useEffect } from "react"
 const Tab8  = ({patient,onChanges,info,setInfo ,info6}) =>{
     const [form] = Form.useForm()
     useEffect(() => {
-        console.log(info6,"info6");
         form.setFieldValue('pulseRate',info6?.chcc);
     }, [info6])
     const nextClick = () => {
@@ -14,6 +13,14 @@ const Tab8  = ({patient,onChanges,info,setInfo ,info6}) =>{
         onChanges('7');
     }
     const onValueChanges = (e) => {
+        if (e.rufierDixontest_p1 || e.rufierDixontest_p2 || e.rufierDixontest_p3) {
+        let p1 = form.getFieldValue('rufierDixontest_p1')
+        let  p2 = form.getFieldValue('rufierDixontest_p2')
+        let   p3 = form.getFieldValue('rufierDixontest_p3')
+        let item = ((p2 -70) + (p3 - p1))/10;
+        form.setFieldValue('rufierDixon',item)
+        }  
+        console.log(e,"log");
         setInfo({ ...info, ...e });
     };
     return (<>
@@ -31,8 +38,8 @@ const Tab8  = ({patient,onChanges,info,setInfo ,info6}) =>{
                 <Col span={8} ><Form.Item name="rufierDixontest_p1" label="P1" ><Input/></Form.Item></Col>
                 <Col span={8} ><Form.Item name="rufierDixontest_p2" label="P2" ><Input/></Form.Item></Col>
                 <Col span={8} ><Form.Item name="rufierDixontest_p3" label="P3" ><Input/></Form.Item></Col>
+                <Col span={12} ><Form.Item name="rufierDixon" label="Проба Руфье-Диксона" ><Input disabled /></Form.Item></Col>
                 <Col span={12} ><Form.Item name="bem_sample" label="Для тренированных больных – ВЭМ проба" ><Input/></Form.Item></Col>
-                <Col span={12}><Form.Item name="levelPhysicalFitness" label="Ступень физической подготовленности расчетная'" ><Input/></Form.Item></Col>
                 <Col span={24} ><Typography.Title level={5} >Массовый тест определения физического состояния</Typography.Title></Col>
                 <Col span={12} >
                     <Form.Item   label="Характер трудовой деятельности" name="natureWork" >

@@ -5,7 +5,6 @@ import { api } from "../../utils/api";
 import Swal from "sweetalert2";
 
 const Tab5 = ({ patient, onChanges, info, setInfo }) => {
-  console.log("info5", info);
   const [form] = Form.useForm();
   const params = useParams();
   const onFinish = (values) => {

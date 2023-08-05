@@ -1,7 +1,6 @@
 
 
 const View5 = ({ patient,info,setInfo }) => {
-  console.log(info?.waistHipRatio,"test");
     const adipPoseTissueMeasure = () => {
         if (
           patient?.gender &&

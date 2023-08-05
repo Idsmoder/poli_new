@@ -3,14 +3,16 @@ import React, { useCallback, useEffect, useState } from "react";
 const View8 = ({ info,patient,setInfo,info5,info6 }) => {
   const [vem, setVem ]= useState();
   const [testMas, setTestMas] = useState();
+  useEffect(() => {
+    console.log(((200 - patient?.age) * 0.85).toFixed(2),"vem");
+    setVem(((200 - patient?.age) * 0.85).toFixed(2));
+  }, [])
+  useEffect(() => {
+    let item = testMass();
+    setTestMas(item);
+  }, [info])
   const tshxMeasure = () => {
-    useEffect(() => {
-      setVem(((200 - patient?.age) * 0.85).toFixed(2));
-    }, [])
-    useEffect(() => {
-      let item = testMass();
-      setTestMas(item);
-    }, [info])
+    
     if (info?.tshx) {
       if (patient?.gender == "0") {
         if (info?.tshx <= parseFloat(300)) return "Низкая";
@@ -55,6 +57,9 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
   };
   const rufierDixontestMeasure = () => {
     if (info?.rufierDixontest_p1 && info?.rufierDixontest_p2 && info?.rufierDixontest_p3) {
+      let p1 = info?.rufierDixontest_p1
+      let p2 = info?.rufierDixontest_p2
+      let p3 = info?.rufierDixontest_p3
       let item = ((info?.rufierDixontest_p2 -70) + (info?.rufierDixontest_p3 - info?.rufierDixontest_p1))/10;
       if (item < 5)
       return "отличная работоспособность сердца";
@@ -77,84 +82,85 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
     if (bemSemple >= 125) return "Очень высокая";
   };
   const stepenMeasure = ()=> {
-
-      if(vem){
-        if(patient?.gender=="0"){
-          if (vem == 25) {
-            return "Низкая"; 
-          }
-          if (vem==50) {
-            return "Умеренно низкая";
-          }
-          if (vem==75) {
-            return "Средняя";
-          }
-          if (vem==100) {
-            return "Хорошая";
-          }
-          if (vem>=125) {
-            return "Высокая";
-          }
+    let tshx = info?.tshx
+    if (vem) {
+      if (patient?.gender==1) {
+        if (vem>125 && tshx>600) {
+          return 5
+        }else if(vem>100 && vem<125 && tshx>500 && tshx<601){
+            return 4
+        }else if(vem>75 && vem <101 && tshx>400 && tshx<501){
+          return 3
+        }else if(vem>50 && vem <76 && tshx>300 && tshx<401){
+          return 2
+        }else if (vem<50 && tshx<300) {
+          return 1
         }else{
-          if(vem==25){
-            return "Низкая";
-          }
-          if(vem==50){
-            return "Умеренно низкая";
-          }
-          if(vem==75){
-            return "Средняя";
-          }
-          if(vem==100){
-            return "Хорошая";
-          }
-          if(vem>=125){
-            return "Высокая";
-          }
+          return measureTshx(tshx) 
         }
-
       }else{
-        if (patient?.gender=="0") {
-          if (info?.tshx<=300) {
-            return "Низкая";
-          }
-          if (info?.tshx>=301 && info?.tshx<=385) {
-            return "Умеренно низкая";
-          }
-          if (info?.tshx>=386 && info?.tshx<=471) {
-            return "Средняя";
-          }
-          if (info?.tshx>=472 && info?.tshx<=556) {
-            return "Хорошая";
-          }
-          if (info?.tshx>=557) {
-            return "Высокая";
-          }
+        if (vem>125 && tshx>600) {
+          return 5
+        }else if(vem>100 && vem<125 && tshx>500 && tshx<601){
+            return 4
+        }else if(vem>75 && vem <101 && tshx>400 && tshx<501){
+          return 3
+        }else if(vem>50 && vem <76 && tshx>300 && tshx<401){
+          return 2
+        }else if (vem<50 && tshx<300) {
+          return 1
         }else{
-          if(info?.tshx<=300){
-            return "Низкая";
-          }
-          if(info?.tshx>=301 && info?.tshx<=400){
-            return "Умеренно низкая";
-          }
-          if(info?.tshx>=401 && info?.tshx<=500){
-            return "Средняя";
-          }
-          if(info?.tshx>=501 && info?.tshx<=600){
-            return "Хорошая";
-          }
-          if(info?.tshx>=601){
-            return "Высокая";
-          }
+          return measureTshx(tshx) 
         }
+
       }
+    }
+      
   }
+  const measureTshx =  (tshx) =>{
+    if (patient?.gender==1) {
+      if (tshx>600) {
+        return 5
+      }
+      if (tshx>500 && tshx<601) {
+        return 4
+      }
+      if (tshx>400 && tshx<501) {
+        return 3
+      }
+      if (tshx>300 && tshx<401) {
+        return 2
+      }
+      if (tshx<301) {
+        return 1
+      }
+    }else{
+      if (tshx>557) {
+        return 5
+      }
+      if (tshx>472 && tshx<557) {
+        return 4
+      }
+      if (tshx>385 && tshx<472) {
+        return 3
+      }
+      if (tshx>300 && tshx<386) {
+        return 2
+      }
+      if (tshx<301) {
+        return 1
+      }
+    }
+    
+  } 
   
-  const testMass =  useCallback(() => {
+  const testMass = () => {
+
     if (info?.natureWork && info?.physicalExercise && info?.complaints ) {
       let natureWork = parseFloat(info?.natureWork);
       let physicalExercise = parseFloat(info?.physicalExercise);
       let complaints = parseFloat(info?.complaints);
+      console.log(natureWork,physicalExercise,complaints);
       let age = 
            patient?.age <= 20 && patient?.age<=24 ? 20 
         :  patient?.age >= 25 && patient?.age <= 29 ? 18
@@ -190,7 +196,7 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
       setInfo(final);
       return final;
     }
-  }, [])
+  }
 
 
   return (
@@ -255,13 +261,13 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
                 расчетная
               </td>
               <td>
-                {(info?.levelPhysicalFitness === "1" && "Низкая") ||
-                  (info?.levelPhysicalFitness === "2" &&
-                    "Умеренно низкая") ||
-                  (info?.levelPhysicalFitness === "3" && "Средняя") ||
-                  (info?.levelPhysicalFitness === "4" && "Хорошая") ||
-                  (info?.levelPhysicalFitness === "5" && "Высокая")}
-                  {stepenMeasure()}
+                {stepenMeasure()}-{stepenMeasure()==1 ? "Низкая"
+                  :stepenMeasure()==2 ? "Умеренно низкая"
+                  :stepenMeasure()==3 ? "Средняя"
+                  :stepenMeasure()==4 ? "Хорошая"
+                  :stepenMeasure()==5 ? "Высокая"
+                  :""
+                }
               </td>
             </tr>
             <tr>
