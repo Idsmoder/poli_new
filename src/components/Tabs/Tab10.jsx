@@ -1,10 +1,16 @@
 import { Button, Col, Form, Input, Radio, Row, Slider, Typography } from "antd";
 import { useEffect, useState } from "react";
-
+import {api} from "../../utils/api"
+import { useParams } from "react-router-dom";
 const Tab10 = ({patient,onChanges,info,setInfo}) => {
     const [stre,setStre] = useState(0);
     const [gradee,setGrade] = useState(0);
     const [form] = Form.useForm()
+    const params = useParams();
+    useEffect(() => {
+        form.setFieldsValue(info);
+    }, [info])
+
     useEffect(() => {
         let stress1 = form.getFieldValue('stress1');        
         let stress2 = form.getFieldValue('stress2');
@@ -20,7 +26,7 @@ const Tab10 = ({patient,onChanges,info,setInfo}) => {
         let dailyActivities = form.getFieldValue('dailyActivities');
         let painDiscomfort = form.getFieldValue('painDiscomfort');
         let anxietyDepression = form.getFieldValue('anxietyDepression');
-        let item = ((+mobility + +personalCare + +dailyActivities + +painDiscomfort + +anxietyDepression)/5).toFixed(2);
+        let item = ((+mobility + +personalCare + +dailyActivities + +painDiscomfort + +anxietyDepression)).toFixed(2);
         form.setFieldValue('totalGrade',item);
         setStre(stress);
         setGrade(item);
@@ -39,15 +45,24 @@ const Tab10 = ({patient,onChanges,info,setInfo}) => {
     const backClick = () => {
         onChanges('9');
     }
-    console.log(info,"info");
+    const onFinish = (values) => {
+        values.tab = 10;
+        values.nurse_doc_id = params.id;
+
+        api.post('doc/create',values)
+        .then(res=>console.log(res))
+        .catch(err=>console.log(err))
+    }
+
     return (
         <>
-            <Typography.Title level={4}>10. Оценка качеств жизни и уровня стресса</Typography.Title>
+            <Typography.Title level={4}>10. Вопросник на определение уровня стресса (Reeder L.)</Typography.Title>
             <Form
                 name="tab10"
                 layout="vertical"
                 size={'default'}
                 form={form}
+                onFinish={onFinish}
                 onValuesChange={changeValue}
             >
                 <Typography.Title level={5}>Уровень стресса</Typography.Title>
@@ -55,70 +70,70 @@ const Tab10 = ({patient,onChanges,info,setInfo}) => {
                     <Col span={24} >
                         <Form.Item label="Пожалуй, я человек нервный" name="stress1">
                             <Radio.Group>
-                                <Radio value='4' >Да, согласен</Radio>
-                                <Radio value='3'>Скорее согласен</Radio>
-                                <Radio value='2' >Скорее не согласен</Radio>
-                                <Radio value='1' >Нет, не согласен</Radio>
+                                <Radio value='3' >Да, согласен</Radio>
+                                <Radio value='2'>Скорее согласен</Radio>
+                                <Radio value='1' >Скорее не согласен</Radio>
+                                <Radio value='0' >Нет, не согласен</Radio>
                             </Radio.Group>
                         </Form.Item>
                     </Col>
                     <Col span={24} >
                         <Form.Item label="Я очень беспокоюсь о своей работе" name="stress2">
                             <Radio.Group>
-                                <Radio value='4' >Да, согласен</Radio>
-                                <Radio value='3'>Скорее согласен</Radio>
-                                <Radio value='2' >Скорее не согласен</Radio>
-                                <Radio value='1' >Нет, не согласен</Radio>
+                            <Radio value='3' >Да, согласен</Radio>
+                                <Radio value='2'>Скорее согласен</Radio>
+                                <Radio value='1' >Скорее не согласен</Radio>
+                                <Radio value='0' >Нет, не согласен</Radio>
                             </Radio.Group>
                         </Form.Item>
                     </Col>
                     <Col span={24} >
                         <Form.Item label="Я часто ощущаю нервное напряжение" name="stress3">
                             <Radio.Group>
-                                <Radio value='4' >Да, согласен</Radio>
-                                <Radio value='3'>Скорее согласен</Radio>
-                                <Radio value='2' >Скорее не согласен</Radio>
-                                <Radio value='1' >Нет, не согласен</Radio>
+                            <Radio value='3' >Да, согласен</Radio>
+                                <Radio value='2'>Скорее согласен</Radio>
+                                <Radio value='1' >Скорее не согласен</Radio>
+                                <Radio value='0' >Нет, не согласен</Radio>
                             </Radio.Group>
                         </Form.Item>
                     </Col>
                     <Col span={24} >
                         <Form.Item label="Моя повседневная деятельность вызывает большое напряжение" name="stress4">
                             <Radio.Group>
-                                <Radio value='4' >Да, согласен</Radio>
-                                <Radio value='3'>Скорее согласен</Radio>
-                                <Radio value='2' >Скорее не согласен</Radio>
-                                <Radio value='1' >Нет, не согласен</Radio>
+                            <Radio value='3' >Да, согласен</Radio>
+                                <Radio value='2'>Скорее согласен</Radio>
+                                <Radio value='1' >Скорее не согласен</Radio>
+                                <Radio value='0' >Нет, не согласен</Radio>
                             </Radio.Group>
                         </Form.Item>
                     </Col>
                     <Col span={24} >
                         <Form.Item label="Общаясь с людьми, я часто ощущаю нервное напряжение" name="stress5">
                             <Radio.Group>
-                                <Radio value='4' >Да, согласен</Radio>
-                                <Radio value='3'>Скорее согласен</Radio>
-                                <Radio value='2' >Скорее не согласен</Radio>
-                                <Radio value='1' >Нет, не согласен</Radio>
+                            <Radio value='3' >Да, согласен</Radio>
+                                <Radio value='2'>Скорее согласен</Radio>
+                                <Radio value='1' >Скорее не согласен</Radio>
+                                <Radio value='0' >Нет, не согласен</Radio>
                             </Radio.Group>
                         </Form.Item>
                     </Col>
                     <Col span={24} >
                         <Form.Item label="К концу дня я совершенно истощен физически и психически" name="stress6">
                             <Radio.Group>
-                                <Radio value='4' >Да, согласен</Radio>
-                                <Radio value='3'>Скорее согласен</Radio>
-                                <Radio value='2' >Скорее не согласен</Radio>
-                                <Radio value='1' >Нет, не согласен</Radio>
+                            <Radio value='3' >Да, согласен</Radio>
+                                <Radio value='2'>Скорее согласен</Radio>
+                                <Radio value='1' >Скорее не согласен</Radio>
+                                <Radio value='0' >Нет, не согласен</Radio>
                             </Radio.Group>
                         </Form.Item>
                     </Col>
                     <Col span={24} >
                         <Form.Item label="В моей семье часто возникают напряженные отношения" name="stress7">
                             <Radio.Group>
-                                <Radio value='4' >Да, согласен</Radio>
-                                <Radio value='3'>Скорее согласен</Radio>
-                                <Radio value='2' >Скорее не согласен</Radio>
-                                <Radio value='1' >Нет, не согласен</Radio>
+                            <Radio value='3' >Да, согласен</Radio>
+                                <Radio value='2'>Скорее согласен</Radio>
+                                <Radio value='1' >Скорее не согласен</Radio>
+                                <Radio value='0' >Нет, не согласен</Radio>
                             </Radio.Group>
                         </Form.Item>
                     </Col>
@@ -181,8 +196,13 @@ const Tab10 = ({patient,onChanges,info,setInfo}) => {
                         </Form.Item>
                     </Col>
                     <Col span={24} >
-                        <Form.Item label="Индекс на основе визуальной аналоговой шкалы EQ–VAS" name="eqvas" >
-                            <Slider defaultValue={0} 
+                        <Form.Item label="Наихудшее состояние здоровья, которое можно себе представить Мы хотели бы узнать, как Вы оцениваете состояние своего здоровья на СЕГОДНЯШНИЙ ДЕНЬ. 
+∙ Перед Вами шкала от 0 до 100. 
+∙ 100 означает наилучшее состояние здоровья, которое вы можете представить. 0 – наихудшее состояние здоровья, которое вы можете представить. 
+∙ Поставьте крестик “X” на шкале в том месте, которое, по Вашему мнению, соответствует состоянию Вашего здоровья СЕГОДНЯ. 
+∙ Теперь впишите отмеченное
+" name="eqvas" >
+                            <Slider initialValues={0} 
                                 marks={{
                                     0: '0',
                                 20: '20',

@@ -1,7 +1,6 @@
 
 const View6 = ({patient,info,setInfo,height1} )=>{
     const count = 1;
-    
   const measurePsv = () => {
     const gender = patient?.gender;
     const age = patient?.age;
@@ -1274,7 +1273,7 @@ const View6 = ({patient,info,setInfo,height1} )=>{
             <tr>
               <td>13</td>
               <td>ПСВ мл/мин</td>
-              <td>{measurePsv()}-{measurePsv()>= 564 ? "ПСВ норма" : "ПСВ снижена" }</td>
+              <td>{info?.psv}-{info?.psv >=measurePsv() ? "ПСВ норма" : "ПСВ снижена" }</td>
             </tr>
           </tbody>
         </table>

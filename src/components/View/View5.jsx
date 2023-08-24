@@ -452,7 +452,7 @@ const View5 = ({ patient,info,setInfo }) => {
           {/* 12 */}
           <tr>
             <td>12</td>
-            <td>Костная ткань</td>
+            <td>Костная ткань (Тонита)</td>
             <td>{info?.bone}-{boneMeasure()}</td>
           </tr>
           {/* 13 */}

@@ -400,8 +400,12 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     </>
                     }
                    </>
-                    
-                        }
+                    }
+                    <Col span={12} >
+                        <Form.Item name="psv" label="ПСВ ">
+                            <Input suffix="мл/мин" />
+                        </Form.Item>
+                    </Col>
                     
                     <Col span={24}>
                         <Form.Item name="noiseComment" label="Дополнения">

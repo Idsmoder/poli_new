@@ -1,11 +1,19 @@
 import { Button, Col, Form, Input, Row, Select, Typography } from "antd"
 import { useEffect } from "react"
+import {api} from "../../utils/api"
+import { useParams } from "react-router-dom"
 
 const Tab8  = ({patient,onChanges,info,setInfo ,info6}) =>{
+    const params = useParams()
     const [form] = Form.useForm()
     useEffect(() => {
         form.setFieldValue('pulseRate',info6?.chcc);
     }, [info6])
+    useEffect(() => {
+        form.setFieldsValue(info)
+        const item = ((info?.rufierDixontest_p2 -70) + (info?.rufierDixontest_p3 - info?.rufierDixontest_p1))/10;
+        form.setFieldValue('rufierDixon',item)
+    }, [info])
     const nextClick = () => {
         onChanges('9');
     }
@@ -20,9 +28,21 @@ const Tab8  = ({patient,onChanges,info,setInfo ,info6}) =>{
         let item = ((p2 -70) + (p3 - p1))/10;
         form.setFieldValue('rufierDixon',item)
         }  
-        console.log(e,"log");
         setInfo({ ...info, ...e });
     };
+    const onFinish = (e) => {
+
+        let body = {
+            ...e,
+            tab:8,
+            nurse_doc_id: params.id,
+        }
+        api.post('doc/create',body).then(res => {
+            console.log(res);
+        }
+        )
+
+    }
     return (<>
         <Typography.Title level={5}>8. Определение толерантности к физической нагрузке</Typography.Title>
         <Form
@@ -30,6 +50,7 @@ const Tab8  = ({patient,onChanges,info,setInfo ,info6}) =>{
             name="tab8"
             layout="vertical"
             form={form}
+            onFinish={onFinish}
             
         >
             <Row gutter={24}>

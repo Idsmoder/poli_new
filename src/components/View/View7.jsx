@@ -189,7 +189,7 @@ const View7 = ({patient,info,setInfo})=>{
         )
           return "норма";
         if (info?.prothrombinTime < parseFloat(12.0)) return "ниже нормы";
-        else return "выще нормы";
+        else return "выше нормы";
       }
         
        }else{
@@ -206,7 +206,7 @@ const View7 = ({patient,info,setInfo})=>{
           )
             return "норма";
           if (info?.homocysteine < parseFloat(4.6)) return "ниже нормы";
-          else return "вище нормы";
+          else return "више нормы";
         }
         if (patient?.gender === "1") {
           if (
@@ -215,7 +215,7 @@ const View7 = ({patient,info,setInfo})=>{
           )
             return "норма";
           if (info?.homocysteine < parseFloat(6.2)) return "ниже нормы";
-          else return "вище нормы";
+          else return "више нормы";
         }
           
         }else{

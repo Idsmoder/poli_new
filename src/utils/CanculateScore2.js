@@ -1,7 +1,11 @@
 
 export const CanculateScore2 = (viewScore) => {
-    console.log(viewScore);
+    const age = viewScore?.main?.age;
+    const smoking = viewScore?.tab4?.smoking;
+    const sad = viewScore?.tab5?.sad;
+    console.log(smoking,"agee");
     if (viewScore?.main?.age >= 40) {
+        
         if (
             !(
                 viewScore?.tab2?.b &&
@@ -15,6 +19,14 @@ export const CanculateScore2 = (viewScore) => {
             )
         ) {
             if (viewScore?.main?.gender == "0") {
+                if (age>40 || age<=44) {
+                    if (smoking==2 || smoking==3) {
+                        
+                    }else if (smoking==1) {
+                        return "0";
+                    }
+                }
+               
                 if (viewScore?.main?.age >= 85 || viewScore?.main?.age <= 89) {
                     if (viewScore?.tab4?.smoking === 2 || viewScore?.tab4?.smoking === 3) {
                         if (viewScore?.tab5?.sad >= 160 || viewScore?.tab5?.sad <= 179) {
@@ -1528,6 +1540,7 @@ export const CanculateScore2 = (viewScore) => {
                 }
                 // age 50-54
                 else if (viewScore?.main?.age >= 50 || viewScore?.main?.age <= 54) {
+
                     if (viewScore?.tab4?.smoking === 2 || viewScore?.tab4?.smoking === 3) {
                         if (viewScore?.tab5?.sad >= 160 || viewScore?.tab5?.sad <= 179) {
                             if (
@@ -1741,9 +1754,11 @@ export const CanculateScore2 = (viewScore) => {
                             }
                         }
                     }
+                
                 }
                 // age 45-49
-                else if (viewScore?.main?.age >= 45 || viewScore?.main?.age <= 49) {
+                else if (age >= 45 && age <= 49) {
+                    console.log("test Csoere");
                     if (viewScore?.tab4?.smoking === 2 || viewScore?.tab4?.smoking === 3) {
                         if (viewScore?.tab5?.sad >= 160 || viewScore?.tab5?.sad <= 179) {
                             if (
