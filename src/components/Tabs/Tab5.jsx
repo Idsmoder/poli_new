@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row, Typography } from "antd";
+import { Button, Col, Form, Input, Row, Select, Typography } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../utils/api";
@@ -190,14 +190,20 @@ const Tab5 = ({ patient, onChanges, info, setInfo }) => {
           <Col span={12}>
             <Form.Item
               name="bone"
-              label="Количество костной массы (содержание неорганического Са и т.д.)"
+              label="Костная ткань (Тонита)"
             >
               <Input placeholder="Костная ткань" />
             </Form.Item>
           </Col>
           <Col  span={12}>
             <Form.Item name="active_factor" label="коэффициент активности">
-              <Input placeholder="коэффициент активности" />
+              <Select>
+                <Option value="1">1,2 — низкая двигательная активность, сидячий образ жизни</Option>  
+                <Option value="2">1,38 — умеренная двигательная активность, 1-2 тренировки еженедельно</Option>  
+                <Option value="3">1,6 — средний уровень двигательной активности, не менее трех интенсивных тренировок каждую неделю</Option>  
+                <Option value="4"> 1,73 — высокий уровень двигательной активности, порядка пяти интенсивных тренировок еженедельно</Option>  
+                <Option value="5"> 1,9 — интенсивные тренировки ежедневно, сочетающиеся с тяжелой физической работой.</Option>  
+              </Select>
             </Form.Item>
           </Col>
           <Col span={12}>

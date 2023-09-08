@@ -108,6 +108,7 @@ const Tab7 = ({patient,onChanges ,info,setInfo}) => {
         
         if(e.creatinine){
             let item = rapidGlomFiltMeasure();
+            console.log(item,"itenmss");
             let ee = {
                 rapidGlomFilt:String(item),
                 creatinine:e.creatinine
@@ -132,36 +133,35 @@ const Tab7 = ({patient,onChanges ,info,setInfo}) => {
            let a2 = ((creatine/88.4)/0.9);
            let a3  = (a1 * (a2**(-0.412)))
            let a4 = Number(141 * a3).toFixed(0);
-
+            
             return (ckdEpi = a4)
           }
           if (creatine > 80) {
-            return (ckdEpi =
-              ((141 *
-                (0.993 ** patient?.age) *
-                (creatine / 88.4)) /
-                (0.9)) **
-              (-1.210)).toFixed(2);
+            
+            let a1 = (0.993**patient?.age);
+           let a2 = ((creatine/88.4)/0.9);
+           let a3  = (a1 * (a2**(-1.210)))
+           let a4 = Number(141 * a3).toFixed(0);
+           return a4
           }
         }
         // Women
         if (patient?.gender === "0") {
           if (creatine === "") return "";
-          if (creatine <= 80) {
-            return (ckdEpi =
-              ((141 *
-                (0.993 ** patient?.age) *
-                (creatine / 88.4)) /
-                0.9) **
-              -0.412).toFixed(2);
+          if (creatine <= 62) {
+            let a1 = (0.993**patient?.age);
+            let a2 = ((creatine/88.4)/0.7);
+            let a3  = (a1 * (a2**(-0.328)))
+            let a4 = Number(141 * a3).toFixed(0);
+            return a4
+
           }
-          if (creatine >= 80) {
-            return (ckdEpi =
-              ((141 *
-                (0.993 ** patient?.age) *
-                (creatine / 88.4)) /
-                0.9) **
-              -1.21).toFixed(2);
+          if (creatine >= 62) {
+            let a1 = (0.993**patient?.age);
+            let a2 = ((creatine/88.4)/0.7);
+            let a3  = (a1 * (a2**(-1.210)))
+            let a4 = Number(141 * a3).toFixed(0);
+            return a4
           }
         }
       };

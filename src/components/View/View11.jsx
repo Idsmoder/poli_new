@@ -23,7 +23,6 @@ export const View11 = ({ info,patient,info5,info6,info7,info2,info4,info8,info10
 useEffect(() => {
   if (patient && info5 && info7 && info2 && info4) {
     factorsMeasure();
-
       let viewScore = {
         main: patient,
         tab5: info6,
@@ -33,6 +32,8 @@ useEffect(() => {
       }
       let item =  CanculateScore2(viewScore);
       setScore2(item);
+    }else{
+      setScore2(0);
     }
   }, [patient,info5,info7,info2,info4]);
   
@@ -113,7 +114,6 @@ useEffect(() => {
     if(info7?.levelUricAcidSer){
       setFactors([...factors,"Гиперурекемия"]);
     }
-    console.log(info6?.sad,info6?.dad);
     if(info6?.sad > 140 && info6?.dad > 90){
       setFactors([...factors,"артериальная гипертензия"]);
     }
@@ -165,7 +165,7 @@ return (
               
               <td>2</td>
               <td>{patient?.age < 40 ? "Риск сердечно-сосудистых заболеваний (младше 40 лет)" : "SCORE2-OP (старше 40 лет)"}</td>
-              <td>{score2} </td>
+              <td>{score2}-{score2==0 ? "SCORE2 не возможно посчитать":""} </td>
             </tr>
             <tr>
               <td>3</td>

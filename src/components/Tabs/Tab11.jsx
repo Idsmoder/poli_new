@@ -21,12 +21,7 @@ const Tab11 = () => {
 
             >
                 <Row gutter={24}>
-                    <Col span={12}>
-                        <Form.Item label="АП"><Input/></Form.Item>
-                    </Col>
-                    <Col span={12}>
-                        <Form.Item label="SCORE-2 (старше 40 лет)"><Input/></Form.Item>
-                    </Col>
+                    <Col span={24}><Typography.Title level={5}>Индекс адаптационного потенциала ССС Р.М. Баевского расчетный</Typography.Title></Col>
                     <Col span={12}>
                         <Form.Item label="Группа риска"><Input/></Form.Item>
                     </Col>

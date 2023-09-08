@@ -42,6 +42,7 @@ const Login = () => {
   const getUserList = async () => {
     const res = await api.get("/login-list");
     try {
+      console.log("test login");
       if (res) {
         setUserList(
 

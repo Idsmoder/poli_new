@@ -6,9 +6,9 @@ const View3 = ({patient,info,setInfo}) => {
     return (
         <>
             <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
-                Принимает ли медикаментозную терапию (отметить):
+                Принимает ли медикаментозную терапию (отметить):{info?.no ? "Нет": ""}
             </h6>
-
+            {info?.no? "" : <>
             <div className="row py-2 align-items-center">
             {/* diuretics */}
             {info?.diuretics ? (
@@ -106,6 +106,9 @@ const View3 = ({patient,info,setInfo}) => {
                 ""
             )}
             </div>
+            
+            </>}
+            
         </>
     );
     }

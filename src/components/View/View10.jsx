@@ -12,7 +12,7 @@ const View10 = ({ info,patient }) => {
         if (info?.stressLevel >= parseFloat(1.18) && info?.stressLevel <= parseFloat(2.17)) {
           return "Средний";
         }
-        if (info?.stressLevel >= parseFloat(2.18) && info?.stressLevel >= parseFloat(3.00)) {
+        if (info?.stressLevel >= parseFloat(2.18) && info?.stressLevel <= parseFloat(3.00)) {
           return "Высокий ";
         }
       }else{
@@ -29,6 +29,31 @@ const View10 = ({ info,patient }) => {
       }
     }
   }
+  const measure5d = (value) => {
+    if (value) {
+      if (value == 1) {
+        return "нет нарушений";
+      }
+      if (value == 2) {
+        return "есть умеренные нарушения";
+      }
+      if (value == 3) {
+        return "есть выраженные нарушения";
+      }
+    }
+  };
+  const measureTotalGrade = (value) => {
+    if (value) {
+      if (value <= 5) {
+        return "баллов нет нарушений";
+      }
+      if (value >= 6 && value <= 10) {
+        return "баллов умеренные нарушения здоровья";
+      }
+      if (value >= 11 && value <= 15) {
+        return "баллов выраженные нарушения здоровья";
+      }
+    }};
   return (
     <div>
       <div>
@@ -64,34 +89,34 @@ const View10 = ({ info,patient }) => {
             </tr>
             <tr>
               <td></td>
-              <td>А</td>
-              <td>{info?.mobility}</td>
+              <td>А. Подвижность (передвижение в пространстве)</td>
+              <td>{info?.mobility}-{measure5d(info?.mobility)}</td>
             </tr>
             <tr>
               <td></td>
-              <td>Б</td>
-              <td>{info?.personalCare}</td>
+              <td>Б.Самообслуживание</td>
+              <td>{info?.personalCare}-{measure5d(info?.personalCare)}</td>
             </tr>
             <tr>
               <td></td>
-              <td>В</td>
-              <td>{info?.dailyActivities}</td>
+              <td>В. Активность в повседневной жизни</td>
+              <td>{info?.dailyActivities}-{measure5d(info?.dailyActivities)}</td>
             </tr>
             <tr>
               <td></td>
-              <td>Г</td>
-              <td>{info?.painDiscomfort}</td>
+              <td>Г. Наличие боли</td>
+              <td>{info?.painDiscomfort}-{measure5d(info?.painDiscomfort)}</td>
             </tr>
             <tr>
               <td></td>
-              <td>Д</td>
-              <td>{info?.anxietyDepression}</td>
+              <td>Д. Наличие дискомфорта и тревоги/депрессии</td>
+              <td>{info?.anxietyDepression}-{measure5d(info?.anxietyDepression)}</td>
             </tr>
             <tr>
               <td></td>
               <td>Общий балл</td>
               <td>
-                {info?.totalGrade}
+                {info?.totalGrade}-{measureTotalGrade(info?.totalGrade)}
               </td>
             </tr>
             <tr>

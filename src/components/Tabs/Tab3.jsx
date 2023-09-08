@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { api } from "../../utils/api";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { duration } from "moment/moment";
 
 const Tab3 = ({patient,onChanges,info,setInfo}) => {
     const [diuretics, setDiuretics] = useState('');
@@ -14,11 +15,25 @@ const Tab3 = ({patient,onChanges,info,setInfo}) => {
     const [antiarrhythmics, setAntiarrhythmics] = useState('');
     const [nitrates, setNitrates] = useState('');
     const [cardiac , setCardiac] = useState('');
+    const [no,setNo] = useState('');
     const [form] = Form.useForm();
     const params = useParams();
     const onChange = (e) => {
         
             let names = e.target.id;
+            if (names=="no") {
+                setInfo({...info,no:e.target.checked ? 1:0})
+                setNo(e.target.checked)
+                setDiuretics(0)
+                setBetaBlockers(0);
+                setCalcium(0);
+                setApf(0);
+                setAra(0);
+                setAmkr(0);
+                setAntiarrhythmics(0);
+                setNitrates(0);
+                setCardiac(0);
+            }
             if (names == 'diuretics') {
                 setInfo({...info,diuretics:e.target.checked ? 1 : 0})
                 setDiuretics(e.target.checked);
@@ -60,16 +75,18 @@ const Tab3 = ({patient,onChanges,info,setInfo}) => {
         let body = {
             nurse_doc_id: params.id,
             tab: 3,
-            diuretics: diuretics,
-            betaBlockers: betaBlockers,
-            calcium: calcium,
-            apf: apf,
-            ara: ara,
-            amkr: amkr,
-            antiarrhythmics: antiarrhythmics,
-            nitrates: nitrates,
-            cardiac: cardiac,
+            no:no,
+            diuretics: no ? 0 : diuretics,
+            betaBlockers: no ? 0 : betaBlockers,
+            calcium: no ? 0 : calcium,
+            apf: no ? 0 :apf,
+            ara: no ? 0 : ara,
+            amkr: no ? 0 : amkr,
+            antiarrhythmics: no ? 0 : antiarrhythmics,
+            nitrates: no ? 0 : nitrates,
+            cardiac: no ? 0 : cardiac,
         }
+        console.log(body,"body");
         api
             .post("/doc/create", body)
             .then((res) => {
@@ -108,6 +125,7 @@ const Tab3 = ({patient,onChanges,info,setInfo}) => {
         setAntiarrhythmics(info?.antiarrhythmics);
         setNitrates(info?.nitrates);
         setCardiac(info?.cardiac);
+        setNo(info?.no);
     }, [info])
         const nextClick = () => {
             onChanges('4');
@@ -125,7 +143,14 @@ const Tab3 = ({patient,onChanges,info,setInfo}) => {
                 onFinish={onFinish}
             >
                 <Row gutter={24}>
-                    <Col span={12}>
+                    <Col span={no==1 ? 24 : 12}>
+                        <Form.Item name="no" >
+                            <Checkbox checked={no?true:false} onChange={onChange} >Нет</Checkbox>
+                        </Form.Item>
+                    </Col>
+                    {!no ? 
+                    <>
+                     <Col span={12}>
                         <Form.Item
                         name="diuretics" 
                         >
@@ -181,13 +206,17 @@ const Tab3 = ({patient,onChanges,info,setInfo}) => {
                                 <Checkbox onChange={onChange} checked={nitrates=='1' ? true:false} >Нитраты</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={24}>
+                    <Col span={12}>
                         <Form.Item
                             name="cardiac"
                             >
                                 <Checkbox onChange={onChange} checked={cardiac=='1' ? true:false} >Сердечные гликозиды</Checkbox>
                         </Form.Item>
                     </Col>
+                    </>
+                   :'' }
+                   
+                    
                     <Col span={8}>
                         <Form.Item
                             >

@@ -82,7 +82,8 @@ const View2 = ({patient,info,setInfo}) => {
                 </div>
                 <div className="col-6">
                     <p className="m-0 ms-3 my-2" style={{ fontSize: "10px" }}>
-                    <b>H. </b>Нарушения ритма : /
+                    <b>H. </b>Нарушения ритма : 
+                    {info?.h_1 || info?.h_2 || info?.h_3 || info?.h_4 || info?.h_5 || info?.h_6 || info?.h_7 ? "": "Нет"}
                     {info?.h_1 ?"Экстросистолия желудочковая, ":""}
                     {info?.h_2 ? "Экстросистолия наджелудочковая, ":""}
                     {info?.h_3 ? "Пароксизмальная наджелудочковая тахикардия, ":""}
