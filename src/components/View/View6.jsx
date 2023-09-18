@@ -1096,9 +1096,9 @@ const View6 = ({patient,info,setInfo,height1} )=>{
 
   const adMerge = (ad) => {
     if (ad === 0) return "";
-    if (ad === 40 || ad <= 50) return "АД пульсовое в норме";
-    if (ad < 40) return "АД пульсовое сниженное";
-    if (ad > 50) return "Изолированная Систолическая гипертензия";
+    if (ad === 40 || ad <= 50) return "";
+    if (ad < 40) return "";
+    if (ad > 50) return "";
     return;
   };
   const pulsMerge = (ad) => {
@@ -1145,7 +1145,7 @@ const View6 = ({patient,info,setInfo,height1} )=>{
             <tr>
               <td>4</td>
               <td>АД пульсовое (АДП)</td>
-              <td>{info?.sad - info?.dad}-{adMerge(info?.sad - info?.dad)}</td>
+              <td>{info?.sad - info?.dad}</td>
             </tr>
             <tr>
               <td>5</td>

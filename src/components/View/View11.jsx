@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from "react";
 import {CanculateAp} from "../../utils/CanculateAp";
 import {CanculateScore2} from "../../utils/CanculateScore2";
+import {canculatePirigova} from "../../utils/canculatePirigova";
 
 export const View11 = ({ info,patient,info5,info6,info7,info2,info4,info8,info10 }) => {
   const [canAp,setCanAp]=useState(0);
   const [score2,setScore2]=useState(0);
   const [factors,setFactors]=useState([]);
+  const [piragova,setPiragova]=useState(0);
+  const [strees1,setStrees1]=useState(null);
+  const [nausea,setNausea]=useState(null);
+  const [diabetes,setDiabetes]=useState(null);
+  const [physicalActivity,setPhysicalActivity]=useState(null);
+  const [smoking,setSmoking]=useState(null);
+  const [gb,setGb]=useState(null);
+  const [dyslipidemia,setDyslipidemia]=useState(null);
+  const [hyperurecemia,setHyperurecemia]=useState(null);
+  const [hypertension,setHypertension]=useState(null);
+  const [diseaseKidney,setDiseaseKidney]=useState(null);
+  const [chcc,setChcc]=useState(null);
 
 
   useEffect(() => {
@@ -15,14 +28,14 @@ export const View11 = ({ info,patient,info5,info6,info7,info2,info4,info8,info10
       info5: info5,
       info6: info6,
     }
-    
-     let item =  CanculateAp(view);
+    let item =  CanculateAp(view);
      setCanAp(item);
   }
 }, [patient,info5,info6]);
 useEffect(() => {
+  factorsMeasure();
+
   if (patient && info5 && info7 && info2 && info4) {
-    factorsMeasure();
       let viewScore = {
         main: patient,
         tab5: info6,
@@ -36,9 +49,19 @@ useEffect(() => {
       setScore2(0);
     }
   }, [patient,info5,info7,info2,info4]);
-  
+  useEffect(() => {
+    const view = {
+      patient: patient,
+      info5: info5,
+      info6: info6,
+      info8: info8,
+    }
+    let item =  canculatePirigova(view);
+    setPiragova(item);
+  }, [patient,info5,info6,info7]);
   const lynxMeasure = () =>{
-    if (score2 && info2 && info7 && info5) {
+
+    if (info2 && info7 && info5) {
       if (info?.b 
         && info2?.c 
         && info2?.d 
@@ -80,57 +103,62 @@ useEffect(() => {
   }
   const factorsMeasure = () =>{
     let item = ((info8?.rufierDixontest_p2 -70) + (info8?.rufierDixontest_p3 - info8?.rufierDixontest_p1))/10;
-
+    const imt = (info5?.bodyMass / (info5?.height * info5?.height)).toFixed(0);
     if (patient?.gender=="0") {
-      if (info5?.waistHipRatio > parseFloat(0.85) && info5?.presenceDegreeImt > parseFloat(30) && info5?.internalFat > parseFloat(12)){
-        setFactors([...factors,"ожирение"]);
+      if (info5?.waistHipRatio > parseFloat(0.85) && imt > parseFloat(30) && info5?.internalFat > parseFloat(12)){
+        setNausea("ожирение");
       }
-        
     }else{
-      if ( info5?.waistHipRatio > parseFloat(1.0) && info5?.presenceDegreeImt > parseFloat(30) && info5?.internalFat > parseFloat(12)){
-        setFactors([...factors,"ожирение"]);
+      if ( info5?.waistHipRatio > parseFloat(1.0) && imt > parseFloat(30) && info5?.internalFat > parseFloat(12)){
+        setNausea("ожирение");
       }
     }
     if (info2?.k && info2?.i && info7?.totalCholesterol > parseFloat(6.2)) {
-      setFactors([...factors,"сахарный диабет"]);
+      setDiabetes("сахарный диабет");
     }
     if(info8?.tshx< parseFloat(300)){
-      if (item > parseFloat(15)) {
-        setFactors([...factors,"недостаточная физическая активность"]);
+      if (item > parseFloat(15) && piragova>44) {
+        setPhysicalActivity("недостаточная физическая активность");
       }
     }
-    if (info4?.smoking==1 && info4?.smoking > parseFloat(3)) {
-      setFactors([...factors,"курение"]);
+    if (info4?.smoking==1 || info4?.smoking==3) {
+      setSmoking("курение");
     }
-    if(info?.levelStrees>parseFloat(2.0)){
-      setFactors([...factors,"психологический стресс"]);
+    if(info10?.stressLevel>=2.0){
+      setStrees1("психологический стресс")
+      // setFactors({...factors,factor5:"психологический стресс"});
     }
     if (info4?.gb!=1) {
-      setFactors([...factors,"семейный анамнез ранней заболеваемости"]);
+      if (patient?.gender=='0' && patient?.age<60) {
+        setHyperurecemia("семейный анамнез ранней заболеваемости ССЗ");
+      }else if(patient?.gender=='1' && patient?.age<55){
+        setHyperurecemia("семейный анамнез ранней заболеваемости ССЗ");
+      }
     }
-    if(info6?.sad > 140 && info7?.cHighDensityLipoprotein && info?.coeffAtherogenicity && info?.prothrombinTime){
-      setFactors([...factors,"Гиперлипидемия и дислипидемия"]);
-    }
+    
     if(info7?.levelUricAcidSer){
-      setFactors([...factors,"Гиперурекемия"]);
+     
     }
-    if(info6?.sad > 140 && info6?.dad > 90){
-      setFactors([...factors,"артериальная гипертензия"]);
+    if(info6?.sad >= 140 && info6?.dad > 90){
+      setHypertension("артериальная гипертензия");
     }
     if (info2?.m ) {
-      setFactors([...factors,"хроническая болезнь почек"]);
+      setDiseaseKidney("хроническая болезнь почек");
     }
     if (info6?.chcc > parseFloat(80)) {
-      setFactors([...factors,"ЧСС боле 80 в мин"]);
+      setChcc("ЧСС боле 80 в мин");
     }
     if(info7?.totalCholesterol && info?.triglycerides && info7?.lowDensityLipoprotein && info7?.highDensityLipoprotein && info7?.cHighDensityLipoprotein && info?.coeffAtherogenicity && info?.prothrombinTime){
-      setFactors([...factors,"Гиперлипидемия и дислипидемия"]);
+      setFactors({...factors,factor12:"Гиперлипидемия и дислипидемия"});
     }
     if(info7?.levelUricAcidSer){
-      setFactors([...factors,"Гиперурекемия"]);
+      setFactors({...factors,factor13:"Гиперурекемия"});
     }
+
         
   }
+  console.log(factors,"factors");
+
 return (
     <div>
       <div>
@@ -152,11 +180,11 @@ return (
           <tbody>
             <tr>
               <td>1</td>
-              <td>АП</td>
+              <td>Индекс адаптационного потенциала ССС Р.М. Баевского</td>
               <td>
                 <p>{canAp}-
                 {canAp < parseFloat(2.6) ? "удовлетворительная адаптация" 
-                : canAp >=parseFloat(2.6) && canAp <=parseFloat(3.9) ? "напряжение механизмов адаптации"
+                : canAp >=parseFloat(2.6) && canAp <=parseFloat(3.09) ? "напряжение механизмов адаптации"
                 : canAp <=parseFloat(3.10) && canAp <=parseFloat(3.49) ? "неудовлетворительная адаптация" 
                 : canAp >= parseFloat(3.5) ? "срыв адаптации" : "" }</p>
               </td>
@@ -177,13 +205,76 @@ return (
               <td>Факторы риска</td>
               <td></td>
             </tr>
-            {factors.map((item, i) => (
-              <tr key={i}>
-                <td></td>
-                <td>{item}</td>
-                <td></td>
-              </tr>
-            ))}
+            {nausea && <tr>
+              <td></td>
+              <td>{nausea}</td>
+              <td></td>
+            </tr>}
+            {diabetes && 
+            <tr>
+              <td></td>
+              <td>{diabetes}</td>
+              <td></td>
+            </tr>}
+            {physicalActivity && <tr>
+              <td></td>
+              <td>{physicalActivity}</td>
+              <td></td>
+            </tr>}
+            {factors.factior4 && <tr>
+              <td></td>
+              <td>{factors.factor4}</td>
+              <td></td>
+            </tr>}
+            {factors.factor5 && <tr>
+              <td></td>
+              <td>{factors.factor5}</td>
+              <td></td>
+            </tr>}
+            {factors.factor6 && <tr>
+              <td></td>
+              <td>{factors.factor6}</td>
+              <td></td>
+            </tr>}
+            {factors.factor7 && <tr>
+              <td></td>
+              <td>{factors.factor7}</td>
+              <td></td>
+            </tr>}
+            {factors.factor8 && <tr>
+              <td></td>
+              <td>{factors.factor8}</td>
+              <td></td>
+            </tr>}
+            {factors.factor9 && <tr>
+              <td></td>
+              <td>{factors.factor9}</td>
+              <td></td>
+            </tr>}
+            {factors.factor10 && <tr>
+              <td></td>
+              <td>{factors.factor10}</td>
+              <td></td>
+            </tr>}
+            {factors.factor11 && <tr>
+              <td></td>
+              <td>{factors.factor11}</td>
+              <td></td>
+            </tr>}
+            {factors.factor12 && <tr>
+              <td></td>
+              <td>{factors.factor12}</td>
+              <td></td>
+            </tr>}
+            {factors.factor13 && <tr>
+              <td></td>
+              <td>{factors.factor13}</td>
+              <td></td>
+            </tr>}
+            
+
+            
+
             
             
           </tbody>

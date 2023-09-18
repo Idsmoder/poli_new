@@ -303,6 +303,23 @@ const View5 = ({ patient,info,setInfo }) => {
             return "Количество костной массы снижена";
         }
       };
+      const measureExchange = () => {
+        const gender = patient?.gender;
+        const age = patient?.age;
+        const height = info?.height*100;
+        const bodyMass = info?.bodyMass;
+        if (gender=="0") {
+            // BMR = 447.593 + (9.247 x вес в кг) + (3.098 x рост в сантиметрах) - (4.330 x возраст в годах)
+            const bmr = 447.593 + (9.247 * bodyMass) + (3.098 * height) - (4.330 * age);
+            return bmr.toFixed(0)
+        }else{
+          // BMR = 88.362 + (13.397 x вес в кг) + (4.799 x рост в сантиметрах) - (5.677 x возраст в годах)
+          const bmr = 88.362 + (13.397 * bodyMass) + (4.799 * height) - (5.677 * age);
+          return  bmr.toFixed(0)
+        }
+
+      };
+
 
 
     return (
@@ -382,7 +399,7 @@ const View5 = ({ patient,info,setInfo }) => {
           {/* 6 */}
           <tr>
             <td>6</td>
-            <td>ИМТ</td>
+            <td>ИМТ, МТ/(Р, м) 2</td>
             <td>{isNaN(info?.imt) ? "" : info?.imt}</td>
           </tr>
 
@@ -459,17 +476,31 @@ const View5 = ({ patient,info,setInfo }) => {
           <tr>
             <td>13</td>
             <td>Скорость обмена</td>
-            <td>{info?.exchangeRate}-{info?.exchangeRate ? "Уровень скорости обмена веществ" :""}</td>
+            <td>{info?.exchangeRate ? info?.exchangeRate:"Харрисона-Бенендикта"}-{info?.exchangeRate ? "Уровень скорости обмена веществ" :measureExchange()}</td>
           </tr>
-          {/* 14 */}
           <tr>
             <td>14</td>
-            <td>Метаболический возраст</td>
-            <td>Метаболический возраст-{info?.metabolicAge} Билогический возраст-{patient?.age} </td>
+            <td>Коэффициент активности</td>
+            <td>
+                    {info?.active_factor}-{info?.active_factor === "1" && "1,2 — низкая двигательная активность, сидячий образ жизни"}
+                    {info?.active_factor === "2" && "1,38 — умеренная двигательная активность, 1-2 тренировки еженедельно"}
+                    {info?.active_factor === "3" && "1,6 — средний уровень двигательной активности, не менее трех интенсивных тренировок каждую неделю"}
+                    {info?.active_factor === "4" && "1,73 — высокий уровень двигательной активности, порядка пяти интенсивных тренировок еженедельно"}
+                    {info?.active_factor === "5" && "1,9 — интенсивные тренировки ежедневно, сочетающиеся с тяжелой физической работой."}
+
+
+            </td>
           </tr>
+
           {/* 15 */}
           <tr>
             <td>15</td>
+            <td>Метаболический возраст</td>
+            <td>Метаболический возраст-{info?.metabolicAge} Билогический возраст-{patient?.age} </td>
+          </tr>
+          {/* 16 */}
+          <tr>
+            <td>16</td>
             <td>% воды в организме</td>
             <td>Ваше содержание воды в организме-
             {info?.waterInBody}-

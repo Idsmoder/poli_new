@@ -58,7 +58,7 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
       let p1 = info?.rufierDixontest_p1
       let p2 = info?.rufierDixontest_p2
       let p3 = info?.rufierDixontest_p3
-      let item = ((info?.rufierDixontest_p2 -70) + (info?.rufierDixontest_p3 - info?.rufierDixontest_p1))/10;
+      let item = (((info?.rufierDixontest_p2 -70) + (info?.rufierDixontest_p3 - info?.rufierDixontest_p1))/10);
       if (item < 5)
       return "отличная работоспособность сердца";
     if (item > 5 && item <= 10)
@@ -223,7 +223,7 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
             <tr>
               <td>3</td>
               <td>Проба Руфье-Диксона</td>
-              <td>{info?.rufierDixon ? info?.rufierDixon : ((info?.rufierDixontest_p2 -70) + (info?.rufierDixontest_p3 - info?.rufierDixontest_p1))}-{rufierDixontestMeasure()}</td>
+              <td>{info?.rufierDixon ? info?.rufierDixon : ((info?.rufierDixontest_p2 -70) + (info?.rufierDixontest_p3 - info?.rufierDixontest_p1))/10}-{rufierDixontestMeasure()}</td>
             </tr>
             <tr>
               <td>a</td>
@@ -263,7 +263,7 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
             </tr>
             <tr>
               <td>6</td>
-              <td>Массовый тест определения физического состояния</td>
+              <td>Массовый тест определения физического состояния Е.А.Пирогова и соавт., 1984</td>
               <td>{testMass()}-{testMass() <=45 ? "Низкое": testMass() >=46 && testMass() <=74 ? "Среднее" : testMass() >=75? "Высокое":"" }</td>
             </tr>
           </tbody>

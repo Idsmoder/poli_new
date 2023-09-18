@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row, Select, Typography } from "antd";
+import { Button, Col, Form, Input, Row, Select, Typography,Tooltip } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../utils/api";
@@ -7,6 +7,42 @@ import Swal from "sweetalert2";
 const Tab5 = ({ patient, onChanges, info, setInfo }) => {
   const [form] = Form.useForm();
   const params = useParams();
+  const [bmr, setBmr] = useState(0);
+  useEffect(() => {
+    let gender = patient?.gender;
+      let height = form.getFieldValue("height")*100;
+      let bodyMass = form.getFieldValue("bodyMass");
+      let age = patient?.age;
+
+      if (gender=="0") {
+              // BMR = 447.593 + (9.247 x вес в кг) + (3.098 x рост в сантиметрах) - (4.330 x возраст в годах)
+              const bmr = 447.593 + (9.247 * bodyMass) + (3.098 * height) - (4.330 * age);
+             setBmr(bmr.toFixed(0));
+          }else{
+            // BMR = 88.362 + (13.397 x вес в кг) + (4.799 x рост в сантиметрах) - (5.677 x возраст в годах)
+            const bmr = 88.362 + (13.397 * bodyMass) + (4.799 * height) - (5.677 * age);
+            setBmr(bmr.toFixed(0));
+
+          }
+  }, [patient,form.getFieldValue("height"),form.getFieldValue("bodyMass")]);
+
+  // useEffect(() => {
+  //   if (patient) {
+  //     let gender = patient?.gender;
+  //     let height = form.getFieldValue("height");
+  //     let bodyMass = form.getFieldValue("bodyMass");
+  //     let age = patient?.age;
+  //     if (gender=="0") {
+  //       // BMR = 447.593 + (9.247 x вес в кг) + (3.098 x рост в сантиметрах) - (4.330 x возраст в годах)
+  //       const bmr = 447.593 + (9.247 * bodyMass) + (3.098 * height) - (4.330 * age);
+  //       return bmr
+  //   }else{
+  //     // BMR = 88.362 + (13.397 x вес в кг) + (4.799 x рост в сантиметрах) - (5.677 x возраст в годах)
+  //     const bmr = 88.362 + (13.397 * bodyMass) + (4.799 * height) - (5.677 * age);
+  //     return  bmr
+  //   }
+  // }
+  // }, [patient]);
   const onFinish = (values) => {
     let body = {
       nurse_doc_id: params.id,
@@ -27,6 +63,7 @@ const Tab5 = ({ patient, onChanges, info, setInfo }) => {
       exchangeRate: values.exchangeRate,
       metabolicAge: values.metabolicAge,
       waterInBody: values.waterInBody,
+      active_factor: values.active_factor,
     };
     api
       .post("/doc/create", body)
@@ -76,6 +113,7 @@ const Tab5 = ({ patient, onChanges, info, setInfo }) => {
       exchangeRate: info?.exchangeRate,
       metabolicAge: info?.metabolicAge,
       waterInBody: info?.waterInBody,
+      active_factor: info?.active_factor,
     });
   }, [info]);
     const onValuChange = (e) => {
@@ -195,7 +233,7 @@ const Tab5 = ({ patient, onChanges, info, setInfo }) => {
               <Input placeholder="Костная ткань" />
             </Form.Item>
           </Col>
-          <Col  span={12}>
+          <Col  span={24}>
             <Form.Item name="active_factor" label="коэффициент активности">
               <Select>
                 <Option value="1">1,2 — низкая двигательная активность, сидячий образ жизни</Option>  
@@ -209,14 +247,18 @@ const Tab5 = ({ patient, onChanges, info, setInfo }) => {
           <Col span={12}>
             <Form.Item name="exchangeRate" label="Скорость обмена">
               <Input placeholder="Скорость обмена" />
+              <Tooltip title="Useful information">
+          <Typography.Text >Формула Харриса-Бенедикта:{bmr}</Typography.Text>
+        </Tooltip>
             </Form.Item>
+            
           </Col>
           <Col span={12}>
             <Form.Item name="metabolicAge" label="Метаболический возраст">
               <Input placeholder="Метаболический возраст" />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col span={24}>
             <Form.Item name="waterInBody" label="% воды в организме">
               <Input placeholder="% воды в организме" />
             </Form.Item>

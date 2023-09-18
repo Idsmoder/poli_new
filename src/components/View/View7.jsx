@@ -372,14 +372,14 @@ const View7 = ({patient,info,setInfo})=>{
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>Гемоглобин</td>
+                  <td>Гемоглобин,г/л </td>
                   <td>
                     <p>{info?.hb}-{hBmeasure()}</p>
                   </td>
                 </tr>
                 <tr>
                   <td>2</td>
-                  <td>Эритроциты</td>
+                  <td>Эритроциты,1012/л</td>
                   <td>
                   {info?.redBloodCells}-{redBloodCellsMeasure()}
                     
@@ -387,7 +387,7 @@ const View7 = ({patient,info,setInfo})=>{
                 </tr>
                 <tr>
                   <td>3</td>
-                  <td>Лейкоциты </td>
+                  <td>Лейкоциты, 109/л </td>
                   <td>
                   {info?.leukocytes}-{leukocytesMeasure()}
                     
@@ -395,7 +395,7 @@ const View7 = ({patient,info,setInfo})=>{
                 </tr>
                 <tr>
                   <td>4</td>
-                  <td>Тромбоциты</td>
+                  <td>Тромбоциты, 109/л</td>
                   <td>
                   {info?.platelets}-{plateletsMeasure()}
                    
@@ -403,7 +403,7 @@ const View7 = ({patient,info,setInfo})=>{
                 </tr>
                 <tr>
                   <td>5</td>
-                  <td>СОЭ</td>
+                  <td>СОЭ, мм/час</td>
                   <td>
                   {info?.speedBlood}-{speedBloodMeasure()}
                     
@@ -411,7 +411,7 @@ const View7 = ({patient,info,setInfo})=>{
                 </tr>
                 <tr>
                   <td>6</td>
-                  <td>Глюкоза в крови</td>
+                  <td>Глюкоза в крови, ммоль/л</td>
                   <td>
                   {info?.glucose}-{glucoseMeasure()}
                     
@@ -419,7 +419,7 @@ const View7 = ({patient,info,setInfo})=>{
                 </tr>
                 <tr>
                   <td>7</td>
-                  <td>С-реактивный белок</td>
+                  <td>С-реактивный белок, мг/л</td>
                   <td>
                   {info?.cReactive}-
                     {patient?.gender && info?.cReactive === ""
@@ -435,7 +435,7 @@ const View7 = ({patient,info,setInfo})=>{
                 </tr>
                 <tr>
                   <td>8</td>
-                  <td>Мочевина</td>
+                  <td>Мочевина, ммоль/л</td>
                   <td>
                   {info?.urea}-
                     {patient?.gender && info?.urea === ""
@@ -451,56 +451,56 @@ const View7 = ({patient,info,setInfo})=>{
                 </tr>
                 <tr>
                   <td>9</td>
-                  <td>Креатинин</td>
+                  <td>Креатинин, мкмоль/л</td>
                   <td>{info?.creatinine}-{creataninMeasure()}</td>
                 </tr>
                 <tr>
                   <td>10</td>
-                  <td>СКФ</td>
-                  <td>{info?.rapidGlomFilt}
+                  <td>СКФ, мл/мин/1,73 м2</td>
+                  <td>{info?.rapidGlomFilt}{' мкмоль/л'}
                   -{
-                    info?.rapidGlomFilt> 90 ? "Нормальная СКФ"
-                    : info?.rapidGlomFilt < 90 && info?.rapidGlomFilt > 60 ? "Признаки нефропатии, легкое снижение СКФ"
-                    : info?.rapidGlomFilt < 60 && info?.rapidGlomFilt >45 ? "Умеренное снижение СКФ"
-                    : info?.rapidGlomFilt < 45 && info?.rapidGlomFilt > 30 ? "Выраженное снижение СКФ"
-                    : info?.rapidGlomFilt < 31 && info?.rapidGlomFilt > 15 ? "Тяжелое снижение СКФ"
-                    : info?.rapidGlomFilt < 16 ? "Терминальная хроническая почечная недостаточность"
+                    info?.rapidGlomFilt> 90 ? "Нормальная СКФ-ХБП-1"
+                    : info?.rapidGlomFilt < 90 && info?.rapidGlomFilt > 60 ?  "Признаки нефропатии, легкое снижение СКФ-ХБП-3A"
+                    : info?.rapidGlomFilt < 60 && info?.rapidGlomFilt >45 ? "Умеренное снижение СКФ-ХБП-3A "
+                    : info?.rapidGlomFilt < 45 && info?.rapidGlomFilt > 30 ? "3Б - Выраженное снижение СКФ-ХБП-3Б"
+                    : info?.rapidGlomFilt < 31 && info?.rapidGlomFilt > 15 ? "4 - Тяжелое снижение СКФ-ХБП-4"
+                    : info?.rapidGlomFilt < 16 ? "Терминальная хроническая почечная недостаточность-ХБП-4"
                     :""
                   }</td>
                 </tr>
                 <tr>
                   <td>11</td>
-                  <td>АЛТ</td>
+                  <td>АЛТ, ед/л</td>
                   <td>{info?.alt}</td>
                 </tr>
                 <tr>
                   <td>12</td>
-                  <td>АСТ</td>
+                  <td>АСТ, ед/л</td>
                   <td>{info?.ast}</td>
                 </tr>
                 <tr>
                   <td>13</td>
-                  <td>Уров. мочевой кис. в сыворотке крови</td>
+                  <td>Уров. мочевой кис. в сыворотке крови, мкмоль/л</td>
                   <td>{info?.levelUricAcidSer}-{levelUricAcidMeasure()}</td>
                 </tr>
                 <tr>
                   <td>14</td>
-                  <td>Общий холестерин</td>
+                  <td>Общий холестерин ммоль/л</td>
                   <td>{info?.totalCholesterol}-{totalCholesMeasure()}</td>
                 </tr>
                 <tr>
                   <td>15</td>
-                  <td>Триглицериды</td>
+                  <td>Триглицериды, ммоль/л</td>
                   <td>{info?.triglycerides}-{triglyCeriyMeasure()}</td>
                 </tr>
                 <tr>
                   <td>16</td>
-                  <td>ЛПНП</td>
+                  <td>ЛПНП, ммоль/л</td>
                   <td>{info?.lowDensityLipoprotein}-{lowDensityMeasure()}</td>
                 </tr>
                 <tr>
                   <td>17</td>
-                  <td>ЛПВП</td>
+                  <td>ЛПВП, ммоль/л</td>
                   <td>{info?.highDensityLipoprotein}-{highDensityMeasure()}</td>
                 </tr>
                 <tr>
@@ -517,12 +517,12 @@ const View7 = ({patient,info,setInfo})=>{
                 </tr>
                 <tr>
                   <td>20</td>
-                  <td>Протромбиновое время</td>
+                  <td>Протромбиновое время, сек</td>
                   <td>{info?.prothrombinTime}-{prothrombinTimeMeasure()}</td>
                 </tr>
                 <tr>
                   <td>21</td>
-                  <td>ПТИ</td>
+                  <td>ПТИ, %</td>
                   <td>
                   {info?.pti}-
                     {patient?.gender && info?.pti === ""
