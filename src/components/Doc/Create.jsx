@@ -160,12 +160,7 @@ const Create = () => {
             key:'10',
             children:<Tab10 patient={patient} onChanges={onChange} info={tab10} setInfo={setTab10} />
         },
-        {
-            title:'11. Расчетные показатели',
-            label:'11',
-            key:'11',
-            children:<Tab11 patient={patient} onChanges={onChange} info={tab11} setInfo={setTab11} />
-        }
+       
     ]
 
      

@@ -61,7 +61,7 @@ const Tab8  = ({patient,onChanges,info,setInfo ,info6}) =>{
                 <Col span={8} ><Form.Item name="rufierDixontest_p3" label="P3" ><Input/></Form.Item></Col>
                 <Col span={12} ><Form.Item name="rufierDixon" label="Проба Руфье-Диксона" ><Input disabled /></Form.Item></Col>
                 <Col span={12} ><Form.Item name="bem_sample" label="Для тренированных больных – ВЭМ проба" ><Input/></Form.Item></Col>
-                <Col span={24} ><Typography.Title level={5} >Массовый тест определения физического состояния</Typography.Title></Col>
+                <Col span={24} ><Typography.Title level={5} >Массовый тест определения физического состояния Е.А.Пирогова и соавт., 1984</Typography.Title></Col>
                 <Col span={12} >
                     <Form.Item   label="Характер трудовой деятельности" name="natureWork" >
                         <Select>
@@ -86,8 +86,8 @@ const Tab8  = ({patient,onChanges,info,setInfo ,info6}) =>{
                 <Col span={8} >
                     <Form.Item label="Жалобы" name="complaints"  >
                         <Select>
-                            <Option value="0" >При наличии</Option>
-                            <Option value="5" >При отсутствии</Option>
+                            <Option value="0" >Есть</Option>
+                            <Option value="5" >Нет</Option>
                         </Select>
                     </Form.Item></Col>
                 <Col span={8}>

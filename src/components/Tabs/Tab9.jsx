@@ -18,11 +18,12 @@ const Tab9 = ({patient,onChanges,info,setInfo}) => {
         setPvA(info?.pvA);
         setPvB(info?.pvB);
         setPvC(info?.pvC);
-        setEcgRhythm(info?.ecgRhythm==1 ? true : false);
+        setEcgRhythm(info?.ecgRhythm==2 ? true : false);
     }, [info])
     const changeValue = (e) => {
         if (e.ecgRhythm) {
-            if (e.ecgRhythm==1) {
+            if (e.ecgRhythm==2) {
+
                 setEcgRhythm(true)
             }else{
                 setEcgRhythm(false)
