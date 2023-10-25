@@ -1,6 +1,11 @@
+import MeasureDegrees from "../Measure/MeasureDegrees";
 
 const View6 = ({patient,info,setInfo,height1} )=>{
     const count = 1;
+    const infoDegrees = {
+      sad:info?.sad,
+      dad: info?.dad
+    };
   const measurePsv = () => {
     const gender = patient?.gender;
     const age = patient?.age;
@@ -1077,7 +1082,7 @@ const View6 = ({patient,info,setInfo,height1} )=>{
     if (
       info?.sad > 140 &&
       info?.sad < 159 &&
-      info?.dad > 90 &&
+      info?.dad >= 90 &&
       info?.dad < 99
     )
       return "АГ 1 степени";
@@ -1090,7 +1095,7 @@ const View6 = ({patient,info,setInfo,height1} )=>{
       return "АГ 2 степени";
     if (info?.sad >= 180 && info?.dad >= 110)
       return "АГ 3 степени";
-    if (info?.sad >= 140 && info?.dad <= 90)
+    if (info?.sad >= 140 && info?.dad < 90)
       return "Изолированная систолическая АГ";
   };
 
@@ -1130,12 +1135,12 @@ const View6 = ({patient,info,setInfo,height1} )=>{
             <tr>
               <td>1</td>
               <td>САД мм.рт.ст</td>
-              <td>{info?.sad}-{measureSadAndDad()}</td>
+              <td>{info?.sad}-{MeasureDegrees(infoDegrees)}</td>
             </tr>
             <tr>
               <td>2</td>
               <td>ДАД мм.рт.ст</td>
-              <td>{info?.dad}-{measureSadAndDad()}</td>
+              <td>{info?.dad}-{MeasureDegrees(infoDegrees)}</td>
             </tr>
             <tr>
               <td>3</td>

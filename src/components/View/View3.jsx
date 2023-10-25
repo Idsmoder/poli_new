@@ -105,6 +105,13 @@ const View3 = ({patient,info,setInfo}) => {
             ) : (
                 ""
             )}
+            {info?.anti ? (
+                <div className="col-6" >
+                    <p className="m-0 ms-3 my-2" style={{ fontSize: "10px" }}>
+                        Антиагреганты
+                </p>
+                </div>
+            ):("")}
             </div>
             
             </>}

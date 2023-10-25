@@ -53,7 +53,7 @@ const Tab1 =({patient,onChanges,info,setInfo})=> {
     useEffect(() => {
         form.setFieldsValue(info)
         setHeart(info?.heartbeat ? '1':'0');
-    }, [])
+    }, [info])
     const onValuChange = (e) => {
         setInfo({...info,...e})
     }

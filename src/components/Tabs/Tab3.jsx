@@ -15,6 +15,7 @@ const Tab3 = ({patient,onChanges,info,setInfo}) => {
     const [antiarrhythmics, setAntiarrhythmics] = useState('');
     const [nitrates, setNitrates] = useState('');
     const [cardiac , setCardiac] = useState('');
+    const [anti,setAnti] = useState('');
     const [no,setNo] = useState('');
     const [form] = Form.useForm();
     const params = useParams();
@@ -33,6 +34,7 @@ const Tab3 = ({patient,onChanges,info,setInfo}) => {
                 setAntiarrhythmics(0);
                 setNitrates(0);
                 setCardiac(0);
+                setAnti(0)
             }
             if (names == 'diuretics') {
                 setInfo({...info,diuretics:e.target.checked ? 1 : 0})
@@ -69,6 +71,11 @@ const Tab3 = ({patient,onChanges,info,setInfo}) => {
             if (names == 'cardiac') {
                 setInfo({...info,cardiac:e.target.checked ? 1 : 0})
                 setCardiac(e.target.checked);
+            }
+            if (names=='anti') {
+                setInfo({...info,anti:e.target.checked ? 1 : 0})
+                setAnti(e.target.checked);
+                
             }
     };
     const onFinish = (values) => {
@@ -211,6 +218,15 @@ const Tab3 = ({patient,onChanges,info,setInfo}) => {
                             name="cardiac"
                             >
                                 <Checkbox onChange={onChange} checked={cardiac=='1' ? true:false} >Сердечные гликозиды</Checkbox>
+                        </Form.Item>
+                    </Col>
+                    <Col span={24} >
+                        <Form.Item
+                            name={'anti'}
+                            
+                        >
+                            <Checkbox onChange={onChange} checked={info?.anti=='1' ? true:false} >Антиагреганты</Checkbox>
+
                         </Form.Item>
                     </Col>
                     </>

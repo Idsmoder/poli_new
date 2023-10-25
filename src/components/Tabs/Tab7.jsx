@@ -89,7 +89,7 @@ const Tab7 = ({patient,onChanges ,info,setInfo}) => {
             fibrinogen: info?.fibrinogen,
             homocysteine: info?.homocysteine,
         });
-    },[])
+    },[info])
     const changeValue = (e) => {
         if(e.highDensityLipoprotein>0){
             let item = info?.totalCholesterol - e.highDensityLipoprotein;

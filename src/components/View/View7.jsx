@@ -73,7 +73,7 @@ const View7 = ({patient,info,setInfo})=>{
           )
             return "в норме";
           if (info?.totalCholesterol < parseFloat(3.2)) return "ниже нормы";
-          else return "гиперхолостеринемия";
+          else return "гиперхолестеринемия";
         }
         }else{
           return "";
@@ -206,7 +206,7 @@ const View7 = ({patient,info,setInfo})=>{
           )
             return "норма";
           if (info?.homocysteine < parseFloat(4.6)) return "ниже нормы";
-          else return "више нормы";
+          else return "выше нормы";
         }
         if (patient?.gender === "1") {
           if (
@@ -215,7 +215,7 @@ const View7 = ({patient,info,setInfo})=>{
           )
             return "норма";
           if (info?.homocysteine < parseFloat(6.2)) return "ниже нормы";
-          else return "више нормы";
+          else return "выше нормы";
         }
           
         }else{
@@ -294,7 +294,7 @@ const View7 = ({patient,info,setInfo})=>{
           }else if(String(info?.leukocytes) >=Number.parseFloat(5.0) && String(info?.leukocytes) <=Number.parseFloat(10.0)){
             return "в норме";
           }else if(String(info?.leukocytes) > Number.parseFloat(10.0)){
-            return "повышение выше";
+            return "повышение";
           }
         }else{
           return "";
@@ -319,7 +319,7 @@ const View7 = ({patient,info,setInfo})=>{
             if (patient?.gender && info?.speedBlood){
               if (patient?.gender=="1") {
                if (info?.speedBlood>Number.parseFloat(10)) {
-                  return "повышение выше";
+                  return "повышение";
                 }else if (info?.speedBlood<Number.parseFloat(2)) {
                   return "снижение ниже";
                 }else if (info?.speedBlood>=Number.parseFloat(2) && info?.speedBlood<=Number.parseFloat(10)) {
@@ -329,7 +329,7 @@ const View7 = ({patient,info,setInfo})=>{
                   if (info?.speedBlood>=Number.parseFloat(2) && info?.speedBlood<=Number.parseFloat(15)) {
                     return "в норме";
                   }else if (info?.speedBlood>Number.parseFloat(15)) {
-                    return "повышение выше";
+                    return "повышение";
                   }else if (info?.speedBlood<Number.parseFloat(2)) {
                     return "снижение ниже";
                   }
@@ -429,7 +429,7 @@ const View7 = ({patient,info,setInfo})=>{
                       : info?.cReactive >= 0 && info?.cReactive <= 5
                       ? "в норме"
                       : info?.cReactive > 5
-                      ? "повышения"
+                      ? "повышение"
                       : ""}
                   </td>
                 </tr>
@@ -445,7 +445,7 @@ const View7 = ({patient,info,setInfo})=>{
                       : info?.urea >= "2.5" && info?.urea <= "7.5"
                       ? "в норме"
                       : info?.urea > "7.5"
-                      ? "повышения"
+                      ? "повышение"
                       : ""}
                   </td>
                 </tr>
@@ -460,11 +460,11 @@ const View7 = ({patient,info,setInfo})=>{
                   <td>{info?.rapidGlomFilt}{' мкмоль/л'}
                   -{
                     info?.rapidGlomFilt> 90 ? "Нормальная СКФ-ХБП-1"
-                    : info?.rapidGlomFilt < 90 && info?.rapidGlomFilt > 60 ?  "Признаки нефропатии, легкое снижение СКФ-ХБП-3A"
-                    : info?.rapidGlomFilt < 60 && info?.rapidGlomFilt >45 ? "Умеренное снижение СКФ-ХБП-3A "
-                    : info?.rapidGlomFilt < 45 && info?.rapidGlomFilt > 30 ? "3Б - Выраженное снижение СКФ-ХБП-3Б"
-                    : info?.rapidGlomFilt < 31 && info?.rapidGlomFilt > 15 ? "4 - Тяжелое снижение СКФ-ХБП-4"
-                    : info?.rapidGlomFilt < 16 ? "Терминальная хроническая почечная недостаточность-ХБП-4"
+                    : info?.rapidGlomFilt < 90 && info?.rapidGlomFilt > 60 ?  " Признаки нефропатии, легкое снижение СКФ-ХБП-2"
+                    : info?.rapidGlomFilt < 60 && info?.rapidGlomFilt >45 ? " Умеренное снижение СКФ-ХБП-3A "
+                    : info?.rapidGlomFilt < 45 && info?.rapidGlomFilt > 30 ? " Выраженное снижение СКФ-ХБП-3Б"
+                    : info?.rapidGlomFilt < 31 && info?.rapidGlomFilt > 15 ? " Тяжелое снижение СКФ-ХБП-4"
+                    : info?.rapidGlomFilt < 16 ? "Терминальная хроническая почечная недостаточность-ХБП-5"
                     :""
                   }</td>
                 </tr>
@@ -480,7 +480,7 @@ const View7 = ({patient,info,setInfo})=>{
                 </tr>
                 <tr>
                   <td>13</td>
-                  <td>Уров. мочевой кис. в сыворотке крови, мкмоль/л</td>
+                  <td>Мочевая кислота мкмоль/л</td>
                   <td>{info?.levelUricAcidSer}-{levelUricAcidMeasure()}</td>
                 </tr>
                 <tr>
@@ -574,7 +574,7 @@ const View7 = ({patient,info,setInfo})=>{
                 <tr>
                   <td>24</td>
                   <td>Гомоцистеин</td>
-                  <td>{info?.homocysteine}-{homocysteineMeasure()}</td>
+                  <td>{info?.homocysteine} мкмоль/л  {homocysteineMeasure()}</td>
                 </tr>
               </tbody>
             </table>

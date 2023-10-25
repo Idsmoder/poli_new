@@ -3,47 +3,39 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../utils/api";
 import Swal from "sweetalert2";
+import MeasureHarris from "../Measure/MeasureHarris";
+import { MeasureImt } from "../Measure/MeasureImt";
+import MeasureDegreeImt from "../Measure/MeasureDegreeImt";
 
 const Tab5 = ({ patient, onChanges, info, setInfo }) => {
   const [form] = Form.useForm();
   const params = useParams();
   const [bmr, setBmr] = useState(0);
+  const infoHarris = useMemo(() => ({
+    height: 0,
+    bodyMass: 0,
+    age: patient?.age,
+    gender: patient?.gender
+  }), [form.getFieldValue("bodyMass"),form.getFieldValue("height")]);
+  
   useEffect(() => {
     let gender = patient?.gender;
       let height = form.getFieldValue("height")*100;
       let bodyMass = form.getFieldValue("bodyMass");
       let age = patient?.age;
-
-      if (gender=="0") {
-              // BMR = 447.593 + (9.247 x вес в кг) + (3.098 x рост в сантиметрах) - (4.330 x возраст в годах)
-              const bmr = 447.593 + (9.247 * bodyMass) + (3.098 * height) - (4.330 * age);
-             setBmr(bmr.toFixed(0));
-          }else{
-            // BMR = 88.362 + (13.397 x вес в кг) + (4.799 x рост в сантиметрах) - (5.677 x возраст в годах)
-            const bmr = 88.362 + (13.397 * bodyMass) + (4.799 * height) - (5.677 * age);
-            setBmr(bmr.toFixed(0));
-
-          }
-  }, [patient,form.getFieldValue("height"),form.getFieldValue("bodyMass")]);
-
-  // useEffect(() => {
-  //   if (patient) {
-  //     let gender = patient?.gender;
-  //     let height = form.getFieldValue("height");
-  //     let bodyMass = form.getFieldValue("bodyMass");
-  //     let age = patient?.age;
-  //     if (gender=="0") {
-  //       // BMR = 447.593 + (9.247 x вес в кг) + (3.098 x рост в сантиметрах) - (4.330 x возраст в годах)
-  //       const bmr = 447.593 + (9.247 * bodyMass) + (3.098 * height) - (4.330 * age);
-  //       return bmr
-  //   }else{
-  //     // BMR = 88.362 + (13.397 x вес в кг) + (4.799 x рост в сантиметрах) - (5.677 x возраст в годах)
-  //     const bmr = 88.362 + (13.397 * bodyMass) + (4.799 * height) - (5.677 * age);
-  //     return  bmr
-  //   }
-  // }
-  // }, [patient]);
-  const onFinish = (values) => {
+      infoHarris.height = height;
+      infoHarris.bodyMass = bodyMass;
+      infoHarris.age = age;
+      infoHarris.gender = gender;
+    const  item = MeasureHarris(infoHarris);
+    setBmr(item);
+    setInfo({...info,bmr:item})
+     
+    }, [patient,form.getFieldValue("height"),form.getFieldValue("bodyMass")]);
+    useEffect(() => {
+      form.setFieldValue('bmr', bmr);
+    }, [bmr]);
+const onFinish = (values) => {
     let body = {
       nurse_doc_id: params.id,
       tab: 5,
@@ -115,34 +107,32 @@ const Tab5 = ({ patient, onChanges, info, setInfo }) => {
       waterInBody: info?.waterInBody,
       active_factor: info?.active_factor,
     });
+        let height = form.getFieldValue('height');
+        let bodyMass = form.getFieldValue('bodyMass');
+        const itemImt = {bodyMass:bodyMass,height:height};
+        form.setFieldValue('imt', MeasureImt(itemImt));
+        let imt = form.getFieldValue('imt');
+        form.setFieldValue('presenceDegreeImt', MeasureDegreeImt(imt));
+
+        let waistCircumference = form.getFieldValue('waistCircumference');
+        let hipCircumference = form.getFieldValue('hipCircumference');
+        let calc = (waistCircumference / hipCircumference).toFixed(2);
+        form.setFieldValue('waistHipRatio', calc);
+
   }, [info]);
     const onValuChange = (e) => {
         let height = form.getFieldValue('height');
         let bodyMass = form.getFieldValue('bodyMass');
-        form.setFieldValue('imt', (bodyMass / (height * height)).toFixed(2));
+        const itemImt = {bodyMass:bodyMass,height:height};
+
+        form.setFieldValue('imt', MeasureImt(itemImt));
         let imt = form.getFieldValue('imt');
-        if (imt >= 19 && imt < "24.9") {
-            form.setFieldValue('presenceDegreeImt', "нормальная масса тела")
-        }
-        else if (imt >= 25 && imt < "29.9") {
-            form.setFieldValue('presenceDegreeImt', "предожирение ")
-        }
-        else if (imt >= 30 && imt < "34.9") {
-            form.setFieldValue('presenceDegreeImt', "первая степень ожирения")
-        }
-        else if (imt >= 35 && imt < "39.9") {
-            form.setFieldValue('presenceDegreeImt', "вторая  степень ожирения")
-        }
-        else if (imt >= 40 && imt < "44.9") {
-            form.setFieldValue('presenceDegreeImt', "третья степень ожирения")
-        }
-        else if (imt >= 45) {
-            form.setFieldValue('presenceDegreeImt', "четвертая  степень ожирения")
-        }
+        form.setFieldValue('presenceDegreeImt', MeasureDegreeImt(imt));
         let waistCircumference = form.getFieldValue('waistCircumference');
         let hipCircumference = form.getFieldValue('hipCircumference');
         let calc = (waistCircumference / hipCircumference).toFixed(2);
         e.waistHipRatio = calc;
+        e.imt = imt;
         form.setFieldValue('waistHipRatio', calc);
         setInfo({ ...info, ...e });
 
@@ -247,18 +237,25 @@ const Tab5 = ({ patient, onChanges, info, setInfo }) => {
           <Col span={12}>
             <Form.Item name="exchangeRate" label="Скорость обмена">
               <Input placeholder="Скорость обмена" />
-              <Tooltip title="Useful information">
-          <Typography.Text >Формула Харриса-Бенедикта:{bmr}</Typography.Text>
-        </Tooltip>
+              
             </Form.Item>
             
+          </Col>
+          <Col span={12} >
+            <Form.Item
+              name="bmr"
+              label="Формула Харриса-Бенедикта"
+              
+            >
+              <Input   disabled />
+            </Form.Item>
           </Col>
           <Col span={12}>
             <Form.Item name="metabolicAge" label="Метаболический возраст">
               <Input placeholder="Метаболический возраст" />
             </Form.Item>
           </Col>
-          <Col span={24}>
+          <Col span={12}>
             <Form.Item name="waterInBody" label="% воды в организме">
               <Input placeholder="% воды в организме" />
             </Form.Item>

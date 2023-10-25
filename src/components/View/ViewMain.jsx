@@ -73,7 +73,7 @@ const ViewMain = ({ patient }) => {
               Пол :
             </h6>
             <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
-              {!patient.gender ? "" : patient.gender === "0" ? "Муж" : "Жен"}
+              {!patient.gender ? "" : patient.gender === "0" ? "Жен" : "Муж"}
             </p>
           </div>
         </div>
