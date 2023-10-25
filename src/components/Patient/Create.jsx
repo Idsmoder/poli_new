@@ -78,9 +78,9 @@ const Create = ()=> {
             onValuesChange={onValuChange}
             >
                 <Row gutter={24}>
-                    <Col span={12}>
+                    <Col span={24}>
                         <Row gutter={24}>
-                        <Col span={12}>
+                        <Col span={24}>
                         <Form.Item
                         name="name"
                         rules={[{ required: true, message: 'Пожалуйста введите имя' }]}
@@ -88,7 +88,7 @@ const Create = ()=> {
                             <Input placeholder="Имя" />
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col span={24}>
                         <Form.Item
                             
                             name="surname"
@@ -104,7 +104,7 @@ const Create = ()=> {
                             <Input placeholder="Отчество" />
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col span={24}>
                         <Form.Item
                             
                             name="birthDate"
@@ -113,7 +113,7 @@ const Create = ()=> {
                             <DatePicker  format={dateFormat} style={{ width: '100%' }}  placeholder="Дата рождения" />
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col span={24}>
                         <Form.Item
                             
                             label=""

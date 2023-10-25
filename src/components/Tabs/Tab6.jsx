@@ -245,7 +245,7 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
             noise_diastolic_tricuspid: info?.noise_diastolic_tricuspid,
 
         })
-    },[])
+    },[info])
     const onValuChange = (e)=>{
         setInfo({...info,...e})
         if (e.dad) {

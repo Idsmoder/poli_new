@@ -321,7 +321,6 @@ const View5 = ({ patient,info,setInfo }) => {
       };
 
 
-
     return (
     <div>
       <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
@@ -469,17 +468,22 @@ const View5 = ({ patient,info,setInfo }) => {
           {/* 12 */}
           <tr>
             <td>12</td>
-            <td>Костная ткань (Тонита)</td>
+            <td>Костная ткань </td>
             <td>{info?.bone}-{boneMeasure()}</td>
           </tr>
           {/* 13 */}
           <tr>
             <td>13</td>
-            <td>Скорость обмена</td>
-            <td>{info?.exchangeRate ? info?.exchangeRate:"Харрисона-Бенендикта"}-{info?.exchangeRate ? "Уровень скорости обмена веществ" :measureExchange()}</td>
+            <td>Скорость обмена (Tanita)</td>
+            <td>{info?.exchangeRate}</td>
           </tr>
           <tr>
             <td>14</td>
+            <td>Харрисона-Бенендикта</td>
+            <td>{measureExchange()}</td>
+          </tr>
+          <tr>
+            <td>15</td>
             <td>Коэффициент активности</td>
             <td>
                     {info?.active_factor}-{info?.active_factor === "1" && "1,2 — низкая двигательная активность, сидячий образ жизни"}
@@ -494,13 +498,13 @@ const View5 = ({ patient,info,setInfo }) => {
 
           {/* 15 */}
           <tr>
-            <td>15</td>
+            <td>16</td>
             <td>Метаболический возраст</td>
-            <td>Метаболический возраст-{info?.metabolicAge} Билогический возраст-{patient?.age} </td>
+            <td>Метаболический возраст-{info?.metabolicAge} Биологический возраст-{patient?.age} </td>
           </tr>
           {/* 16 */}
           <tr>
-            <td>16</td>
+            <td>17</td>
             <td>% воды в организме</td>
             <td>Ваше содержание воды в организме-
             {info?.waterInBody}-

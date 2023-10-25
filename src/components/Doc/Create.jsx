@@ -176,7 +176,7 @@ const Create = () => {
                 <Typography.Title level={5}>Дата рождения: {patient.birthDate}</Typography.Title>
                 </Col>
                 
-                    <Col span={12}>
+                    <Col span={0}>
                         <Card>
                         <Tabs 
                             defaultActiveKey={activeTab}
@@ -189,7 +189,7 @@ const Create = () => {
                         />
                         </Card>
                     </Col>
-                    <Col span={12}>
+                    <Col span={23}>
                     <Card>
                 <fieldset
                     className="border p-2 page_wrap"
@@ -214,7 +214,7 @@ const Create = () => {
                         />
                         <div ref={(el) => (comRef = el)} className="scrollbar scrollCustomize h-100 ">
                        
-                    <div className="d-flex align-items-center h-100">
+                    <div className="d-flex align-items-center h-200">
                         <div className="preview  pb-4">
                         <div className="border-light p-3 border-5 ">
                             {/* Ф.И.О: */}
@@ -229,7 +229,7 @@ const Create = () => {
                             <View8 patient={patient} info={tab8} setInfo={setTab8} info6={tab6} info5={tab5} />
                             <View9 patient={patient} info={tab9} setInfo={setTab9} />
                             <View10 patient={patient} info={tab10} setInfo={setTab10} />
-                            <View11 info10={tab10} info8={tab8} patient={patient} info={tab11} setInfo={setTab11} info5={tab5} info6={tab6} info2={tab2} info4={tab4} info7={tab7} />
+                            <View11 info10={tab10} info8={tab8} patient={patient} info={tab11} setInfo={setTab11} info5={tab5} info6={tab6} info2={tab2} info4={tab4} info7={tab7} info9={tab9} />
                         </div>
                         </div>
                     </div>
