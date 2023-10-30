@@ -176,7 +176,7 @@ const Create = () => {
                 <Typography.Title level={5}>Дата рождения: {patient.birthDate}</Typography.Title>
                 </Col>
                 
-                    <Col span={0}>
+                    <Col span={12}>
                         <Card>
                         <Tabs 
                             defaultActiveKey={activeTab}
@@ -189,7 +189,7 @@ const Create = () => {
                         />
                         </Card>
                     </Col>
-                    <Col span={23}>
+                    <Col span={12}>
                     <Card>
                 <fieldset
                     className="border p-2 page_wrap"

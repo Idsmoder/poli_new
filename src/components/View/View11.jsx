@@ -147,12 +147,12 @@ useEffect(() => {
     // Factor 3
     if(info8?.tshx< parseFloat(300)){
       if (item > parseFloat(15) && piragova>43) {
-        setPhysicalActivity("недостаточная физическая активность");
+        setPhysicalActivity(" физическая активность");
       }else{
         setPhysicalActivity(null);
       }
     }
-    // Factor 4
+    // Factor 4недостаточная
     if (info4?.smoking==1 || info4?.smoking==3) {
       setSmoking("курение");
     }else{
@@ -190,6 +190,7 @@ useEffect(() => {
       
     // }
     // Factor 10
+    // XBP
     if (info2?.m && info7?.rapidGlomFilt < parseFloat(61)) {
       setDiseaseKidney("хроническая болезнь почек");
     }
@@ -649,7 +650,7 @@ return (
             <tr>
               <td></td>
               <td>{diabetes}</td>
-              <td>{info7?.glucose} ммоль/л</td>
+              <td>глюкозы натащак {info7?.glucose} ммоль/л</td>
             </tr>}
             {physicalActivity && <tr>
               <td></td>

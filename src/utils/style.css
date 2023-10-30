@@ -16,7 +16,7 @@
     padding: 0;
 }
 .m-5{
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 }
 .ml5{
     margin-left: 10%;
@@ -38,6 +38,9 @@
 .fontgreen{
     color: #008000;
 }
+.fontred{
+    color: #ff0000;
+}
 p{
     margin:0;
     padding: 0;
@@ -46,6 +49,7 @@ p{
 li{
     margin:0;
     list-style: inside;
+    font-weight: 600;
 
 
 }
@@ -54,4 +58,35 @@ li{
     justify-content: space-between;
     align-items: center;
     
+}
+.b-color{
+    background-color: #aa9191;
+    margin-left: 1rem;
+}
+.mt-2{
+    margin-top: 0.5rem;
+}
+.mtb-2{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+}
+.b-red{
+    background-color: #ff0000;
+    
+}
+.b-yellow{
+    background-color: #ffff00;
+}
+.b-green{
+    background-color: #008000;
+}
+.t-red{
+    color: #ff0000;
+}
+.t-green{
+    color: #008000;
+}
+.font-4{
+    font-size: 1.2rem;
 }
