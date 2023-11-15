@@ -95,6 +95,18 @@ const AdminRoute = () => {
                 </Link>
               ),
             },
+              {
+                  key: "4",
+                  icon: <FiList className="icon" />,
+                  label: (
+                      <Link
+                          onClick={() => localStorage.setItem("activeLink", 2)}
+                          to="/user/list"
+                      >
+                          Список пользователей
+                      </Link>
+                  ),
+              },
           ]}
         />
       </Sider>
