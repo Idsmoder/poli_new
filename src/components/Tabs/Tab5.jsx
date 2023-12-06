@@ -151,27 +151,27 @@ const onFinish = (values) => {
         onValuesChange={onValuChange}
       >
         <Row gutter={24}>
-          <Col span={12}>
+          <Col xs={24} md={12} xl={12}>
             <Form.Item name="height" label="Рост. (M) ">
               <Input placeholder="Рост м" suffix="M" />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={12} xl={12}>
             <Form.Item colon={true} name="bodyMass" label="Масса тела (кг.)">
               <Input placeholder="Масса тела" suffix="кг" />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={12} xl={12}>
             <Form.Item name="waistCircumference" label="Окружность талии">
               <Input placeholder="Окружность талии" suffix="см" />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={12} xl={12}>
             <Form.Item name="hipCircumference" label="Окружность бедер">
               <Input placeholder="Окружность бедер" suffix="см" />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={12} xl={12}>
             <Form.Item
               name="waistHipRatio"
               label="Соотношение окружность талии/окружность бедер "
@@ -179,12 +179,12 @@ const onFinish = (values) => {
               <Input disabled />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={12} xl={12}>
             <Form.Item name="imt" label="Индекс массы тела ">
               <Input  disabled />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={12} xl={12}>
             <Form.Item
               name="presenceDegreeImt"
               label="Наличие и степень ожирения по ИМТ "
@@ -195,27 +195,27 @@ const onFinish = (values) => {
               />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={12} xl={12}>
             <Form.Item name="adiposeTissue" label="Жировая ткань">
               <Input placeholder="Жировая ткань" suffix="%" />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={12} xl={12}>
             <Form.Item name="internalFat" label="Внутренняя жировая ткань">
               <Input placeholder="Внутренняя жировая ткань" />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={12} xl={12}>
             <Form.Item name="muscleMass" label="Масса мышц">
               <Input placeholder="Масса мышц" />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={12} xl={12}>
             <Form.Item name="bodyType" label="Тип телосложения">
               <Input placeholder="Тип телосложения" />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={12} xl={12}>
             <Form.Item
               name="bone"
               label="Костная ткань (Тонита)"
@@ -223,7 +223,7 @@ const onFinish = (values) => {
               <Input placeholder="Костная ткань" />
             </Form.Item>
           </Col>
-          <Col  span={24}>
+          <Col  xs={24} md={12} xl={12}>
             <Form.Item name="active_factor" label="коэффициент активности">
               <Select>
                 <Option value="1">1,2 — низкая двигательная активность, сидячий образ жизни</Option>  
@@ -234,14 +234,14 @@ const onFinish = (values) => {
               </Select>
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={12} xl={12}>
             <Form.Item name="exchangeRate" label="Скорость обмена">
               <Input placeholder="Скорость обмена" />
               
             </Form.Item>
             
           </Col>
-          <Col span={12} >
+          <Col xs={24} md={12} xl={12} >
             <Form.Item
               name="bmr"
               label="Формула Харриса-Бенедикта"
@@ -250,34 +250,31 @@ const onFinish = (values) => {
               <Input   disabled />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={12} xl={12}>
             <Form.Item name="metabolicAge" label="Метаболический возраст">
               <Input placeholder="Метаболический возраст" />
             </Form.Item>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={24} xl={24}>
             <Form.Item name="waterInBody" label="% воды в организме">
               <Input placeholder="% воды в организме" />
             </Form.Item>
           </Col>
-          <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" onClick={backClick} >Предыдущий</Button>
-                        </Form.Item>
-                    </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" htmlType="submit">Сохранить</Button>
-                        </Form.Item>
-                    </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" onClick={nextClick}  >Следующий</Button>
-                        </Form.Item>
-                    </Col>
+            <Col xs={24} md={8} xl={8} >
+                <Form.Item>
+                    <Button style={{width:'100%'}} type="primary" onClick={backClick} >Предыдущий</Button>
+                </Form.Item>
+            </Col>
+            <Col xs={24} md={8} xl={8}>
+                <Form.Item>
+                    <Button style={{width:'100%'}} type="primary" htmlType="submit">Сохранить</Button>
+                </Form.Item>
+            </Col>
+            <Col xs={24} md={8} xl={8}>
+                <Form.Item>
+                    <Button style={{width:'100%'}} type="primary" onClick={nextClick}  >Следующий</Button>
+                </Form.Item>
+            </Col>
         </Row>
       </Form>
     </>

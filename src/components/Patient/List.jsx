@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { api } from "../../utils/api";
-import { Space, Table } from "antd";
+import {Col, Row, Space, Table} from "antd";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import {AiOutlineUserAdd} from "react-icons/all.js";
 
 const List = () => {
+    const hasWindow = typeof window !== 'undefined';
+
+
 
     const [patientList, setPatientList] = useState([]);
     useEffect(() => {
@@ -68,12 +72,13 @@ const List = () => {
             )    
         },
         {
-            title: 'Действия',
+            title: <AiOutlineUserAdd/>,
             key: 'action',
+            width: 50,
+            fixed: 'right',
             render: (text, record) => (
-                <Space size="middle">
-                    <Link to={`/doc/create/${record.id}`} >Создать документ</Link>
-                    <a>Изменить</a>
+                <Space >
+                    <Link to={`/doc/create/${record.id}`} ><AiOutlineUserAdd/></Link>
                 </Space>
             ),
         },
@@ -83,14 +88,22 @@ const List = () => {
         
     return (
         <>
+
             <h1>Список пациентов</h1>
-            <Table
-                columns={columns}
-                dataSource={patientList}
+            <Row gutter={24}>
+                <Col span={24}>
+                    <Table
+                        columns={columns}
+                        dataSource={patientList}
+                        scroll={{ x: 1300 }}
 
-            >
+                    />
 
-            </Table>
+                </Col>
+            </Row>
+
+
+
         </>
         
         

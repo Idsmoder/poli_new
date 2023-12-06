@@ -22,9 +22,9 @@
   padding: 0px !important;
 }
 @media screen and (max-width: 565px) {
-  .siderAdmin {
-    display: none;
-  }
+  //.siderAdmin {
+  //  display: none;
+  //}
   .sizeChanger {
     display: none;
   }
@@ -32,3 +32,11 @@
     display: block;
   }
 }
+.button-left{
+    margin-right: 10px;
+}
+.button-right{
+    margin-left: 10px;
+}
+
+

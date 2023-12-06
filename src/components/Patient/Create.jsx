@@ -5,6 +5,7 @@ import { api } from "../../utils/api";
 import moment from "moment";
 import { toast } from "react-toastify";
 
+
 const Create = ()=> {
     const [form] = Form.useForm();
     
@@ -67,7 +68,7 @@ const Create = ()=> {
           <Typography>
             <h5>Создать клиента</h5>
           </Typography>
-      <Row gutter={24}>
+      <Row gutter={[48, 8]}>
         <Col span={24}>
             <Form 
             name="basic" 
@@ -77,8 +78,8 @@ const Create = ()=> {
             form={form}
             onValuesChange={onValuChange}
             >
-                <Row gutter={24}>
-                    <Col span={24}>
+                <Row gutter={[24,8]}>
+                    <Col span={22}>
                         <Row gutter={24}>
                         <Col span={24}>
                         <Form.Item
@@ -162,15 +163,17 @@ const Create = ()=> {
                     </Col>
                 </Row>
             </Col>
+
+                    <Form.Item >
+                        <Button htmlType="submit" type="primary">
+                            Добавить клиента
+                        </Button>
+                        <Button htmlType="button" type="primary" style={{ margin: '0 8px' }} >
+                            Добавить клиента и документ
+                        </Button>
+                    </Form.Item>
         </Row>
-        <Form.Item >
-          <Button htmlType="submit" type="primary">
-          Добавить клиента
-          </Button>
-          <Button htmlType="button" type="primary" style={{ margin: '0 8px' }} >
-          Добавить клиента и документ
-          </Button>
-        </Form.Item>
+
             </Form>
         </Col>
       </Row>

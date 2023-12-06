@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import LevelFitnes from "../Measure/LevelFitnes.js";
 
 const View8 = ({ info,patient,setInfo,info5,info6 }) => {
   const [vem, setVem ]= useState();
@@ -82,6 +83,14 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
     if (bemSemple >= 125) return "Очень высокая";
   };
   const stepenMeasure = ()=> {
+    const  body = {
+      tshx:info?.tshx,
+      vem:vem,
+      gender:patient?.gender,
+
+
+    }
+    const item = LevelFitnes()
     let tshx = info?.tshx
     if (vem) {
       if (patient?.gender==1) {

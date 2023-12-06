@@ -63,7 +63,7 @@ const Tab4 = ({patient, onChanges,info,setInfo}) => {
                 onFinish={onFinish}
             >
                 <Row gutter={24}>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item
                             name="alcohol"
                             label="1. Употребление алкоголя"
@@ -75,7 +75,7 @@ const Tab4 = ({patient, onChanges,info,setInfo}) => {
                             </Radio.Group>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item
                             name="smoking"
                             label="Курение (отметить)"
@@ -90,7 +90,7 @@ const Tab4 = ({patient, onChanges,info,setInfo}) => {
                     <Col span={24}>
                         <Typography.Title level={5}>Наследственность отягощена или не отягощена :</Typography.Title>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item
                             name="gb"
                             label="Гипертоническая болезнь"
@@ -103,7 +103,7 @@ const Tab4 = ({patient, onChanges,info,setInfo}) => {
                             </Radio.Group>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item
                             name="ibs"
                             label="Ишемическая болезнь сердца"
@@ -116,7 +116,7 @@ const Tab4 = ({patient, onChanges,info,setInfo}) => {
                             </Radio.Group>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item
                             name="sd"
                             label="Сахарный диабет"
@@ -129,7 +129,7 @@ const Tab4 = ({patient, onChanges,info,setInfo}) => {
                             </Radio.Group>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item
                             name="ssz"
                             label="Ранняя смерть от ССЗ до 50 лет родителей"
@@ -143,23 +143,20 @@ const Tab4 = ({patient, onChanges,info,setInfo}) => {
                         </Form.Item>
                     </Col>
 
-                    
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" onClick={backClick} >Предыдущий</Button>
+
+                    <Col xs={24} md={8} xl={8} >
+                        <Form.Item>
+                            <Button style={{width:'100%'}} type="primary" onClick={backClick} >Предыдущий</Button>
                         </Form.Item>
                     </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" htmlType="submit">Сохранить</Button>
+                    <Col xs={24} md={8} xl={8}>
+                        <Form.Item>
+                            <Button style={{width:'100%'}} type="primary" htmlType="submit">Сохранить</Button>
                         </Form.Item>
                     </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" onClick={nextClick}  >Следующий</Button>
+                    <Col xs={24} md={8} xl={8}>
+                        <Form.Item>
+                            <Button style={{width:'100%'}} type="primary" onClick={nextClick}  >Следующий</Button>
                         </Form.Item>
                     </Col>
                     

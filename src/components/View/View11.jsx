@@ -5,6 +5,9 @@ import {canculatePirigova} from "../../utils/canculatePirigova";
 import {canculateDiet} from "../../utils/canculateDiet";
 import CanculateGroupRisk from "../../utils/CanculateGroupRisk";
 import '../../utils/style.css';
+import { useMemo } from "react";
+import MeasureDieta from "../Measure/MeasureDieta";
+import RufierDixon from "../Measure/RufierDixon.js";
 
 
 export const View11 = ({ info,patient,info5,info6,info7,info2,info4,info8,info10,info9 }) => {
@@ -30,8 +33,9 @@ export const View11 = ({ info,patient,info5,info6,info7,info2,info4,info8,info10
   const [type,setType]=useState(null);
   const [newFacts,setNewFacts]=useState(null);
   const [typeDiet,setTypeDiet]=useState(null);
+  const autoCount = useRef(0);
   useEffect(() => {
-    if (patient?.gender=="0") {
+    if (patient?.gender==="0") {
       if (info10?.stressLevel >=parseFloat(0.00) && info10?.stressLevel <= parseFloat(1.17)) {
           setType(1);
       }
@@ -113,12 +117,19 @@ useEffect(() => {
     let item =  CanculateGroupRisk(view);
     setGroupRisk(item);
   }, [info2,info4,info7,score2]);
-  
-  
+
   const factorsMeasure = () =>{
-    let item = ((info8?.rufierDixontest_p2 -70) + (info8?.rufierDixontest_p3 - info8?.rufierDixontest_p1))/10;
+    const  p2 = info8?.rufierDixontest_p2;
+    const  p1 = info8?.rufierDixontest_p1;
+    const  p3 = info8?.rufierDixontest_p3;
+    const body = {
+      p1: p1,
+      p2: p2,
+      p3: p3,
+    }
+    let item = RufierDixon(body)
     const imt = (info5?.bodyMass / (info5?.height * info5?.height)).toFixed(0);
-    if (patient?.gender=="0") {
+    if (patient?.gender==="0") {
       // Factor 1
       if (info5?.waistHipRatio > parseFloat(0.85) && imt > parseFloat(30) && info5?.internalFat > parseFloat(12)){
         setNausea("ожирение");
@@ -145,12 +156,12 @@ useEffect(() => {
     // Factor 3
     if(info8?.tshx< parseFloat(300)){
       if (item > parseFloat(15) && piragova>43) {
-        setPhysicalActivity("недостаточная физическая активность");
+        setPhysicalActivity(" физическая активность");
       }else{
         setPhysicalActivity(null);
       }
     }
-    // Factor 4
+    // Factor 4недостаточная
     if (info4?.smoking==1 || info4?.smoking==3) {
       setSmoking("курение");
     }else{
@@ -188,6 +199,7 @@ useEffect(() => {
       
     // }
     // Factor 10
+    // XBP
     if (info2?.m && info7?.rapidGlomFilt < parseFloat(61)) {
       setDiseaseKidney("хроническая болезнь почек");
     }
@@ -542,50 +554,7 @@ useEffect(() => {
       
     )
   }
-  function Dieta() {
-      const imt = info5?.imt
-      const bmr = info5?.bmr
-      if (imt>25) {
-        const item = bmr - bmr * 0.2;
-        setTypeDiet(1050)
-      }else if (imt<20){
-        const item = parseFloat(bmr) + parseFloat(bmr) * 0.15;
-        setTypeDiet(1050)
-      }else if (imt>=20 && imt<=25){
-        const item = bmr;
-        setTypeDiet(1050) 
-      }
-    return (
-      <>
-      {typeDiet<1100 && 
-        <>
-        <div className="m-5" >
-          <p className="center header_title  fontblue" >Диетотерапия при метаболическом синдроме.</p>
-          <p className="ml3" >Диетотерапия является краеугольным камнем в лечении больных с МС, и, пожалуй, самым трудновыполнимым в лечении. Несмотря на то, что диетология шагнула далеко вперед в изучении диетических аспектов лечения ожирения, приверженность пациентов к изменению пищевого поведения остается крайне низкой.</p>
-          <p className="ml3" >Для контроля массы тела необходимо соответствие калорийности рациона индивидуальным энергетическим затратам организма.</p>
-          <ul className="ml5">
-            <li className="" ><div className="flex"><p className=" flex fontblue" >Первый принцип </p >— <p className="fontgreen" >энергетическое равновесие. </p><p> Энергетическая суточная потребность человека</p></div></li>
-            <li><p>зависит от возраста (с каждым десятилетием после 30 лет она уменьшается на 5-7 %);</p></li>
-            <li><p>зависит от пола (у женщин энергетическая потребность на 7-10 % меньше)</p></li>
-            <li><p>и, конечно, от профессии, т.е. интенсивности труда. У мужчин-горожан от 40 до 60 лет, работа которых не связана с физическим трудом, она составляет около 2100-2500 ккал/сутки, для женщин — 1800-2200 ккал/сутки, а для спортсменов или лесорубов, работников тяжелого труда, может достигать 4000-5000 ккал в сутки. </p></li>
-            <li className="" >•<p className="flex" >
-            <p className="fontblue flex"  >Второй принцип</p> — <p className="fontgreen flex " >сбалансированность рациона</p>. 
-            <p className="flex" >Каждый организм нуждается в строго определенном количестве пищевых веществ, которые должны поступать в установленных оптимальных пропорциях. 
-              Речь идет, главным образом, об основных пищевых веществах — белках, жирах, углеводах, их соотношение 1: 1,5: 
-              4. Если Вы усиленно занимаетесь спортом, это соотношение должно увеличиться в сторону углеводов – 1:1,5:5.  Зимой соотношение сдвигается в сторону жиров – 1: 2: 
-              4. В среднем для поддержания организма надлежащем уровне необходимо 1 гр. белков на 1 кг массы жиров — 1,1 гр. на 1 кг массы. 
-              Углеводы —суточная норма варьируется от 4 до 8 гр. на 1 кг массы. Для медленного и безопасного снижения веса рекомендуется уменьшать приблизительную суточную калорийность на 10–20%. Важные рекомендации по употреблению:</p>
-              </p></li>
-            </ul>
-        </div>
-        </>
-      }
-      </> 
-    )
-
-  }
   
- 
 
 return (
     <div>
@@ -647,7 +616,7 @@ return (
             <tr>
               <td></td>
               <td>{diabetes}</td>
-              <td>{info7?.glucose} ммоль/л</td>
+              <td>глюкозы натащак {info7?.glucose} ммоль/л</td>
             </tr>}
             {physicalActivity && <tr>
               <td></td>
@@ -732,25 +701,36 @@ return (
                     {info5?.active_factor === "5" && "интенсивные тренировки ежедневно, сочетающиеся с тяжелой физической работой."}
               </td>
               <td></td></tr>}
+            </tbody>
+        </table>
+        <table className={'table table-sm'}>
+          <thead>
+          <tr>
+            <th scope="col">рекомендации</th>
+          </tr>
+          </thead>
+          <tbody>
+          {nausea &&<tr>
+                <td>ожирение и избыточный вес - снижение веса тела, идеальный вес тела ..........., базовый обмен  веществ в сутки .............(-15-20%), суточный рацион на .......... ккалорий</td>
+              </tr> }
+          {diabetes && <tr><td>контроль глюкозы сыворотки крови, уровень глюкозы натащак менее 6,1 ммоль/л, наблюдение эндокринолога</td></tr>}
+          {physicalActivity && <tr><td>недостаточная физическая активность - увеличение физической активности под контролем ЧСС, программа физической реабилитации, соответствующая ....... ступени</td></tr>}
+          {info4?.smoking===1 && <tr><td>курение - отказ от курения</td></tr>}
+          {strees1 && <tr><td>высокий стресс ассоциирован с повышением риска сердечно-сосудистых заболеваний и осложнений, следить за психоэмоциальным здоровьем, следовать нашим рекомендациям:</td></tr>}
+          {hyperurecemia && <tr><td>снижение уровня мочевой кислоты, женщины старше 14 лет – 150-405 мкмоль/л, мужчины 210-458 мкмоль/л, соблюдение диеты, консультация терапевта</td></tr>}
 
-            
-
-            
-
-            
-            
           </tbody>
         </table>
         <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
           12. Dieta:
-          <Dieta />
+          <MeasureDieta imt={info5?.imt} bmr={info5?.bmr} />
         </h6>
         <p>{diet}</p>
-        <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
+        <p className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
           13. Strees:
-        </h6>
+        </p>
         <Strees/>
-        {/* {CanculateStress(info10,patient)} */}
+
       </div>
     </div>
   );

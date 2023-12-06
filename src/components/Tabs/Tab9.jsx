@@ -74,16 +74,16 @@ const Tab9 = ({patient,onChanges,info,setInfo}) => {
                 onFinish={onFinish}
             >
                 <Row gutter={24}>
-                    <Col span={24}><Typography.Title  level={5}>Плетизмография (Ангиоскан-1)</Typography.Title></Col>
-                    <Col span={12} ><Form.Item label="Индекс отражения RI" name="ri" ><Input/></Form.Item></Col>
-                    <Col span={12} ><Form.Item label="Индекс ригидности (скорость пульсовой волны) SI" name="si"  ><Input/></Form.Item></Col>
-                    <Col span={12} ><Form.Item label="Биологический возраст сосудов, VA" name="va"  ><Input/></Form.Item></Col>
-                    <Col span={24}><Typography.Title level={5}>Тип пульсовой вольны</Typography.Title></Col>
-                    <Col span={4} ><Form.Item label="A" name="pvA"  ><Checkbox onChange={onChechChange} checked={pvA==1?true:false} /></Form.Item></Col>
-                    <Col span={4} ><Form.Item label="B" name="pvB" ><Checkbox onChange={onChechChange} checked={pvB==1?true:false} /></Form.Item></Col>
-                    <Col span={4} ><Form.Item label="C" name="pvC" ><Checkbox onChange={onChechChange} checked={pvC==1?true:false} /></Form.Item></Col>
-                    <Col span={24} ><Typography.Title level={5} >ЭКГ: Ритм</Typography.Title></Col>
-                    <Col span={12} >
+                    <Col xs={24} md={12} xl={12}><Typography.Title  level={5}>Плетизмография (Ангиоскан-1)</Typography.Title></Col>
+                    <Col xs={24} md={12} xl={12} ><Form.Item label="Индекс отражения RI" name="ri" ><Input/></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12} ><Form.Item label="Индекс ригидности (скорость пульсовой волны) SI" name="si"  ><Input/></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12} ><Form.Item label="Биологический возраст сосудов, VA" name="va"  ><Input/></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12}><Typography.Title level={5}>Тип пульсовой вольны</Typography.Title></Col>
+                    <Col span={8} ><Form.Item label="A" name="pvA"  ><Checkbox onChange={onChechChange} checked={pvA==1?true:false} /></Form.Item></Col>
+                    <Col span={8} ><Form.Item label="B" name="pvB" ><Checkbox onChange={onChechChange} checked={pvB==1?true:false} /></Form.Item></Col>
+                    <Col span={8} ><Form.Item label="C" name="pvC" ><Checkbox onChange={onChechChange} checked={pvC==1?true:false} /></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12} ><Typography.Title level={5} >ЭКГ: Ритм</Typography.Title></Col>
+                    <Col xs={24} md={12} xl={12} >
                         <Form.Item name="ecgRhythm" >
                             <Radio.Group>
                                 <Radio value="1" >синусовый</Radio>
@@ -91,7 +91,7 @@ const Tab9 = ({patient,onChanges,info,setInfo}) => {
                             </Radio.Group>
                         </Form.Item>
                     </Col>
-                    <Col span={12} >
+                    <Col xs={24} md={12} xl={12} >
                         <Form.Item name="ecgCorrect" >
                             <Radio.Group>
                                 <Radio value="1" >правильный</Radio>
@@ -99,7 +99,7 @@ const Tab9 = ({patient,onChanges,info,setInfo}) => {
                             </Radio.Group>
                         </Form.Item>
                     </Col>
-                    {ecgRhythm ? <Col span={12} >
+                    {ecgRhythm ? <Col xs={24} md={12} xl={12} >
                         <Form.Item name="ecgRhythmNonSin" >
                             <Radio.Group>
                                 <Radio value="1" >фибрилляция предсердий</Radio>
@@ -108,7 +108,7 @@ const Tab9 = ({patient,onChanges,info,setInfo}) => {
                         </Form.Item>
 
                     </Col> : null}
-                    <Col span={12} >
+                    <Col xs={24} md={12} xl={12} >
                         <Form.Item
                             label="ЧСС"
                             name="heartRate"
@@ -116,7 +116,7 @@ const Tab9 = ({patient,onChanges,info,setInfo}) => {
                             <Input/>
                         </Form.Item>
                     </Col>
-                    <Col span={24} >
+                    <Col xs={24} md={12} xl={12} >
                         <Form.Item
                             label="Заключение"
                             name="conclusion"
@@ -124,22 +124,19 @@ const Tab9 = ({patient,onChanges,info,setInfo}) => {
                             <TextArea/>
                         </Form.Item>
                     </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" onClick={backClick} >Предыдущий</Button>
+                    <Col xs={24} md={8} xl={8} >
+                        <Form.Item>
+                            <Button style={{width:'100%'}} type="primary" onClick={backClick} >Предыдущий</Button>
                         </Form.Item>
                     </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" htmlType="submit">Сохранить</Button>
+                    <Col xs={24} md={8} xl={8}>
+                        <Form.Item>
+                            <Button style={{width:'100%'}} type="primary" htmlType="submit">Сохранить</Button>
                         </Form.Item>
                     </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" onClick={nextClick}  >Следующий</Button>
+                    <Col xs={24} md={8} xl={8}>
+                        <Form.Item>
+                            <Button style={{width:'100%'}} type="primary" onClick={nextClick}  >Следующий</Button>
                         </Form.Item>
                     </Col>
 

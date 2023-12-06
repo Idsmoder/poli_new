@@ -276,32 +276,32 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                 onValuesChange={onValuChange}
             >
                 <Row gutter={24} >
-                    <Col span={12}><Form.Item name="sad" label="САД мм.рт.ст"><Input /></Form.Item></Col>
-                    <Col span={12}><Form.Item name="dad" label="ДАД мм.рт.ст"><Input/></Form.Item></Col>
-                    <Col span={12}><Form.Item name="chcc" label="Пульс (ЧСС) уд.в мин"><Input/></Form.Item></Col>
-                    <Col span={12}><Form.Item name="adp" label="АД пульсовое (АДП) мм.рт.ст"><Input disabled suffix="мм.рт.ст" /></Form.Item></Col>
-                    <Col span={12}><Form.Item name="po2Saturation" label="РО2  %"><Input suffix="%" /></Form.Item></Col>
-                    <Col span={12}><Form.Item name="chdd" label="Легкие ЧДД"><Input/></Form.Item></Col>
-                    <Col span={24}><Typography.Title level={5}>Аускультация: дыхание</Typography.Title></Col>
+                    <Col xs={24} md={12} xl={12}><Form.Item name="sad" label="САД мм.рт.ст"><Input /></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12}><Form.Item name="dad" label="ДАД мм.рт.ст"><Input/></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12}><Form.Item name="chcc" label="Пульс (ЧСС) уд.в мин"><Input/></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12}><Form.Item name="adp" label="АД пульсовое (АДП) мм.рт.ст"><Input disabled suffix="мм.рт.ст" /></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12}><Form.Item name="po2Saturation" label="РО2  %"><Input suffix="%" /></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12}><Form.Item name="chdd" label="Легкие ЧДД"><Input/></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12}><Typography.Title level={5}>Аускультация: дыхание</Typography.Title></Col>
 
-                    <Col span={8}><Form.Item name="chdd_1" ><Checkbox onChange={onChange} checked={chdd_1==1 ? true:false} >везикулярное</Checkbox></Form.Item></Col>
-                    <Col span={8}><Form.Item name="chdd_2" ><Checkbox onChange={onChange}  checked={chdd_2==1 ? true:false} >ослабленное</Checkbox></Form.Item></Col>
-                    <Col span={8}><Form.Item name="chdd_4" ><Checkbox onChange={onChange} checked={chdd_4==1 ? true:false} >жесткое</Checkbox></Form.Item></Col>
-                    <Col span={8}><Form.Item name="chdd_5" ><Checkbox onChange={onChange} checked={chdd_5==1 ? true:false} >бронхиальное дыхание</Checkbox></Form.Item></Col>
-                    <Col span={8}><Form.Item name="chdd_6" ><Checkbox onChange={onChange} checked={chdd_6==1 ? true:false} >Затрудненный и удлиненный выдох</Checkbox></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12}><Form.Item name="chdd_1" ><Checkbox onChange={onChange} checked={chdd_1==1 ? true:false} >везикулярное</Checkbox></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12}><Form.Item name="chdd_2" ><Checkbox onChange={onChange}  checked={chdd_2==1 ? true:false} >ослабленное</Checkbox></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12}><Form.Item name="chdd_4" ><Checkbox onChange={onChange} checked={chdd_4==1 ? true:false} >жесткое</Checkbox></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12}><Form.Item name="chdd_5" ><Checkbox onChange={onChange} checked={chdd_5==1 ? true:false} >бронхиальное дыхание</Checkbox></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12}><Form.Item name="chdd_6" ><Checkbox onChange={onChange} checked={chdd_6==1 ? true:false} >Затрудненный и удлиненный выдох</Checkbox></Form.Item></Col>
 
                     <Col span={24}><Form.Item><Typography.Title level={5}>Наличие хрипов</Typography.Title></Form.Item></Col>
-                    <Col span={24}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item name="wheezing_1"  >
                             <Checkbox onChange={changeWhee} >нет</Checkbox>
                         </Form.Item></Col>
                     {!wheezing_1 ?
 
                     <>
-                    <Col span={8} ><Form.Item name="wheezing_2" ><Checkbox  onChange={onChange} checked={wheezing_2==1 ? true:false}>Хрипы сухие </Checkbox></Form.Item></Col>
-                    <Col span={8} ><Form.Item name="wheezing_3" ><Checkbox onChange={onChange} checked={wheezing_3==1 ? true:false}>Хрипы влажные </Checkbox></Form.Item></Col>
-                    <Col span={8}><Form.Item name="wheezing_4" ><Checkbox onChange={onChange} checked={wheezing_4==1 ? true:false} >крепитация</Checkbox></Form.Item></Col>
-                    <Col span={8}><Form.Item name="wheezing_5" ><Checkbox onChange={onChange} checked={wheezing_5==1 ? true:false} >шум трения плевры</Checkbox></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12} ><Form.Item name="wheezing_2" ><Checkbox  onChange={onChange} checked={wheezing_2==1 ? true:false}>Хрипы сухие </Checkbox></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12} ><Form.Item name="wheezing_3" ><Checkbox onChange={onChange} checked={wheezing_3==1 ? true:false}>Хрипы влажные </Checkbox></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12}><Form.Item name="wheezing_4" ><Checkbox onChange={onChange} checked={wheezing_4==1 ? true:false} >крепитация</Checkbox></Form.Item></Col>
+                    <Col xs={24} md={12} xl={12}><Form.Item name="wheezing_5" ><Checkbox onChange={onChange} checked={wheezing_5==1 ? true:false} >шум трения плевры</Checkbox></Form.Item></Col>
                     <Col span={24}>
                         <Form.Item name="wheezing_6">
                             <Checkbox onChange={onChange} checked={wheezing_6==1 ? true:false} >плевроперикардиальный шум с точной локализацией найденных шумов по межреберьям и топографическим линиям</Checkbox>
@@ -313,7 +313,7 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     <Col span={24}>
                         <Typography.Title level={5}>Сердце</Typography.Title>
                     </Col>
-                    <Col span={8}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item name="corTones" label="Cor-тоны" >
                             <Radio.Group  >
                                 <Radio value="1">ясные</Radio>
@@ -322,7 +322,7 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                             </Radio.Group>
                         </Form.Item>
                     </Col>
-                    <Col span={8}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item name="presenceEdema" label="Наличие отеков" >
                             <Radio.Group  >
                                 <Radio value="1" >да</Radio>
@@ -330,7 +330,7 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                             </Radio.Group>
                         </Form.Item>
                     </Col>
-                    <Col span={8}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item label="Шум" name="noise" >
                             <Radio.Group value={shownoiseHas}   onChange={chekNois} >
                                 <Radio value="0">нет</Radio>
@@ -340,29 +340,29 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     </Col>
                     {shownoiseHas==1 && 
                     <>
-                    <Col span={24} >
+                    <Col xs={24} md={12} xl={12} >
                         <Form.Item name="noise_systolic">
                             <Checkbox onChange={nouseSystolicCheck}  checked={noise_systolic==1 ? true:false} >Шум систолический</Checkbox>
                         </Form.Item>
                     </Col>
                     {noise_systolic==1 &&
                     <>
-                    <Col span={4}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item name="noise_systolic_top" label="">
                             <Checkbox onChange={onChange} checked={noise_systolic_top?true:false} >на верхушке</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={4}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item name="noise_systolic_aorta" label="">
                             <Checkbox onChange={onChange} checked={noise_systolic_aorta?true:false} >на аорте</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={4}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item name="noise_systolic_pulmonary" label="">
                             <Checkbox onChange={onChange} checked={noise_systolic_pulmonary?true:false} >на легочной артерии</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item name="noise_systolic_tricuspid" label="">
                             <Checkbox onChange={onChange} checked={noise_systolic_tricuspid?true:false} >в проекции трикуспидального клапана</Checkbox>
                         </Form.Item>
@@ -370,29 +370,29 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     </>
                     }
                             
-                    <Col span={24} >
+                    <Col xs={24} md={12} xl={12} >
                         <Form.Item name="noise_diastolic">
                             <Checkbox onChange={noiseDiastolicCheck}  checked={noise_diastolic==1 ? true:false} >Шум диастолический</Checkbox>
                         </Form.Item>
                     </Col>
                     {noise_diastolic==1 &&
                     <>
-                    <Col span={4}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item name="noise_diastolic_top" label="">
                             <Checkbox onChange={onChange} checked={noise_diastolic_top?true:false} >на верхушке</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={4}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item name="noise_diastolic_aorta" label="">
                             <Checkbox onChange={onChange} checked={noise_diastolic_aorta?true:false} >на аорте</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={4}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item name="noise_diastolic_pulmonary" label="">
                             <Checkbox onChange={onChange} checked={noise_diastolic_pulmonary?true:false} >на легочной артерии</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item name="noise_diastolic_tricuspid" label="">
                             <Checkbox onChange={onChange} checked={noise_diastolic_tricuspid?true:false} >в проекции трикуспидального клапана</Checkbox>
                         </Form.Item>
@@ -401,33 +401,30 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     }
                    </>
                     }
-                    <Col span={12} >
+                    <Col xs={24} md={12} xl={12} >
                         <Form.Item name="psv" label="ПСВ ">
                             <Input suffix="мл/мин" />
                         </Form.Item>
                     </Col>
                     
-                    <Col span={24}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item name="noiseComment" label="Дополнения">
                             <Input.TextArea placeholder="Дополнения" />
                         </Form.Item>
                     </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" onClick={backClick} >Предыдущий</Button>
+                    <Col xs={24} md={8} xl={8} >
+                        <Form.Item>
+                            <Button style={{width:'100%'}} type="primary" onClick={backClick} >Предыдущий</Button>
                         </Form.Item>
                     </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" htmlType="submit">Сохранить</Button>
+                    <Col xs={24} md={8} xl={8}>
+                        <Form.Item>
+                            <Button style={{width:'100%'}} type="primary" htmlType="submit">Сохранить</Button>
                         </Form.Item>
                     </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" onClick={nextClick}  >Следующий</Button>
+                    <Col xs={24} md={8} xl={8}>
+                        <Form.Item>
+                            <Button style={{width:'100%'}} type="primary" onClick={nextClick}  >Следующий</Button>
                         </Form.Item>
                     </Col>
                 </Row>    
