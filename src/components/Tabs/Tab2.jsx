@@ -233,196 +233,193 @@ return (
                 onValuesChange={onValuChange}
             >
                 <Row gutter={24}>
-                    <Col span={12}>
+                    <Col xs={24} xl={12} >
                         <Form.Item
                             name="a"
                         >
                             <Checkbox onChange={onChange} checked={a=='1' ?true:false}  >A. Гипертоническая болезнь</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                     <Form.Item
                             name="b"
                         >
                             <Checkbox onChange={onChange}  checked={b=='1' ? true:false} >B. Ишемическая болезнь сердца. Стабильная стенокардия нарушения</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                     <Form.Item
                             name="c"
                         >
                             <Checkbox onChange={onChange} checked={c=='1'?true:false}  >C. В анамнезе перенесенный ИМ</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                     <Form.Item
                             name="d"
                         >
                             <Checkbox onChange={onChange} checked={d=='1'?true:false}  >D. В анамнезе перенесенный ОНМК, ТИА</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                     <Form.Item
                             name="e"
                         >
                             <Checkbox onChange={onChange} checked={e=='1'?true:false} >E. ХСН</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                     <Form.Item
                             name="f"
                         >
                             <Checkbox onChange={onChange} checked={f=='1'?true:false}  >F. Атеросклероз периферический многососудистый со стенозом и/или</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={24}>
+                    <Col xs={24} xl={12}>
                     <Typography.Title level={5} >G. Перенесенные операции на сердце и сосудах</Typography.Title>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                     <Form.Item
                             name="g_ca"
                         >
                             <Checkbox onChange={onChange}  checked={g_ca=='1'?true:false} >АКШ</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                     <Form.Item
                             name="g_pacemaker"
                         >
                             <Checkbox onChange={onChange} checked={g_pacemaker=='1'?true:false} >Стентирование КА</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={24}>
+                    <Col xs={24} xl={12}>
                     <Form.Item
                             name="g_us"
                         >
                             <Checkbox onChange={onChange} checked={g_us=='1'?true:false} >Установка ЭКС или кардиовертера-дефибрилятора</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={24}>
+                    <Col xs={24} xl={12}>
                     <Typography.Title level={5} >H. Нарушения ритма</Typography.Title>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                     <Form.Item
                             name="h_1"
                         >
                             <Checkbox onChange={onChange}  checked={h_1=='1'?true:false} >Экстросистолия желудочковая</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                     <Form.Item
                             name="h_2"
                         >
                             <Checkbox onChange={onChange} checked={h_2=='1'?true:false}  >Экстросистолия наджелудочковая'</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                     <Form.Item
                             name="h_3"
                         >
                             <Checkbox onChange={onChange} checked={h_3=='1'?true:false}  >Пароксизмальная наджелудочковая тахикардия</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                         <Form.Item
                                 name="h_4"
                             >
                                 <Checkbox onChange={onChange} checked={h_4=='1'?true:false} >Полная блокада правой ножки пучка Гисса</Checkbox>
                         </Form.Item>        
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                         <Form.Item
                                 name="h_5"
                             >
                                 <Checkbox onChange={onChange} checked={h_5=='1'?true:false} >Полная блокада левой ножки пучка Гисса</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                         <Form.Item
                                 name="h_6"
                             >   
                                 <Checkbox onChange={onChange} checked={h_6=='1'?true:false} >Фибрилляция предсердий</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={24}>
+                    <Col xs={24} xl={12}>
                         <Form.Item
                                 name="h_7"
                             >
                                 <Checkbox onChange={onChange} checked={h_7=='1'?true:false} >Другие нарушения ритма</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                         <Form.Item
                                 name="i"
                             >
                                 <Checkbox onChange={onChange} checked={i=='1'?true:false} >I. Сахарный диабет без осложнений</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                         <Form.Item
                                 name="k"
                             >
                                 <Checkbox onChange={onChange} checked={k=='1'?true:false} >K. Сахарный диабет с осложнениями</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                         <Form.Item
                                 name="l"
                             >
                                 <Checkbox onChange={onChange} checked={l=='1'?true:false} >L. Нарушение толерантности к глюкозе</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                         <Form.Item
                                 name="m"
                             >
                                 <Checkbox onChange={onChange} checked={m=='1'?true:false} >M. ХБП</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                         <Form.Item
                                 name="n"
                             >
                                 <Checkbox onChange={onChange} checked={n=='1'?true:false} >N. ХОБЛ или БА</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                         <Form.Item
                                 name="o"
                             >
                                 <Checkbox onChange={onChange} checked={o=='1'?true:false} >O. Ковид-19</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                         <Form.Item
                                 name="p"
                             >
                                 <Checkbox onChange={onChange} checked={p=='1'?true:false} >P. Врожденные и приобретенные пороки сердца</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                         <Form.Item
                                 name="q"
                             >
                                 <Checkbox onChange={onChange} checked={q=='1'?true:false} >Q. Онкологические заболевания</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" onClick={backClick} >Предыдущий</Button>
+                    <Col xs={24} md={8} xl={8} >
+                        <Form.Item>
+                            <Button style={{width:'100%'}} type="primary" onClick={backClick} >Предыдущий</Button>
                         </Form.Item>
                     </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" htmlType="submit">Сохранить</Button>
+                    <Col xs={24} md={8} xl={8}>
+                        <Form.Item>
+                            <Button style={{width:'100%'}} type="primary" htmlType="submit">Сохранить</Button>
                         </Form.Item>
                     </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" onClick={nextClick}  >Следующий</Button>
+                    <Col xs={24} md={8} xl={8}>
+                        <Form.Item>
+                            <Button style={{width:'100%'}} type="primary" onClick={nextClick}  >Следующий</Button>
                         </Form.Item>
                     </Col> 
                 </Row>

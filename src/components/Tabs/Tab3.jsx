@@ -16,7 +16,7 @@ const Tab3 = ({patient,onChanges,info,setInfo}) => {
     const [nitrates, setNitrates] = useState('');
     const [cardiac , setCardiac] = useState('');
     const [anti,setAnti] = useState('');
-    const [no,setNo] = useState('');
+    const [no,setNo] = useState(0);
     const [form] = Form.useForm();
     const params = useParams();
     const onChange = (e) => {
@@ -150,77 +150,77 @@ const Tab3 = ({patient,onChanges,info,setInfo}) => {
                 onFinish={onFinish}
             >
                 <Row gutter={24}>
-                    <Col span={no==1 ? 24 : 12}>
+                    <Col xs={no===1 ? 24 : 12} md={no===1 ? 24 : 12} xl={no===1 ? 24 : 12}>
                         <Form.Item name="no" >
                             <Checkbox checked={no?true:false} onChange={onChange} >Нет</Checkbox>
                         </Form.Item>
                     </Col>
                     {!no ? 
                     <>
-                     <Col span={12}>
+                     <Col xs={24} md={12} xl={12} >
                         <Form.Item
                         name="diuretics" 
                         >
                             <Checkbox onChange={onChange} checked={diuretics=='1' ? true:false} >диуретики</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item
                             name="betaBlockers"
                         >
                             <Checkbox onChange={onChange} checked={betaBlockers=='1' ? true:false} >бета-адреноблокаторы</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item
                             name="calcium"
                             >
                             <Checkbox onChange={onChange} checked={calcium=='1' ? true:false} >антагонисты кальция</Checkbox>
                             </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item
                             name="apf"
                             >
                                 <Checkbox onChange={onChange} checked={apf=='1' ? true:false} >ингибиторы АПФ</Checkbox>    
                         </Form.Item>    
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item
                             name="ara"
                             >
                                 <Checkbox onChange={onChange} checked={ara=='1' ? true:false} >АРА</Checkbox>
                         </Form.Item> 
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item
                             name="amkr"
                             >
                                 <Checkbox onChange={onChange} checked={amkr=='1' ? true:false} >АМКР</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item
                             name="antiarrhythmics"
                         >
                             <Checkbox onChange={onChange}  checked={antiarrhythmics=='1' ? true : false} >Антиаритмики</Checkbox>        
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item
                             name="nitrates"
                             >
                                 <Checkbox onChange={onChange} checked={nitrates=='1' ? true:false} >Нитраты</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} md={12} xl={12}>
                         <Form.Item
                             name="cardiac"
                             >
                                 <Checkbox onChange={onChange} checked={cardiac=='1' ? true:false} >Сердечные гликозиды</Checkbox>
                         </Form.Item>
                     </Col>
-                    <Col span={24} >
+                    <Col xs={24} md={24} xl={24} >
                         <Form.Item
                             name={'anti'}
                             
@@ -231,24 +231,19 @@ const Tab3 = ({patient,onChanges,info,setInfo}) => {
                     </Col>
                     </>
                    :'' }
-                   
-                    
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" onClick={backClick} >Предыдущий</Button>
+                    <Col xs={24} md={8} xl={8} >
+                        <Form.Item>
+                            <Button style={{width:'100%'}} type="primary" onClick={backClick} >Предыдущий</Button>
                         </Form.Item>
                     </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" htmlType="submit">Сохранить</Button>
+                    <Col xs={24} md={8} xl={8}>
+                        <Form.Item>
+                            <Button style={{width:'100%'}} type="primary" htmlType="submit">Сохранить</Button>
                         </Form.Item>
                     </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" onClick={nextClick}  >Следующий</Button>
+                    <Col xs={24} md={8} xl={8}>
+                        <Form.Item>
+                            <Button style={{width:'100%'}} type="primary" onClick={nextClick}  >Следующий</Button>
                         </Form.Item>
                     </Col>
 

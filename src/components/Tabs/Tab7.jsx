@@ -178,48 +178,45 @@ const Tab7 = ({patient,onChanges ,info,setInfo}) => {
             onValuesChange={changeValue}
             >
             <Row gutter={24}>
-                <Col span={12}><Form.Item name="hb" label="Hb, г/л" ><Input suffix="г/л" /></Form.Item></Col>
-                <Col span={12}><Form.Item name="redBloodCells" label="Эритроциты, 1012/л" ><Input suffix="1012/л" /></Form.Item></Col>
-                <Col span={12}><Form.Item name="leukocytes"  label="Лейкоциты, 109/л"><Input suffix="109/л"/></Form.Item></Col>
-                <Col span={12}><Form.Item name="platelets" label="Тромбоциты, 109/л" ><Input suffix="109/л" /></Form.Item></Col>
-                <Col span={12}><Form.Item name="speedBlood" label="СОЭ, мм/час"><Input suffix="мм/час" /></Form.Item></Col>
-                <Col span={12}><Form.Item name="glucose" label="Глюкоза в крови, ммоль/л" ><Input suffix="ммоль/л"/></Form.Item></Col>
-                <Col span={12}><Form.Item name="cReactive" label="С-реактивный белок, мг/л"><Input suffix="мг/л" /></Form.Item></Col>
-                <Col span={12}><Form.Item name="urea" label="Мочевина, ммоль/л"><Input suffix="ммоль/л" /></Form.Item></Col>
-                <Col span={12}><Form.Item name="creatinine" label="Креатинин, мкмоль/л" ><Input suffix="мкмоль/л"/></Form.Item></Col>
-                <Col span={12}><Form.Item name="rapidGlomFilt" label="СКФ, мл/мин/1,73 м2 '"><Input disabled suffix="мл/мин/1,73 м2"/></Form.Item></Col>
-                <Col span={12}><Form.Item name="alt" label="АЛТ, ед/л"  ><Input suffix="ед/л" /></Form.Item></Col>
-                <Col span={12}><Form.Item name="ast" label="АСТ, ед/л"><Input suffix="ед/л"/></Form.Item></Col>
-                <Col span={12}><Form.Item name="levelUricAcidSer" label="Мочевая кислота, мкмоль/л" ><Input suffix="мкмоль/л" /></Form.Item></Col>
-                <Col span={12}><Form.Item name="totalCholesterol" label="Общий холестерин, ХС ммоль/л" ><Input suffix="ХС ммоль/л" /></Form.Item></Col>
-                <Col span={12}><Form.Item name="triglycerides" label="Триглицериды, ммоль/л" ><Input suffix="ммоль/л" /></Form.Item></Col>
-                <Col span={12} ><Form.Item name="lowDensityLipoprotein" label="ЛПНП, ммоль/л" ><Input suffix="ммоль/л" /></Form.Item></Col>
-                <Col span={12}><Form.Item name="highDensityLipoprotein" label="ЛПВП, ммоль/л" ><Input suffix="ммоль/л" /></Form.Item></Col>
-                <Col span={12} ><Form.Item name="cHighDensityLipoprotein" label="ХС-неЛПВП"><Input disabled /></Form.Item></Col>
-                <Col span={12}><Form.Item name="coeffAtherogenicity" label="Коэффицент атерогенности"  ><Input disabled /></Form.Item></Col>
-                <Col span={12}><Form.Item name="prothrombinTime" label="Протромбиновое время, сек"><Input suffix="сек" /></Form.Item></Col>
-                <Col span={12}><Form.Item name="pti" label="ПТИ, %"><Input suffix="%" /></Form.Item></Col>
-                <Col span={12}><Form.Item name="interNormRel" label="МНО" ><Input/></Form.Item> </Col>
-                <Col span={12}><Form.Item name="fibrinogen" label="Фибриноген, г/л" ><Input suffix="г/л" /></Form.Item></Col>
-                <Col span={12}> <Form.Item name="homocysteine" label="Гомоцистеин, мкмоль/л ИФА метод" ><Input suffix="мкмоль/л ИФА метод" /></Form.Item></Col>
-                <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" onClick={backClick} >Предыдущий</Button>
-                        </Form.Item>
-                    </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" htmlType="submit">Сохранить</Button>
-                        </Form.Item>
-                    </Col>
-                    <Col span={8}>
-                        <Form.Item
-                            >
-                            <Button type="primary" onClick={nextClick}  >Следующий</Button>
-                        </Form.Item>
-                    </Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="hb" label="Hb, г/л" ><Input suffix="г/л" /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="redBloodCells" label="Эритроциты, 1012/л" ><Input suffix="1012/л" /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="leukocytes"  label="Лейкоциты, 109/л"><Input suffix="109/л"/></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="platelets" label="Тромбоциты, 109/л" ><Input suffix="109/л" /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="speedBlood" label="СОЭ, мм/час"><Input suffix="мм/час" /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="glucose" label="Глюкоза в крови, ммоль/л" ><Input suffix="ммоль/л"/></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="cReactive" label="С-реактивный белок, мг/л"><Input suffix="мг/л" /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="urea" label="Мочевина, ммоль/л"><Input suffix="ммоль/л" /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="creatinine" label="Креатинин, мкмоль/л" ><Input suffix="мкмоль/л"/></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="rapidGlomFilt" label="СКФ, мл/мин/1,73 м2 '"><Input disabled suffix="мл/мин/1,73 м2"/></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="alt" label="АЛТ, ед/л"  ><Input suffix="ед/л" /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="ast" label="АСТ, ед/л"><Input suffix="ед/л"/></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="levelUricAcidSer" label="Мочевая кислота, мкмоль/л" ><Input suffix="мкмоль/л" /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="totalCholesterol" label="Общий холестерин, ХС ммоль/л" ><Input suffix="ХС ммоль/л" /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="triglycerides" label="Триглицериды, ммоль/л" ><Input suffix="ммоль/л" /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12} ><Form.Item name="lowDensityLipoprotein" label="ЛПНП, ммоль/л" ><Input suffix="ммоль/л" /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="highDensityLipoprotein" label="ЛПВП, ммоль/л" ><Input suffix="ммоль/л" /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12} ><Form.Item name="cHighDensityLipoprotein" label="ХС-неЛПВП"><Input disabled /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="coeffAtherogenicity" label="Коэффицент атерогенности"  ><Input disabled /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="prothrombinTime" label="Протромбиновое время, сек"><Input suffix="сек" /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="pti" label="ПТИ, %"><Input suffix="%" /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="interNormRel" label="МНО" ><Input/></Form.Item> </Col>
+                <Col xs={24} md={12} xl={12}><Form.Item name="fibrinogen" label="Фибриноген, г/л" ><Input suffix="г/л" /></Form.Item></Col>
+                <Col xs={24} md={12} xl={12}> <Form.Item name="homocysteine" label="Гомоцистеин, мкмоль/л ИФА метод" ><Input suffix="мкмоль/л ИФА метод" /></Form.Item></Col>
+                <Col xs={24} md={8} xl={8} >
+                    <Form.Item>
+                        <Button style={{width:'100%'}} type="primary" onClick={backClick} >Предыдущий</Button>
+                    </Form.Item>
+                </Col>
+                <Col xs={24} md={8} xl={8}>
+                    <Form.Item>
+                        <Button style={{width:'100%'}} type="primary" htmlType="submit">Сохранить</Button>
+                    </Form.Item>
+                </Col>
+                <Col xs={24} md={8} xl={8}>
+                    <Form.Item>
+                        <Button style={{width:'100%'}} type="primary" onClick={nextClick}  >Следующий</Button>
+                    </Form.Item>
+                </Col>
 
             </Row>
         </Form>

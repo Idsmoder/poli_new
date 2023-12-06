@@ -169,14 +169,14 @@ const Create = () => {
     return (
         <>
             <Row gutter={24}>
-                <Col span={12}>
+                <Col xs={24} xl={12} >
                 <Typography.Title level={5}>Пациент: {patient.surname} {patient.name} {patient.middlename}</Typography.Title>
                 </Col>
-                <Col span={12}>
+                <Col xs={24} xl={12}>
                 <Typography.Title level={5}>Дата рождения: {patient.birthDate}</Typography.Title>
                 </Col>
                 
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                         <Card>
                         <Tabs 
                             defaultActiveKey={activeTab}
@@ -189,7 +189,7 @@ const Create = () => {
                         />
                         </Card>
                     </Col>
-                    <Col span={12}>
+                    <Col xs={24} xl={12}>
                     <Card>
                 <fieldset
                     className="border p-2 page_wrap"

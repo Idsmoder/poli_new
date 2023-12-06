@@ -4,6 +4,8 @@ import {api} from "../../utils/api.js";
 import AddModal from "./AddModal.jsx";
 import {Link} from "react-router-dom";
 import Counter from "./Counter.jsx";
+import {AiFillCaretLeft, AiOutlineAccountBook, AiOutlineDelete, AiOutlineEdit} from "react-icons/all.js";
+import {AiOutlineMenuUnfold} from "react-icons/ai";
 
 const  List = () => {
     const [users, setUsers] = useState([]);
@@ -32,13 +34,16 @@ const  List = () => {
             key: 'name',
         },
         {
-            title:'action',
+            title:<AiOutlineMenuUnfold/>,
+            position:'right',
             dataIndex:'action',
             key:'action',
+            fixed: 'right',
+            width: 150,
             render: (text, record) => (
                 <>
-                    <Button type={"primary"} onClick={()=>DeletedUser(record?.key)}>Удалить</Button>
-                    <Button type={"primary"} onClick={()=>UpdateUser(record)}>Редактировать</Button>
+                    <Button type={"primary"} onClick={()=>DeletedUser(record?.key)}><AiOutlineDelete/></Button>
+                    <Button type={"primary"} onClick={()=>UpdateUser(record)}><AiOutlineEdit/></Button>
                 </>
 
 
@@ -73,8 +78,7 @@ const  List = () => {
 
     return(
         <>
-            <Button type="primary" onClick={addUser}>Добавить пользователя</Button>
-            <Counter/>
+            <Button  type="primary" onClick={addUser}>Добавить пользователя</Button>
             <Table
                 columns={columns}
                 dataSource={users}

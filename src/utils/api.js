@@ -4,9 +4,9 @@ import Cookies from "js-cookie";
 
 const api = axios.create({
   baseURL:
-    window.location.hostname === "https://map.gx.uz/"
+    window.location.hostname === "http://poly1.gx.uz/"
       ? "https://map.gx.uz/api"
-      : "http://map.loc/api",
+      : "https://map.gx.uz/api",
 });
 
 // Request interceptor for API calls

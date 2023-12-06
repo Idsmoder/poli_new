@@ -68,7 +68,7 @@ const Tab1 =({patient,onChanges,info,setInfo})=> {
                 onValuesChange={onValuChange}
             >
                 <Row gutter={24}>
-                    <Col span={12}>
+                    <Col xs={24} xl={12} md={12}>
                         <Form.Item
                             
                             label="Общее состояние"
@@ -150,17 +150,15 @@ const Tab1 =({patient,onChanges,info,setInfo})=> {
                             <Input.TextArea />
                         </Form.Item>
                         <Row gutter={24}>
-                            <Col span={12}>
-                            <Form.Item
-                            >
-                            <Button type="primary" htmlType="submit">Сохранить</Button>
-                            </Form.Item>
+                            <Col xs={24} md={8} xl={8}>
+                                <Form.Item>
+                                    <Button style={{width:'100%'}} type="primary" htmlType="submit">Сохранить</Button>
+                                </Form.Item>
                             </Col>
-                            <Col span={12}>
-                            <Form.Item
-                                >
-                                <Button type="primary" onClick={nextClick} >Следующий</Button>
-                            </Form.Item>
+                            <Col xs={24} md={8} xl={8}>
+                                <Form.Item>
+                                    <Button style={{width:'100%'}} type="primary" onClick={nextClick}  >Следующий</Button>
+                                </Form.Item>
                             </Col>
                         </Row>
                     </Col>
