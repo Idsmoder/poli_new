@@ -6,6 +6,8 @@ import { api } from "../../utils/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
+import InputMask from "react-input-mask";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [form] = Form.useForm();
@@ -13,52 +15,65 @@ const Login = () => {
   const navigate = useNavigate();
 
   // handleLogin
-  const handleLogin = async (values) => {
+  const handleLogin = (values) => {
     setloading(true);
-    const body = values;
-    const res = await api.post("/login", body);
+    const phone = values.phone.replace(/\+|\(|\)|\s|-/g, "");
+    const body = {
+      phone: phone,
+      password: values.password,
+    };
+    
+    const res = api.post("/login", body);
     try {
-      if (res) {
-        toast.success("Успешно", {
-          position: toast.POSITION.BOTTOM_RIGHT,
-        });
-        localStorage.setItem("access_token", res.data.access_token);
-        localStorage.setItem("role", res.data.role);
-        Cookies.set("access_token", res.data.access_token);
-        Cookies.set("refresh_token", res.data.refresh_token);
-        setTimeout(() => {
+        Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        }).fire({
+            icon: 'success',
+            title: 'Успешно'
+        })
+      res.then((res) => {
+        if (res.status === 200) {
+          console.log(res?.data, "res 11");
+          Cookies.set("access_token", res?.data?.access_token);
+          localStorage.setItem("access_token", res?.data?.access_token);
           navigate("/");
-        }, 1000);
-      }
+        }
+      });
+      
+        
+      
+
+      
     } catch (err) {
+      Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    }).fire({
+        icon: 'error',
+        title: 'Неверный логин или пароль'
+    })
       console.log(err, "err");
-      setloading(false);
-      form.resetFields();
     } finally {
       setloading(false);
     }
   };
-  const [userList, setUserList] = useState([]);
-  const getUserList = async () => {
-    const res = await api.get("/login-list");
-    try {
-      console.log("test login");
-      if (res) {
-        setUserList(
-
-          res.data.user.map((item) => ({
-            label: item.name,
-            value: item.id,
-          }))
-        );
-      }
-    } catch (err) {
-      console.log(err, "err");
-    }
-  };
-  useEffect(() => {
-    getUserList();
-  }, []);
+  
+  
 
 
   return (
@@ -76,23 +91,19 @@ const Login = () => {
           </div>
           <div>
             <Form.Item
-              name="id"
+              name="phone"
               label="Номер телефона"
              
             >
-              <Select
-                showSearch
-                placeholder="Выберите номер телефона"
-                options={userList}
-                
-                disabled={loading}
-              />
+              <InputMask mask="+\9\98 (99) 999-99-99" maskChar=" ">
+                  {(inputProps) => <Input {...inputProps} type="tel" placeholder="Номер телефон" />}
+              </InputMask>
             </Form.Item>
             <Form.Item
               name="password"
               label="Пароль"
               rules={[
-                { required: true, message: "Введите пароль", whitespace: true },
+                { required: true, message: "Введите пароль", whitespace: true,min:8 },
               ]}
             >
               <Input autoComplete="false" disabled={loading} type="password" />

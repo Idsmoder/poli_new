@@ -3,19 +3,22 @@ import {api} from "../../utils/api.js";
 import {useEffect} from "react";
 import {toast} from "react-toastify";
 import Swal from "sweetalert2";
+import InputMask from "react-input-mask";
 
 const  AddModal = ({visible, setVisible,editItem}) => {
     const [form] = Form.useForm();
 
     const  AddUsers = () => {
        const  values = form.getFieldsValue();
+       const phone = values.phone.replace(/\+|\(|\)|\s|-/g, "");
+
        if (editItem){
            const data = {
                 user_id:editItem?.key,
                name: values?.name,
                email: values?.email,
                password: values?.password,
-               phone: values?.phone
+               phone: phone
            }
            api.post('/user/update', data).then((res) => {
                if (res.status === 200) {
@@ -35,7 +38,7 @@ const  AddModal = ({visible, setVisible,editItem}) => {
                name: values?.name,
                email: values?.email,
                password: values?.password,
-               phone: values?.phone
+               phone: phone
            }
            api.post('/user/create', data).then((res) => {
                if (res.status === 200) {
@@ -93,7 +96,9 @@ const  AddModal = ({visible, setVisible,editItem}) => {
                             label={'Телефон'}
                             rules={[{ required: true, message: 'Пожалуйста, введите свой номер телефона!' }]}
                         >
-                            <Input type={"number"}  />
+                            <InputMask mask="+\9\98 (99) 999-99-99" maskChar=" ">
+                                {(inputProps) => <Input {...inputProps} type="tel" placeholder="Номер телефон" />}
+                            </InputMask>
                         </Form.Item>
                         <Form.Item
                             name={'password'}

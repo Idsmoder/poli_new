@@ -1,9 +1,11 @@
-import { Button, Col, DatePicker, Form, Input, Radio, Row, Select, Table } from "antd"
+import { Button, Card, Col, DatePicker, Form, Input, Radio, Row, Select, Table } from "antd"
 import Typography from "antd/es/typography/Typography"
 import { useState } from "react";
 import { api } from "../../utils/api";
 import moment from "moment";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import InputMask from "react-input-mask";
 
 
 const Create = ()=> {
@@ -24,29 +26,39 @@ const Create = ()=> {
        
     // }
     const  onFinish = (values) => {
+    const phone = values.phone.replace(/\+|\(|\)|\s|-/g, "");
+
         let body = {
                 name: values.name,
                 surname: values.surname,
                 middlename: values.middlename,
                 birthDate: values.birthDate,
                 age: values.age,
-                phone: values.phone,
+                phone: phone,
                 ambul_number: values.ambul_number,
                 gender:values.gender,
                 address: values.address,
         }
+        
         api
             .post("/patient/create", body)
             .then((res) => {
-                if (res.status=='success') {
+                if (res.data.status=='success') {
                     toast.success("Успешно", {
                         position: toast.POSITION.BOTTOM_RIGHT,
                       });
-                }else{
-                    console.log("error");
-                    toast.error("Error",{
-                        position: toast.POSITION.BOTTOM_RIGHT,
-                    })
+                }
+                if (res.data.status=='error') {
+                    const footer_button = `<a href="/doc/create/${res?.data?.data?.id}">Bemor sahifasiga o'tish</a>`;
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Bunday bemor mavjud',
+                            text: res?.data?.data?.surname + ' ' + res.data.data?.name + ' ' + res.data.data?.middlename + ' mavjud',
+                            showConfirmButton: false,
+                            footer: footer_button
+                        })
+
+                    
                 }
             }
             )
@@ -62,13 +74,14 @@ const Create = ()=> {
         }
   return (
     <>
+    <Card  bordered={false} style={{ width: '100%', display:'flex',justifyContent:'space-between',alignItems:'center' }}>
     <Typography>
             <h3>Для создания документа необходимо сначала добавить клиента</h3>
           </Typography>
           <Typography>
             <h5>Создать клиента</h5>
           </Typography>
-      <Row gutter={[48, 8]}>
+      <Row >
         <Col span={24}>
             <Form 
             name="basic" 
@@ -76,10 +89,11 @@ const Create = ()=> {
             size="large" 
             onFinish={onFinish}
             form={form}
+            validateTrigger="onBlur"
             onValuesChange={onValuChange}
             >
                 <Row gutter={[24,8]}>
-                    <Col span={22}>
+                    <Col span={24}>
                         <Row gutter={24}>
                         <Col span={24}>
                         <Form.Item
@@ -124,12 +138,16 @@ const Create = ()=> {
                         </Form.Item>
                     </Col>
                     <Col span={8}>
+                   
                         <Form.Item
                             label=""
                             name="phone"
-                            rules={[{ required: true, message: 'Пожалуйста введите номер телефона' }]}
+                            
+                            rules={[{ required: true, message: 'Пожалуйста введите номер телефона',min:12 }]}
                         >
-                            <Input placeholder="Номер телефона" />
+                            <InputMask mask="+\9\98 (99) 999-99-99" maskChar=" ">
+                                {(inputProps) => <Input {...inputProps} type="tel" placeholder="Номер телефон" />}
+                            </InputMask>
                         </Form.Item>    
                     </Col>
                     <Col span={8}>
@@ -161,9 +179,7 @@ const Create = ()=> {
                             <Input placeholder="Адрес" />
                         </Form.Item>
                     </Col>
-                </Row>
-            </Col>
-
+                    <Col span={24}>
                     <Form.Item >
                         <Button htmlType="submit" type="primary">
                             Добавить клиента
@@ -172,11 +188,15 @@ const Create = ()=> {
                             Добавить клиента и документ
                         </Button>
                     </Form.Item>
+                    </Col>
+                </Row>
+            </Col>
         </Row>
 
             </Form>
         </Col>
       </Row>
+      </Card>
     </>
   )
 }
