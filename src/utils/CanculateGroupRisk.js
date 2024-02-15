@@ -35,6 +35,8 @@ export const CanculateGroupRisk = (view) => {
         return "Умеренный риск"
     }else if (score2<=1) {
         return "Низкий риск"
+    }else{
+        return "Риск не определен"
     }
     
 }

@@ -5,15 +5,15 @@ import { api } from "../../utils/api";
 const View3 = ({patient,info,setInfo}) => {
     return (
         <>
-            <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
+            <h6 className="mt-3 fw-bold" style={{ fontSize: "15px" }}>
                 Принимает ли медикаментозную терапию (отметить):{info?.no ? "Нет": ""}
             </h6>
             {info?.no? "" : <>
-            <div className="row py-2 align-items-center">
+            <div className="row py-1 align-items-center">
             {/* diuretics */}
             {info?.diuretics ? (
                 <div className="col-6">
-                <p className="m-0 ms-3 my-2" style={{ fontSize: "10px" }}>
+                <p className="m-0 ms-3 my-2" style={{ fontSize: "15px" }}>
                     диуретики
                 </p>
                 </div>
@@ -23,7 +23,7 @@ const View3 = ({patient,info,setInfo}) => {
             {/* beta_blockers */}
             {info?.betaBlockers ? (
                 <div className="col-6">
-                <p className="m-0 ms-3 my-2" style={{ fontSize: "10px" }}>
+                <p className="m-0 ms-3 my-2" style={{ fontSize: "15px" }}>
                     бета-блокаторы
                 </p>
                 </div>
@@ -34,7 +34,7 @@ const View3 = ({patient,info,setInfo}) => {
             {/* antagonis */}
             {info?.calcium ? (
                 <div className="col-6">
-                <p className="m-0 ms-3 my-2" style={{ fontSize: "10px" }}>
+                <p className="m-0 ms-3 my-2" style={{ fontSize: "15px" }}>
                     антагонисты кальция
                 </p>
                 </div>
@@ -44,7 +44,7 @@ const View3 = ({patient,info,setInfo}) => {
             {/* ingibitor */}
             {info?.apf ? (
                 <div className="col-6">
-                <p className="m-0 ms-3 my-2" style={{ fontSize: "10px" }}>
+                <p className="m-0 ms-3 my-2" style={{ fontSize: "15px" }}>
                     ингибиторы АПФ
                 </p>
                 </div>
@@ -55,7 +55,7 @@ const View3 = ({patient,info,setInfo}) => {
             {/* АРА */}
             {info?.ara ? (
                 <div className="col-6">
-                <p className="m-0 ms-3 my-2" style={{ fontSize: "10px" }}>
+                <p className="m-0 ms-3 my-2" style={{ fontSize: "15px" }}>
                     АРА
                 </p>
                 </div>
@@ -65,7 +65,7 @@ const View3 = ({patient,info,setInfo}) => {
             {/* АМКР */}
             {info?.amkr ? (
                 <div className="col-6">
-                <p className="m-0 ms-3 my-2" style={{ fontSize: "10px" }}>
+                <p className="m-0 ms-3 my-2" style={{ fontSize: "15px" }}>
                     АМКР
                 </p>
                 </div>
@@ -76,7 +76,7 @@ const View3 = ({patient,info,setInfo}) => {
             {/* antagonis */}
             {info?.antiarrhythmics ? (
                 <div className="col-6">
-                <p className="m-0 ms-3 my-2" style={{ fontSize: "10px" }}>
+                <p className="m-0 ms-3 my-2" style={{ fontSize: "15px" }}>
                     Антиаритмики
                 </p>
                 </div>
@@ -88,7 +88,7 @@ const View3 = ({patient,info,setInfo}) => {
             {/* nitrat */}
             {info?.nitrates ? (
                 <div className="col-6">
-                <p className="m-0 ms-3 my-2" style={{ fontSize: "10px" }}>
+                <p className="m-0 ms-3 my-2" style={{ fontSize: "15px" }}>
                     Нитраты
                 </p>
                 </div>
@@ -98,7 +98,7 @@ const View3 = ({patient,info,setInfo}) => {
             {/* serdchenie */}
             {info?.cardiac ? (
                 <div className="col-6">
-                <p className="m-0 ms-3 my-2" style={{ fontSize: "10px" }}>
+                <p className="m-0 ms-3 my-2" style={{ fontSize: "15px" }}>
                     Сердечные гликозиды
                 </p>
                 </div>
@@ -107,7 +107,7 @@ const View3 = ({patient,info,setInfo}) => {
             )}
             {info?.anti ? (
                 <div className="col-6" >
-                    <p className="m-0 ms-3 my-2" style={{ fontSize: "10px" }}>
+                    <p className="m-0 ms-3 my-2" style={{ fontSize: "15px" }}>
                         Антиагреганты
                 </p>
                 </div>

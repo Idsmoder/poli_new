@@ -3,6 +3,7 @@ import TextArea from "antd/es/input/TextArea"
 import { useEffect, useState } from "react"
 import { api } from "../../utils/api"
 import { useParams } from "react-router-dom"
+import Swal from "sweetalert2"
 
 const Tab9 = ({patient,onChanges,info,setInfo}) => {
     const [form] = Form.useForm()
@@ -59,7 +60,31 @@ const Tab9 = ({patient,onChanges,info,setInfo}) => {
         body.pvC = pvC ? '1' : '0';
         body.nurse_doc_id = params.id;
         body.tab = 9; 
-        api.post('doc/create',body).then(res=>console.log(res))        
+        api.post('doc/create',body).then(res => {
+           
+                if (res?.status==200) {
+
+                    Swal.mixin({
+                        toast:true,
+                        position: 'top-end',
+                        timerProgressBar:true,
+                        showConfirmButton:false,
+                        timer:3000,
+                        didOpen:(toast) => {
+                            toast.addEventListener('mouseenter',Swal.stopTimer)
+                            toast.addEventListener('mouseleave',Swal.resumeTimer)
+                        }
+                        
+                    }).fire({
+                        icon: 'success',
+                        title: 'Сохранено',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    nextClick();
+                }
+            }
+        )        
     }
     return (
         <>

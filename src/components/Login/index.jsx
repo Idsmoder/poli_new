@@ -25,7 +25,10 @@ const Login = () => {
     
     const res = api.post("/login", body);
     try {
-        Swal.mixin({
+        
+      res.then((res) => {
+        if (res.status === 200) {
+          Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
@@ -39,13 +42,26 @@ const Login = () => {
             icon: 'success',
             title: 'Успешно'
         })
-      res.then((res) => {
-        if (res.status === 200) {
-          console.log(res?.data, "res 11");
           Cookies.set("access_token", res?.data?.access_token);
           localStorage.setItem("access_token", res?.data?.access_token);
           navigate("/");
         }
+      })
+      .catch((err) => {
+        Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+      }).fire({
+          icon: 'error',
+          title: 'Неверный логин или пароль'
+      })
       });
       
         

@@ -12,7 +12,7 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
     const [chdd_4, setChdd_4] = useState('');
     const [chdd_5, setChdd_5] = useState('');
     const [chdd_6, setChdd_6] = useState('');
-    const [wheezing_1, setWheezing_1] = useState('');
+    const [wheezing_1, setWheezing_1] = useState(false);
     const [wheezing_2, setWheezing_2] = useState('');
     const [wheezing_3, setWheezing_3] = useState('');
     const [wheezing_4, setWheezing_4] = useState('');
@@ -255,7 +255,8 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
         
     }
     const changeWhee = (e)=>{
-        setWheezing_1(e.target.checked);
+        console.log(e.target.checked);
+        setWheezing_1(e.target.checked ? 1:0);
     }
     const nouseSystolicCheck = (e)=>{
         setNoise_systolic(e.target.checked);
@@ -293,7 +294,7 @@ const Tab6 = ({patient,onChanges,info,setInfo})=>{
                     <Col span={24}><Form.Item><Typography.Title level={5}>Наличие хрипов</Typography.Title></Form.Item></Col>
                     <Col xs={24} md={12} xl={12}>
                         <Form.Item name="wheezing_1"  >
-                            <Checkbox onChange={changeWhee} >нет</Checkbox>
+                            <Checkbox onChange={changeWhee} checked={wheezing_1 ? 1:0} >нет</Checkbox>
                         </Form.Item></Col>
                     {!wheezing_1 ?
 

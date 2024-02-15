@@ -47,7 +47,7 @@ const AdminRoute = () => {
         <Header className="layout_header">
 
 
-            <div className="">
+            <div style={{display:'flex', justifyContent:"space-between",margin:'1%'}}>
                 <Button
                     className={'button_left'}
                     type="primary"
@@ -66,6 +66,7 @@ const AdminRoute = () => {
                 </Button>
             </div>
         </Header>
+        
 
         <Content className="layout_content">
           <Suspense  fallback={<Loading />}>

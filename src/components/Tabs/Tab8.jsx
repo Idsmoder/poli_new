@@ -2,6 +2,7 @@ import { Button, Col, Form, Input, Row, Select, Typography } from "antd"
 import { useEffect } from "react"
 import {api} from "../../utils/api"
 import { useParams } from "react-router-dom"
+import Swal from "sweetalert2"
 
 const Tab8  = ({patient,onChanges,info,setInfo ,info6}) =>{
     const params = useParams()
@@ -38,7 +39,24 @@ const Tab8  = ({patient,onChanges,info,setInfo ,info6}) =>{
             nurse_doc_id: params.id,
         }
         api.post('doc/create',body).then(res => {
-            console.log(res);
+            if (res?.status==200) {
+                Swal.mixin({
+                    position: 'top-end',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                }).fire({
+                    icon: 'success',
+                    title: 'Сохранено',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                nextClick();
+
+            }
         }
         )
 

@@ -1116,13 +1116,13 @@ const View6 = ({patient,info,setInfo,height1} )=>{
   return (
     <div>
       <div>
-        <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
+        <h6 className="mt-1 fw-bold" style={{ fontSize: "15px",padding:"0.2rem"}}>
           6. Гемодинамические показатели и показатели объективного статуса:
           {/* {age <= 15 && info.grow <= 140 ? info.tab6[0].adp : "no test"} */}
         </h6>
         <table
           className="table table-bordered p-0"
-          style={{ fontSize: "10px" }}
+          style={{ fontSize: "15px" }}
         >
           <thead>
             <tr>

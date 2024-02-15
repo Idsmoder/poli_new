@@ -6,6 +6,7 @@ import phy3 from '../../assets/dieta/1800/dieta1800.png'
  export function Dieta ({imt,bmr}) {
   
   const [typeDiet, setTypeDiet] = useState(0)
+  console.log(bmr,"dier");
   useEffect(() => {
       if (imt>25) {
         const item = bmr - bmr * 0.2;

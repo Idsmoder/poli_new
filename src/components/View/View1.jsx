@@ -6,15 +6,15 @@ const View1 = ({patient,info,setInfo}) => {
         <>
             <div>
                 <div>
-                    <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
+                    <h6 className="mt-3 fw-bold" style={{ fontSize: "15px" }}>
                     Клиническая характеристика больного:
                     </h6>
 
-                    <div className="d-flex ms-3 align-items-center py-3 border-bottom border-1">
-                    <h6 className="m-0" style={{ fontSize: "10px" }}>
+                    <div className="d-flex ms-3 align-items-center py-0 border-bottom border-1">
+                    <h6 className="m-0" style={{ fontSize: "15px" }}>
                         Общее состояние:
                     </h6>
-                    <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+                    <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
                         {!info?.general_state
                         ? ""
                         : info?.general_state === "1"
@@ -26,17 +26,17 @@ const View1 = ({patient,info,setInfo}) => {
                     </div>
 
                     {/* Жалобы */}
-                    <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
+                    <h6 className="mt-3 fw-bold" style={{ fontSize: "15px" }}>
                     Жалобы
                     </h6>
                     {/* Одышка */}
                     <div className="row">
                     <div className="col-3">
-                        <div className="d-flex ms-3 align-items-center py-3 border-bottom border-1">
-                        <h6 className="m-0" style={{ fontSize: "10px" }}>
+                        <div className="d-flex ms-3 align-items-center py-0 border-bottom border-1">
+                        <h6 className="m-0" style={{ fontSize: "15px" }}>
                             Одышка:
                         </h6>
-                        <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+                        <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
                             {!info?.complaints_shortness
                             ? ""
                             : info?.complaints_shortness === "1"
@@ -52,11 +52,11 @@ const View1 = ({patient,info,setInfo}) => {
 
                     {/* Боли в области сердца */}
                     <div className="col-3">
-                        <div className="d-flex ms-3 align-items-center py-3 border-bottom border-1">
-                        <h6 className="m-0" style={{ fontSize: "10px" }}>
+                        <div className="d-flex ms-3 align-items-center py-0 border-bottom border-1">
+                        <h6 className="m-0" style={{ fontSize: "15px" }}>
                             Cердцебиение:
                         </h6>
-                        <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+                        <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
                             {!info?.heartbeat
                             ? "нет"
                             : info?.heartbeat === 1
@@ -70,11 +70,11 @@ const View1 = ({patient,info,setInfo}) => {
                     <div className="row">
                     <div className="col-6">
                         {/* головные боли */}
-                        <div className="d-flex ms-3 align-items-center py-3 border-bottom border-1">
-                        <h6 className="m-0" style={{ fontSize: "10px" }}>
+                        <div className="d-flex ms-3 align-items-center py-0 border-bottom border-1">
+                        <h6 className="m-0" style={{ fontSize: "15px" }}>
                             Боли в области сердца:
                         </h6>
-                        <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+                        <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
                             {!info?.headache
                             ? ""
                             : info?.headache === "1"
@@ -89,11 +89,11 @@ const View1 = ({patient,info,setInfo}) => {
                     </div>
                     <div className="col-6">
                         {/* головокружения */}
-                        <div className="d-flex ms-3 align-items-center py-3 border-bottom border-1">
-                        <h6 className="m-0" style={{ fontSize: "10px" }}>
+                        <div className="d-flex ms-3 align-items-center py-0 border-bottom border-1">
+                        <h6 className="m-0" style={{ fontSize: "15px" }}>
                             Головные боли:
                         </h6>
-                        <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+                        <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
                             {!info?.pain_heart
                             ? ""
                             : info?.pain_heart === "1"
@@ -105,11 +105,11 @@ const View1 = ({patient,info,setInfo}) => {
                     <div className="row">
                         <div className="col-6">
                         {/* головокружения */}
-                        <div className="d-flex ms-3 align-items-center py-3 border-bottom border-1">
-                            <h6 className="m-0" style={{ fontSize: "10px" }}>
+                        <div className="d-flex ms-3 align-items-center py-0 border-bottom border-1">
+                            <h6 className="m-0" style={{ fontSize: "15px" }}>
                             Головокружения:
                             </h6>
-                            <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+                            <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
                             {!info?.dizziness
                                 ? ""
                                 : info?.dizziness === "1"
@@ -121,11 +121,11 @@ const View1 = ({patient,info,setInfo}) => {
 
                         {/* подъёмы АД */}
                         <div className="col-6">
-                        <div className="d-flex ms-3 align-items-center py-3 border-bottom border-1">
-                            <h6 className="m-0" style={{ fontSize: "10px" }}>
+                        <div className="d-flex ms-3 align-items-center py-0 border-bottom border-1">
+                            <h6 className="m-0" style={{ fontSize: "15px" }}>
                             Подъёмы АД:
                             </h6>
-                            <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+                            <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
                             {!info?.ad
                                 ? ""
                                 : info?.ad === "1"
@@ -142,11 +142,11 @@ const View1 = ({patient,info,setInfo}) => {
                         </div>
                     </div>
                     <div className="col-12">
-                        <div className="d-flex ms-3 align-items-center py-3 border-bottom border-1">
-                        <h6 className="m-0" style={{ fontSize: "10px" }}>
+                        <div className="d-flex ms-3 align-items-center py-0 border-bottom border-1">
+                        <h6 className="m-0" style={{ fontSize: "15px" }}>
                             Дополнительные жалобы:
                         </h6>
-                        <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+                        <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
                             {info?.ad_text}
                         </p>
                         </div>
