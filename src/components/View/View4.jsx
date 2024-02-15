@@ -6,17 +6,17 @@ const View4 = ({patient,info,setInfo}) => {
     return (
         <div>
       <div>
-        <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
+        <h6 className="mt-3 fw-bold" style={{ fontSize: "15px" }}>
           Вредные привычки и наследственность :
         </h6>
 
         <div className="row">
           <div className="col-6">
-            <div className="d-flex ms-3 align-items-center py-3 border-bottom border-1">
-              <h6 className="m-0" style={{ fontSize: "10px" }}>
+            <div className="d-flex ms-3 align-items-center py-0 border-bottom border-1">
+              <h6 className="m-0" style={{ fontSize: "15px" }}>
                 Употребление алкоголя (отметить) :
               </h6>
-              <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+              <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
                 {!info?.alcohol
                   ? ""
                   : info?.alcohol === "1"
@@ -30,11 +30,11 @@ const View4 = ({patient,info,setInfo}) => {
             </div>
           </div>
           <div className="col-6">
-            <div className="d-flex ms-3 align-items-center py-3 border-bottom border-1">
-              <h6 className="m-0" style={{ fontSize: "10px" }}>
+            <div className="d-flex ms-3 align-items-center py-0 border-bottom border-1">
+              <h6 className="m-0" style={{ fontSize: "15px" }}>
                 Курение :
               </h6>
-              <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+              <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
                 {!info?.smoking
                   ? ""
                   : info?.smoking === "1"
@@ -46,11 +46,11 @@ const View4 = ({patient,info,setInfo}) => {
             </div>
           </div>
           <div className="col-6">
-            <div className="d-flex ms-3 align-items-center py-3 border-bottom border-1">
-              <h6 className="m-0" style={{ fontSize: "10px" }}>
+            <div className="d-flex ms-3 align-items-center py-0 border-bottom border-1">
+              <h6 className="m-0" style={{ fontSize: "15px" }}>
                 ГБ :
               </h6>
-              <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+              <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
                 {!info?.gb
                   ? ""
                   : info?.gb === "1"
@@ -66,11 +66,11 @@ const View4 = ({patient,info,setInfo}) => {
             </div>
           </div>
           <div className="col-6">
-            <div className="d-flex ms-3 align-items-center py-3 border-bottom border-1">
-              <h6 className="m-0" style={{ fontSize: "10px" }}>
+            <div className="d-flex ms-3 align-items-center py-0 border-bottom border-1">
+              <h6 className="m-0" style={{ fontSize: "15px" }}>
                 ИБС :
               </h6>
-              <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+              <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
                 {!info?.ibs
                   ? ""
                   : info?.ibs === "1"
@@ -85,11 +85,11 @@ const View4 = ({patient,info,setInfo}) => {
           </div>
         </div>
 
-        <div className="d-flex ms-3 align-items-center py-3 border-bottom border-1">
-          <h6 className="m-0" style={{ fontSize: "10px" }}>
+        <div className="d-flex ms-3 align-items-center py-0 border-bottom border-1">
+          <h6 className="m-0" style={{ fontSize: "15px" }}>
             СД :
           </h6>
-          <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+          <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
             {!info?.sd
               ? ""
               : info?.sd === "1"
@@ -101,11 +101,11 @@ const View4 = ({patient,info,setInfo}) => {
               : "Отец и мать"}
           </p>
         </div>
-        <div className="d-flex ms-3 align-items-center py-3 border-bottom border-1">
-          <h6 className="m-0" style={{ fontSize: "10px" }}>
+        <div className="d-flex ms-3 align-items-center py-0 border-bottom border-1">
+          <h6 className="m-0" style={{ fontSize: "15px" }}>
             Ранняя смерть от ССЗ до 50 лет родителей :
           </h6>
-          <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+          <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
             {!info?.ssz
               ? ""
               : info?.ssz === "1"

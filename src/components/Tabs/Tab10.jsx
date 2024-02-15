@@ -2,6 +2,7 @@ import { Button, Col, Form, Input, Radio, Row, Slider, Typography } from "antd";
 import { useEffect, useState } from "react";
 import {api} from "../../utils/api"
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 const Tab10 = ({patient,onChanges,info,setInfo}) => {
     const [stre,setStre] = useState(0);
     const [gradee,setGrade] = useState(0);
@@ -39,9 +40,7 @@ const Tab10 = ({patient,onChanges,info,setInfo}) => {
         console.log(e,"e");
         setInfo({...info, ...e});
     }
-    const nextClick = () => {
-        onChanges('11');
-    }
+    
     const backClick = () => {
         onChanges('9');
     }
@@ -50,7 +49,26 @@ const Tab10 = ({patient,onChanges,info,setInfo}) => {
         values.nurse_doc_id = params.id;
 
         api.post('doc/create',values)
-        .then(res=>console.log(res))
+        .then(res=>{
+            if (res?.status==200) {
+
+                Swal.mixin({
+                    toast:true,
+                    position: 'top-end',
+                    timerProgressBar:true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                    
+                }).fire({
+                    icon: 'success',
+                    title: 'Сохранено',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+            }
+        })
         .catch(err=>console.log(err))
     }
 

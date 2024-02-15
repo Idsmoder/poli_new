@@ -5,7 +5,7 @@ import "./View.css";
 const ViewMain = ({ patient }) => {
   return (
     <>
-      <div className="d-flex align-items-center py-3 border-bottom border-1 ">
+      <div className="d-flex align-items-center py-0 border-bottom border-1 ">
         <h6 className="m-0" style={{ fontSize: "15px" }}>
           Ф.И.О:
         </h6>
@@ -22,33 +22,33 @@ const ViewMain = ({ patient }) => {
         </div>
       </div>
       {/* Дата рождения */}
-      <div className="d-flex align-items-center py-3 border-bottom border-1 ">
-        <h6 className="m-0" style={{ fontSize: "10px" }}>
+      <div className="d-flex align-items-center py-0 border-bottom border-1 ">
+        <h6 className="m-0" style={{ fontSize: "15px" }}>
           Дата рождения :
         </h6>
-        <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+        <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
           {moment(patient.birthDate).format("DD-MM-YYYY")}
         </p>
       </div>
       <div className="row">
         <div className="col-6">
           {/* Дата включения в исследование (исходно) */}
-          <div className="d-flex align-items-center py-3 border-bottom border-1">
-            <h6 className="m-0" style={{ fontSize: "10px" }}>
+          <div className="d-flex align-items-center py-0 border-bottom border-1">
+            <h6 className="m-0" style={{ fontSize: "15px" }}>
               Дата включения в исследование :
             </h6>
-            <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+            <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
               {patient.ambul_number}
             </p>
           </div>
         </div>
         <div className="col-6">
           {/* Телефон */}
-          <div className="d-flex align-items-center py-3 border-bottom border-1">
-            <h6 className="m-0" style={{ fontSize: "10px" }}>
+          <div className="d-flex align-items-center py-0 border-bottom border-1">
+            <h6 className="m-0" style={{ fontSize: "15px" }}>
               Телефон :
             </h6>
-            <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+            <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
               {patient.phone}
             </p>
           </div>
@@ -57,22 +57,22 @@ const ViewMain = ({ patient }) => {
       <div className="row">
         <div className="col-6">
           {/* № амбул. карты */}
-          <div className="d-flex align-items-center py-3 border-bottom border-1">
-            <h6 className="m-0" style={{ fontSize: "10px" }}>
+          <div className="d-flex align-items-center py-0 border-bottom border-1">
+            <h6 className="m-0" style={{ fontSize: "15px" }}>
               № амбул. карты :
             </h6>
-            <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+            <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
               {patient.ambul_number}
             </p>
           </div>
         </div>
         <div className="col-6">
           {/* Пол */}
-          <div className="d-flex align-items-center py-3 border-bottom border-1">
-            <h6 className="m-0" style={{ fontSize: "10px" }}>
+          <div className="d-flex align-items-center py-0 border-bottom border-1">
+            <h6 className="m-0" style={{ fontSize: "15px" }}>
               Пол :
             </h6>
-            <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+            <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
               {!patient.gender ? "" : patient.gender === "0" ? "Жен" : "Муж"}
             </p>
           </div>
@@ -81,22 +81,22 @@ const ViewMain = ({ patient }) => {
       <div className="row">
         <div className="col-6">
           {/* № амбул. карты */}
-          <div className="d-flex align-items-center py-3 border-bottom border-1">
-            <h6 className="m-0" style={{ fontSize: "10px" }}>
+          <div className="d-flex align-items-center py-0 border-bottom border-1">
+            <h6 className="m-0" style={{ fontSize: "15px" }}>
               Возраст :
             </h6>
-            <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+            <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
               {patient.age}
             </p>
           </div>
         </div>
         <div className="col-6">
           {/* Пол */}
-          <div className="d-flex align-items-center py-3 border-bottom border-1">
-            <h6 className="m-0" style={{ fontSize: "10px" }}>
+          <div className="d-flex align-items-center py-0 border-bottom border-1">
+            <h6 className="m-0" style={{ fontSize: "15px" }}>
               Масса:
             </h6>
-            <p className="m-0 ms-3" style={{ fontSize: "10px" }}>
+            <p className="m-0 ms-3" style={{ fontSize: "15px" }}>
               {/* {info.weight} */}
               кг
             </p>

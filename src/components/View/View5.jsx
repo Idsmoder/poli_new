@@ -323,10 +323,10 @@ const View5 = ({ patient,info,setInfo }) => {
 
     return (
     <div>
-      <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
+      <h6 className="mt-1 fw-bold" style={{ fontSize: "15px" }}>
         5. Антропометрические данные и данные Tanita:
       </h6>
-      <table className="table table-bordered p-0" style={{ fontSize: "10px" }}>
+      <table className="table table-bordered" style={{ fontSize: "15px" }}>
         <thead>
           <tr>
             <th className="p-0 col-1">№ п/п</th>

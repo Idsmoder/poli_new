@@ -8,6 +8,9 @@ import '../../utils/style.css';
 import { useMemo } from "react";
 import MeasureDieta from "../Measure/MeasureDieta";
 import RufierDixon from "../Measure/RufierDixon.js";
+import tshxMeasure from "../Measure/MeasureTSHX.js";
+import IdealMass from "../Measure/MeasureIdealMass.js";
+import PhysicalActivity from "../Measure/MeasurePhysicalActivity.jsx";
 
 
 export const View11 = ({ info,patient,info5,info6,info7,info2,info4,info8,info10,info9 }) => {
@@ -34,6 +37,8 @@ export const View11 = ({ info,patient,info5,info6,info7,info2,info4,info8,info10
   const [newFacts,setNewFacts]=useState(null);
   const [typeDiet,setTypeDiet]=useState(null);
   const autoCount = useRef(0);
+  const [stepTshx,setStepTshx]=useState(0);
+  const [idealBody,setIdealBody]=useState(0);
   useEffect(() => {
     if (patient?.gender==="0") {
       if (info10?.stressLevel >=parseFloat(0.00) && info10?.stressLevel <= parseFloat(1.17)) {
@@ -115,8 +120,24 @@ useEffect(() => {
       score2: score2,
     }
     let item =  CanculateGroupRisk(view);
+    console.log(item,"item");
     setGroupRisk(item);
   }, [info2,info4,info7,score2]);
+  useEffect(() => {
+    const info = {
+      tshx: info8?.tshx,
+      gender: patient?.gender
+    }
+   const  item =  tshxMeasure(info);
+   setStepTshx(item);
+  },[info8?.tshx])
+  useEffect(() => {
+    const info = {
+      height: info5?.height,
+      gender: patient?.gender
+    }
+    setIdealBody(Math.round(IdealMass(info)));
+  },[info5?.height])
 
   const factorsMeasure = () =>{
     const  p2 = info8?.rufierDixontest_p2;
@@ -151,12 +172,14 @@ useEffect(() => {
       setDiabetes("Нарушение гликемии натощак");
     }else if (info7?.glucose>7.0) {
       setDiabetes("сахарный диабет");
+    }else{
+      setDiabetes(null);
     }
     
     // Factor 3
     if(info8?.tshx< parseFloat(300)){
       if (item > parseFloat(15) && piragova>43) {
-        setPhysicalActivity(" физическая активность");
+        setPhysicalActivity("физическая активность");
       }else{
         setPhysicalActivity(null);
       }
@@ -169,20 +192,20 @@ useEffect(() => {
     }
     // Factor 5
     if(info10?.stressLevel>=2.0){
+      console.log("strees");
       setStrees1("психологический стресс")
     }else{
       setStrees1(null)
     }
     // Factor 6
-    if (info4?.gb!=1) {
-      if (patient?.gender=='0' && patient?.age<=60) {
+    if (info4?.ssz!=1) {
         setHyperurecemia("семейный анамнез ранней заболеваемости ССЗ");
-      }else if(patient?.gender=='1' && patient?.age<=55){
-        setHyperurecemia("семейный анамнез ранней заболеваемости ССЗ");
-      }
+    }else{
+      setHyperurecemia(null)
     }
     // Factor 7
     if(info6?.sad >= 140 && info6?.dad >= 90){
+      console.log("hypertension");
       setHypertension("артериальная гипертензия");
     }else{
       setHypertension(null);
@@ -193,19 +216,18 @@ useEffect(() => {
     }else{
       setFibriolysis(null);
     }
-   
-    // Factor 9
-    // if (condition) {
-      
-    // }
-    // Factor 10
-    // XBP
+  
     if (info2?.m && info7?.rapidGlomFilt < parseFloat(61)) {
       setDiseaseKidney("хроническая болезнь почек");
+    }else{
+      setDiseaseKidney(null);
     }
     // Factor 11
     if (info6?.chcc > parseFloat(80)) {
+      console.log("tess");
       setChcc("ЧСС боле 80 в мин");
+    }else{
+      setChcc(null);
     }
     // Factor 12
     if(info7?.totalCholesterol>5.4){
@@ -555,17 +577,16 @@ useEffect(() => {
     )
   }
   
-
 return (
     <div>
       <div>
-        <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
+        <h6 className="mt-3 fw-bold" style={{ fontSize: "15px" }}>
           11. Расчетные показатели:
         </h6>
 
         <table
           className="table table-bordered p-0"
-          style={{ fontSize: "10px" }}
+          style={{ fontSize: "15px" }}
         >
           <thead>
             <tr>
@@ -595,7 +616,7 @@ return (
               : score2>=5 && score2<10 ? "Высокий"
               :score2>=1 && score2<5 ? "Умеренный"
               :''
-            } </td>
+            } Риск сердечно-сосудистых событий и осложнений </td>
             </tr>
             <tr>
               <td>3</td>
@@ -636,7 +657,8 @@ return (
               : info10?.stressLevel<=0.99 &&  patient?.gender==1 ? "Низкий" 
               : info10?.stressLevel>=2.18 && info10?.stressLevel<=3.0 && patient?.gender==0 ? "Высокий"
               : info10?.stressLevel>=1.18 && info10?.stressLevel<=2.17 && patient?.gender==0 ? "Средний" 
-              : info10?.stressLevel<1.17 && patient?.gender==0 ? "Низкий" : ""   }</td>
+              : info10?.stressLevel<1.17 && patient?.gender==0 ? "Низкий"
+              : info10?.stressLevel==0 ? "0.00-баллов нет нарушений" : ''   }</td>
             </tr>}
             {hyperurecemia && <tr>
               <td></td>
@@ -703,33 +725,39 @@ return (
               <td></td></tr>}
             </tbody>
         </table>
-        <table className={'table table-sm'}>
+        <table className={'table table-sm'} style={{fontSize:"15px"}}>
           <thead>
           <tr>
             <th scope="col">рекомендации</th>
           </tr>
           </thead>
           <tbody>
-          {nausea &&<tr>
-                <td>ожирение и избыточный вес - снижение веса тела, идеальный вес тела ..........., базовый обмен  веществ в сутки .............(-15-20%), суточный рацион на .......... ккалорий</td>
-              </tr> }
+          {nausea &&<tr><td>ожирение и избыточный вес - снижение веса тела, идеальный вес тела {idealBody}, базовый обмен  веществ в сутки .............(-15-20%), суточный рацион на .......... ккалорий</td></tr> }
+          {smoking && <tr><td>курение - отказ от курения</td></tr>}
+          {hypertension && <tr><td>Артериальная гипертензия по степени - контроль АД, целевой уровень АД: {patient?.age>=85 ? "САД 140 мм.рт.ст." :"САД 120-129 мм.рт.ст., ДАД 70-79 мм.рт.ст"}. коррекция гипотензивной терапии, наблюдение терапевта и кардиолога</td></tr>}
+          
+          {xc && <tr><td>Здоровый образ жизни+ гиполипидемическая диета + медикаментозная гиполипидемическая терапия (консультация кардиолога, терапевта)</td></tr>}
           {diabetes && <tr><td>контроль глюкозы сыворотки крови, уровень глюкозы натащак менее 6,1 ммоль/л, наблюдение эндокринолога</td></tr>}
-          {physicalActivity && <tr><td>недостаточная физическая активность - увеличение физической активности под контролем ЧСС, программа физической реабилитации, соответствующая ....... ступени</td></tr>}
-          {info4?.smoking===1 && <tr><td>курение - отказ от курения</td></tr>}
+          {physicalActivity && <tr><td>недостаточная физическая активность - увеличение физической активности под контролем ЧСС, программа физической реабилитации, соответствующая {stepTshx}
+          ({stepTshx==1 ? "Низкая"
+            : stepTshx==2 ?  "Умеренно низкая"
+            : stepTshx==3 ? "Средняя"
+            : stepTshx==4 ?  "Хорошая"
+            : stepTshx==5 ? "Высокая"
+            : "" }) ступени</td></tr>}
+          {}
           {strees1 && <tr><td>высокий стресс ассоциирован с повышением риска сердечно-сосудистых заболеваний и осложнений, следить за психоэмоциальным здоровьем, следовать нашим рекомендациям:</td></tr>}
           {hyperurecemia && <tr><td>снижение уровня мочевой кислоты, женщины старше 14 лет – 150-405 мкмоль/л, мужчины 210-458 мкмоль/л, соблюдение диеты, консультация терапевта</td></tr>}
-
+          {ser && <tr><td>гиперурекемия - снижение уровня мочевой кислоты, женщины старше 14 лет – 150-405 мкмоль/л, мужчины 210-458 мкмоль/л, соблюдение диеты, консультация терапевта</td></tr>}
+          {diseaseKidney && <tr><td>ХБП - контроль креатинина и СКФ, контроль употребления белковой пищи, диета, консультация нефролога</td></tr>}
           </tbody>
         </table>
-        <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
-          12. Dieta:
+        
           <MeasureDieta imt={info5?.imt} bmr={info5?.bmr} />
-        </h6>
-        <p>{diet}</p>
-        <p className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
-          13. Strees:
-        </p>
+        
         <Strees/>
+        
+        <PhysicalActivity stepTshx={stepTshx} />
 
       </div>
     </div>

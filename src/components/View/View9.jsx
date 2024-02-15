@@ -14,6 +14,7 @@ const View9 = ({ patient,info }) => {
         return 2
       }
     }else if(age>40){
+      console.log(si,"siiii");
       if (si>=8 && si<11.5) {
         return 1
       }else if(si>11.5){
@@ -22,6 +23,7 @@ const View9 = ({ patient,info }) => {
     }
   
   }
+  console.log(measureSi(),"test SI");
   const measurePv = () =>{
     const  a = info?.pvA
     const  b = info?.pvB
@@ -43,15 +45,15 @@ const View9 = ({ patient,info }) => {
   return (
     <div>
       <div>
-        <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
+        <h6 className="mt-3 fw-bold" style={{ fontSize: "15px" }}>
           9. Инструментальные методы исследования :
         </h6>
-        <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
+        <h6 className="mt-3 fw-bold" style={{ fontSize: "15px" }}>
           9.1. Плетизмография (Ангиоскан-1)
         </h6>
         <table
           className="table table-bordered p-0"
-          style={{ fontSize: "10px" }}
+          style={{ fontSize: "15px" }}
         >
           <thead>
             <tr>
@@ -72,7 +74,7 @@ const View9 = ({ patient,info }) => {
               <td>2</td>
               <td>Индекс ригидности (скорость пульсовой волны) SI</td>
               <td>
-                {info?.si}-{measureSi()==1 ? "нормальный индекс жесткости" : measureSi()==2 ? "высокий индекс жесткости" : ""}
+                {info?.si} м/с-{measureSi()==1 ? "нормальный индекс жесткости" : measureSi()==2 ? "высокий индекс жесткости" : ""}
               </td>
             </tr>
             <tr>
@@ -107,11 +109,14 @@ const View9 = ({ patient,info }) => {
               <td>ЧСС</td>
               <td>{info?.heartRate}</td>
             </tr>
-            <tr>
-              <td>7</td>
-              <td>Заключение</td>
-              <td>{info?.conclusion}</td>
-            </tr>
+            {info?.conclusion && (
+                 <tr>
+                 <td>7</td>
+                 <td>Заключение</td>
+                 <td>{info?.conclusion}</td>
+               </tr>
+            )}
+           
           </tbody>
         </table>
       </div>

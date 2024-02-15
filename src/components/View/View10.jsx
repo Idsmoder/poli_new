@@ -57,13 +57,13 @@ const View10 = ({ info,patient }) => {
   return (
     <div>
       <div>
-        <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
+        <h6 className="mt-1 fw-bold" style={{ fontSize: "10px" }}>
           10. Оценка качеств жизни и уровня стресса.
         </h6>
 
         <table
           className="table table-bordered p-0"
-          style={{ fontSize: "10px" }}
+          style={{ fontSize: "15px" }}
         >
           <thead>
             <tr>

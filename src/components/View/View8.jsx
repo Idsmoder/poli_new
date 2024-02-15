@@ -207,7 +207,7 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
         </h6>
         <table
           className="table table-bordered p-0"
-          style={{ fontSize: "10px" }}
+          style={{ fontSize: "15px" }}
         >
           <thead>
             <tr>
@@ -221,18 +221,18 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
               <td>1</td>
               <td>ТШХ</td>
               <td>
-                <p>{info?.tshx}-{tshxMeasure()}</p>
+                <p> {info?.tshx} Толерантность в физической нагрузке {tshxMeasure()}</p>
               </td>
             </tr>
             <tr>
               <td>2</td>
               <td>Шкала одышки Борга</td>
-              <td>{info?.borgscale}-{borgscaleMeasure()}</td>
+              <td>Выраженность одышки при физической нагрузке по шкале Борга {info?.borgscale} баллов, что соответствует {borgscaleMeasure()} степени интенсивности одышки</td>
             </tr>
             <tr>
               <td>3</td>
               <td>Проба Руфье-Диксона</td>
-              <td>{info?.rufierDixon ? info?.rufierDixon : ((info?.rufierDixontest_p2 -70) + (info?.rufierDixontest_p3 - info?.rufierDixontest_p1))/10}-{rufierDixontestMeasure()}</td>
+              <td>Проба Руфье-Диксона {info?.rufierDixon ? info?.rufierDixon : ((info?.rufierDixontest_p2 -70) + (info?.rufierDixontest_p3 - info?.rufierDixontest_p1))/10}, что соответствует  {rufierDixontestMeasure()} работоспособности сердца </td>
             </tr>
             <tr>
               <td>a</td>
@@ -252,7 +252,7 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
             <tr>
               <td>4</td>
               <td>Для тренированных больных – ВЭМ проба</td>
-              <td>{info?.bem_sample}-{bemSempleMeasure()}</td>
+              <td>{info?.bem_sample}-Толерантность в физической нагрузке {bemSempleMeasure()}</td>
             </tr>
             <tr>
               <td>5</td>
@@ -260,8 +260,8 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
                 Ступень физической подготовленности (от 1 мин до 5 максимальная)
                 расчетная
               </td>
-              <td>
-                {stepenMeasure()}-{stepenMeasure()==1 ? "Низкая"
+              <td> {stepenMeasure()}-Степень физической работоспособность    
+                {} {stepenMeasure()==1 ? "Низкая"
                   :stepenMeasure()==2 ? "Умеренно низкая"
                   :stepenMeasure()==3 ? "Средняя"
                   :stepenMeasure()==4 ? "Хорошая"
@@ -273,7 +273,7 @@ const View8 = ({ info,patient,setInfo,info5,info6 }) => {
             <tr>
               <td>6</td>
               <td>Массовый тест определения физического состояния Е.А.Пирогова и соавт., 1984</td>
-              <td>{testMass()}-{testMass() <=45 ? "Низкое": testMass() >=46 && testMass() <=74 ? "Среднее" : testMass() >=75? "Высокое":"" }</td>
+              <td>{testMass()}-Уровень физического состояния {testMass() <=45 ? "Низкое": testMass() >=46 && testMass() <=74 ? "Среднее" : testMass() >=75? "Высокое":"" }</td>
             </tr>
           </tbody>
         </table>

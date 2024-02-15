@@ -355,12 +355,12 @@ const View7 = ({patient,info,setInfo})=>{
       return (
         <div>
           <div>
-            <h6 className="mt-3 fw-bold" style={{ fontSize: "10px" }}>
+            <h6 className="mt-1 fw-bold" style={{ fontSize: "10px" }}>
               7. Лабораторные данные:
             </h6>
             <table
               className="table table-bordered p-0"
-              style={{ fontSize: "10px" }}
+              style={{ fontSize: "15px" }}
             >
               <thead>
                 <tr>
@@ -461,7 +461,7 @@ const View7 = ({patient,info,setInfo})=>{
                   -{
                     info?.rapidGlomFilt> 90 ? "Нормальная СКФ-ХБП-1"
                     : info?.rapidGlomFilt < 90 && info?.rapidGlomFilt > 60 ?  " Признаки нефропатии, легкое снижение СКФ-ХБП-2"
-                    : info?.rapidGlomFilt < 60 && info?.rapidGlomFilt >45 ? " Умеренное снижение СКФ-ХБП-3A "
+                    : info?.rapidGlomFilt < 60 && info?.rapidGlomFilt >=45 ? " Умеренное снижение СКФ-ХБП-3A "
                     : info?.rapidGlomFilt < 45 && info?.rapidGlomFilt > 30 ? " Выраженное снижение СКФ-ХБП-3Б"
                     : info?.rapidGlomFilt < 31 && info?.rapidGlomFilt > 15 ? " Тяжелое снижение СКФ-ХБП-4"
                     : info?.rapidGlomFilt < 16 ? "Терминальная хроническая почечная недостаточность-ХБП-5"
